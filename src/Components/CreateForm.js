@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { addWizard } from "../redux/actions.js";
+import { addMeme } from "../redux/actions.js";
 
 class CreateForm extends React.Component {
   state = {
@@ -21,7 +21,6 @@ class CreateForm extends React.Component {
   };
 
   render() {
-    console.log(this.props);
     return (
       <div>
         <h3>Create a new Meme!</h3>
@@ -49,17 +48,17 @@ class CreateForm extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    addMeme: memeObj => {
-      dispatch({ type: "ADD_MEME", payload: memeObj });
-    }
-  };
-};
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     addMeme: memeObj => {
+//       dispatch({ type: "ADD_MEME", payload: memeObj });
+//     }
+//   };
+// };
 
 const connector = connect(
   null,
-  mapDispatchToProps
+  { addMeme }
 );
 
 const exporter = connector(CreateForm);
