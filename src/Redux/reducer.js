@@ -3,7 +3,9 @@
 
 const initialState = {
   memes: [],
-  selectedMeme: {}
+  selectedMeme: {},
+  isModalOpen: false,
+  newMemeUrl: ""
 };
 
 const reducer = (state = initialState, action) => {
@@ -18,6 +20,12 @@ const reducer = (state = initialState, action) => {
       return { ...state, memes: newArray };
     case "SELECT_MEME":
       return { ...state, selectedMeme: action.payload };
+    case "NEW_MEME_CLICK":
+      return {
+        ...state,
+        isModalOpen: action.payload.bool,
+        newMemeUrl: action.payload.url
+      };
     default:
       return state;
   }

@@ -25,3 +25,10 @@ export const postMeme = meme => {
     payload: meme
   };
 };
+
+export const newMemeClick = url => {
+  return {
+    type: "NEW_MEME_CLICK",
+    payload: { bool: true, url: url }
+  };
+};
