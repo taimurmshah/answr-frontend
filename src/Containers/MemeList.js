@@ -2,11 +2,18 @@ import React from "react";
 import MemeCard from "../Components/MemeCard";
 import { connect } from "react-redux";
 import { getMemes } from "../redux/thunks";
+import NewMeme from "../Modals/NewMemeModal";
 
 class MemeList extends React.Component {
+  state = {
+    renderModal: false
+  };
+
   componentDidMount() {
     this.props.getMemes();
   }
+
+  clickHandler = () => {};
 
   render() {
     const { memes } = this.props;
