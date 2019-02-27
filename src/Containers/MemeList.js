@@ -1,8 +1,13 @@
 import React from "react";
 import MemeCard from "../Components/MemeCard";
 import { connect } from "react-redux";
+import { getMemes } from "../redux/thunks";
 
 class MemeList extends React.Component {
+  componentDidMount() {
+    this.props.getMemes();
+  }
+
   render() {
     const { memes } = this.props;
     let memeProps = memes.map(meme => {
@@ -23,4 +28,11 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(MemeList);
+const mapDispatchToProps = dispatch => {
+  return { getMemes: () => dispatch(getMemes()) };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MemeList);

@@ -11,3 +11,17 @@ export const selectMeme = meme => {
     payload: meme
   };
 };
+
+export const loadMemes = memes => {
+  return {
+    type: "LOAD_MEMES",
+    payload: memes
+  };
+};
+
+export const postMeme = meme => {
+  return {
+    type: "POST_MEME",
+    payload: meme
+  };
+};

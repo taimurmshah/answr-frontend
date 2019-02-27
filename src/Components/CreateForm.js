@@ -1,11 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
-import { addMeme } from "../redux/actions.js";
+import { addMeme } from "../redux/thunks";
 
 class CreateForm extends React.Component {
   state = {
     title: "",
-    url: ""
+    url: "",
+    user_id: 2
   };
 
   submitHandler = e => {
@@ -48,18 +49,13 @@ class CreateForm extends React.Component {
   }
 }
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     addMeme: memeObj => {
-//       dispatch({ type: "ADD_MEME", payload: memeObj });
-//     }
-//   };
-// };
+const mapDispatchToProps = dispatch => {
+  return {
+    addMeme: memeObj => dispatch(addMeme(memeObj))
+  };
+};
 
-const connector = connect(
+export default connect(
   null,
-  { addMeme }
-);
-
-const exporter = connector(CreateForm);
-export default exporter;
+  mapDispatchToProps
+)(CreateForm);
