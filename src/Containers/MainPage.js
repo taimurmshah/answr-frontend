@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 class MainPage extends React.Component {
   render() {
     console.log("MainPage props:", this.props);
-    console.log("is it true?", this.props.isMo);
+
     return (
       <div>
         <h1>Welcome to MemeList!</h1>

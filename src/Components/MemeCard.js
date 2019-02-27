@@ -13,10 +13,10 @@ class MemeCard extends React.Component {
       <div>
         <h1>{meme.title}</h1>
         <img
+          id={meme.title}
+          className="thumbnail"
           alt=""
           src={meme.url}
-          height="300"
-          width="300"
           onClick={this.clickHandler}
         />
       </div>

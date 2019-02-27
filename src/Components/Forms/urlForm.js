@@ -16,6 +16,7 @@ class UrlForm extends React.Component {
 
   submitHandler = e => {
     e.preventDefault();
+    console.log("this is the URL", this.state.url);
     this.props.newMemeClick(this.state.url);
   };
 
