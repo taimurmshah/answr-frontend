@@ -1,14 +1,11 @@
 import React, { Component } from "react";
 import "./App.css";
 import MainPage from "./Containers/MainPage";
+import { Route } from "react-router-dom";
 
 class App extends Component {
   render() {
-    return (
-      <div>
-        <MainPage />
-      </div>
-    );
+    return <Route path="/" component={MainPage} />;
   }
 }
 
