@@ -23,8 +23,30 @@ export const addMeme = meme => {
     })
       .then(res => res.json())
       .then(res => {
-        console.log("Here is the response:", res);
         dispatch(postMeme(meme));
+      });
+  };
+};
+
+export const registerUser = userObj => {
+  return dispatch => {
+    return fetch("http://localhost:3000/api/v1/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({
+        user: {
+          name: userObj.name,
+          email: userObj.email,
+          password: userObj.password
+        }
+      })
+    })
+      .then(res => res.json())
+      .then(res => {
+        console.log("registerUser thunk response:", res);
       });
   };
 };
