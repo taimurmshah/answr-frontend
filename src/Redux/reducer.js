@@ -30,7 +30,11 @@ const reducer = (state = initialState, action) => {
       };
     case "OPEN_LOGIN_MODAL":
       return { ...state, loginModalOpen: action.payload };
+    case "CLOSE_LOGIN_MODAL":
+      return { ...state, loginModalOpen: action.payload };
     case "OPEN_SIGNUP_MODAL":
+      return { ...state, signupModalOpen: action.payload };
+    case "CLOSE_SIGNUP_MODAL":
       return { ...state, signupModalOpen: action.payload };
     default:
       return state;

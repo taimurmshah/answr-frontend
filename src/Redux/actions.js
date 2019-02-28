@@ -40,9 +40,23 @@ export const openLoginModal = () => {
   };
 };
 
-export const openSignUpModal = () => {
+export const closeLoginModal = () => {
+  return {
+    type: "CLOSE_LOGIN_MODAL",
+    action: false
+  };
+};
+
+export const openSignupModal = () => {
   return {
     type: "OPEN_SIGNUP_MODAL",
     payload: true
+  };
+};
+
+export const closeSignupModal = () => {
+  return {
+    type: "CLOSE_SIGNUP_MODAL",
+    action: false
   };
 };

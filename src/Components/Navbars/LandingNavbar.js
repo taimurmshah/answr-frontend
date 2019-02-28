@@ -3,17 +3,17 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import {
   openLoginModal,
-  openSignUpModal
+  openSignupModal
 } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/actions.js";
-import { Login } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/Components/Modals/Login.js";
-import { Signup } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/Components/Modals/Signup.js";
+import Login from "/Users/taimur/Bootcamp/Five/mod-5-front/src/Components/Modals/Login.js";
+import Signup from "/Users/taimur/Bootcamp/Five/mod-5-front/src/Components/Modals/Signup.js";
 
 const LandingNavbar = props => {
   return (
     <ul>
       <li onClick={props.openLoginModal}>login</li>
       {props.loginOpen ? <Login /> : null}
-      <li onClick={props.openSignUpModal}>sign up</li>
+      <li onClick={props.openSignupModal}>sign up</li>
       {props.signupOpen ? <Signup /> : null}
       <Link to="/mainpage">
         <li>home</li>
@@ -25,7 +25,7 @@ const LandingNavbar = props => {
 const mapDispatchToProps = dispatch => {
   return {
     openLoginModal: () => dispatch(openLoginModal()),
-    openSignUpModal: () => dispatch(openSignUpModal())
+    openSignupModal: () => dispatch(openSignupModal())
   };
 };
 
