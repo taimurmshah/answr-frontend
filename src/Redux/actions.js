@@ -32,3 +32,17 @@ export const newMemeClick = url => {
     payload: { bool: true, url: url }
   };
 };
+
+export const openLoginModal = () => {
+  return {
+    type: "OPEN_LOGIN_MODAL",
+    payload: true
+  };
+};
+
+export const openSignUpModal = () => {
+  return {
+    type: "OPEN_SIGNUP_MODAL",
+    payload: true
+  };
+};
