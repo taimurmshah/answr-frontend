@@ -50,3 +50,23 @@ export const registerUser = userObj => {
       });
   };
 };
+
+export const logUserIn = userObj => {
+  return dispatch => {
+    return fetch("http://localhost:3000/api/v1/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({
+        user: {
+          email: userObj.email,
+          password: userObj.password
+        }
+      })
+    })
+      .then(res => res.json())
+      .then(res => console.log("This is the login response:", res));
+  };
+};

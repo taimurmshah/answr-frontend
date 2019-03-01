@@ -21,6 +21,11 @@ class Signup extends React.Component {
     console.log(" i am hitting ");
     e.preventDefault();
     this.props.registerUser(this.state);
+    this.setState({
+      name: "",
+      email: "",
+      password: ""
+    });
   };
 
   render() {
