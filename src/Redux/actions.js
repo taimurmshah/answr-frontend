@@ -62,27 +62,17 @@ export const closeSignupModal = () => {
 };
 
 export const regUser = res => {
-  if (res.user) {
-    console.log("this is the res:", res);
-    return {
-      type: "REG_USER",
-      payload: res.user
-    };
-  } else if (res.error) {
-    console.log("this is the res:", res);
-    alert(res.error);
-  }
+  console.log("this is the res:", res);
+  return {
+    type: "REG_USER",
+    payload: res.user
+  };
 };
 
 export const logUser = res => {
-  if (res.user) {
-    console.log("this is the res:", res);
-    return {
-      type: "LOG_USER_IN",
-      payload: res.user
-    };
-  } else if (res.error) {
-    console.log("this is the res:", res);
-    alert(res.error);
-  }
+  console.log("this is the res:", res);
+  return {
+    type: "LOG_USER_IN",
+    payload: res.user
+  };
 };

@@ -44,8 +44,19 @@ export const registerUser = userObj => {
         }
       })
     })
-      .then(res => res.json())
-      .then(res => dispatch(regUser(res)));
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          let error = new Error("Registration unsuccessful. Please try again.");
+          throw error;
+        }
+      })
+      .then(res => dispatch(regUser(res)))
+      .catch(err => {
+        console.error("this is the error:", err);
+        alert(err.message);
+      });
   };
 };
 
@@ -64,7 +75,18 @@ export const logUserIn = userObj => {
         }
       })
     })
-      .then(res => res.json())
-      .then(res => dispatch(logUser(res)));
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          let error = new Error("Log in unsuccessful, please try again");
+          throw error;
+        }
+      })
+      .then(res => dispatch(logUser(res)))
+      .catch(err => {
+        console.error("this is the error:", err);
+        alert(err.message);
+      });
   };
 };
