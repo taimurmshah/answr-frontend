@@ -41,6 +41,7 @@ class Signup extends React.Component {
             onChange={this.changeHandler}
           />
           <Input
+            type="password"
             name="password"
             value={this.state.password}
             placeholder="password"
