@@ -7,7 +7,8 @@ const initialState = {
   isModalOpen: false,
   newMemeUrl: "",
   loginModalOpen: false,
-  signupModalOpen: false
+  signupModalOpen: false,
+  currentUser: {}
 };
 
 const reducer = (state = initialState, action) => {
@@ -36,6 +37,10 @@ const reducer = (state = initialState, action) => {
       return { ...state, signupModalOpen: action.payload };
     case "CLOSE_SIGNUP_MODAL":
       return { ...state, signupModalOpen: action.payload };
+    case "REG_USER":
+      return { ...state, currentUser: action.payload };
+    case "LOG_USER_IN":
+      return { ...state, currentUser: action.payload };
     default:
       return state;
   }

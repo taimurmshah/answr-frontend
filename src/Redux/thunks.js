@@ -1,5 +1,5 @@
 /*----------------THUNK CREATORS---------------*/
-import { loadMemes, postMeme } from "./actions";
+import { loadMemes, postMeme, regUser, logUser } from "./actions";
 
 export const getMemes = () => {
   return dispatch => {
@@ -45,9 +45,7 @@ export const registerUser = userObj => {
       })
     })
       .then(res => res.json())
-      .then(res => {
-        console.log("registerUser thunk response:", res);
-      });
+      .then(res => dispatch(regUser(res)));
   };
 };
 
@@ -67,6 +65,6 @@ export const logUserIn = userObj => {
       })
     })
       .then(res => res.json())
-      .then(res => console.log("This is the login response:", res));
+      .then(res => dispatch(logUser(res)));
   };
 };
