@@ -52,7 +52,11 @@ export const registerUser = userObj => {
           throw error;
         }
       })
-      .then(res => dispatch(regUser(res)))
+      .then(res => {
+        localStorage.setItem("token", `${res.jwt}`);
+        console.log("this is local storage:", localStorage.getItem("token"));
+        dispatch(regUser(res));
+      })
       .catch(err => {
         console.error("this is the error:", err);
         alert(err.message);
