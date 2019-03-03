@@ -3,6 +3,7 @@ import { Modal, Input, Button } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { closeLoginModal } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/actions.js";
 import { logUserIn } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/thunks.js";
+import { Link, withRouter } from "react-router-dom";
 
 class Login extends React.Component {
   state = {
@@ -50,7 +51,9 @@ class Login extends React.Component {
           />
         </Modal.Content>
         <Modal.Actions>
-          <Button onClick={this.submitHandler}>Log in</Button>
+          <Button as={Link} to="/home" onClick={this.submitHandler}>
+            Log in
+          </Button>
           <Button onClick={this.props.closeLoginModal}>Close</Button>
         </Modal.Actions>
       </Modal>
@@ -69,7 +72,9 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(Login);
+export default withRouter(
+  connect(
+    null,
+    mapDispatchToProps
+  )(Login)
+);

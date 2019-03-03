@@ -15,9 +15,6 @@ const LandingNavbar = props => {
       {props.loginOpen ? <Login /> : null}
       <li onClick={props.openSignupModal}>sign up</li>
       {props.signupOpen ? <Signup /> : null}
-      <Link to="/mainpage">
-        <li>home</li>
-      </Link>
     </ul>
   );
 };
