@@ -1,0 +1,41 @@
+1. How to keep a user logged in?
+  - review Tashawn's auth code
+    - annotate it
+2. how will i make sure that I can render a page ONLY
+   if a user is logged in?
+  - Front-end:
+    - conditional render of Component based on whether
+      JWT is present in local storage.
+  - Back-end:
+    - do not render information unless a JWT is received
+      from front's requests.
+      - some authentication method.
+3. create all of the Components that a user will use
+   to navigate to a game.
+4. preload pictures
+5. click "join game"
+6. select picture first
+    - this selection will update redux store for "selected picture"
+7. clicking on the picture opens a modal, on which user
+   will make the meme
+    - behind the scenes, I will mapStateToProps for the "selectedPicture,"
+      then interpolate it onto a canvas, put the canvas on an SVG, and then
+      display that SVG in the modal.
+    - write the logic for writing on the picture; review the chick's code
+      - controlled forms for the text
+        - rendered in a <text/> tag.
+      - event handlers:
+        - mouseDown
+          - when user starts typing
+          - adds a mouseMove that tracks the x/y positions of the words
+          - will constantly update local state for the x/y coordinates,
+            which will re-render the component with the words at those
+            coordinates
+        - mouseUp:
+          - will remove the event listener, and will update local state
+            of the position of those words
+          - submit button that will dispatch(thunk) to server with
+            user_id, picture_id, and meme (join of the two).
+              - meme will have columns for top and bottom text,
+                as well as 
+8.

@@ -83,7 +83,11 @@ export const logUserIn = userObj => {
           throw error;
         }
       })
-      .then(res => dispatch(logUser(res)))
+      .then(res => {
+        localStorage.setItem("token", `${res.jwt}`);
+        console.log("this is local storage:", localStorage.getItem("token"));
+        dispatch(logUser(res));
+      })
       .catch(err => {
         console.error("this is the error:", err);
         alert(err.message);
