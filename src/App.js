@@ -17,9 +17,7 @@ class App extends Component {
   }
 
   isUserLoggedIn = () => {
-    console.log("Yes");
-    console.log(Object.keys(this.props.currentUser).length > 0);
-    return Object.keys(this.props.currentUser).length > 0;
+    return localStorage.getItem("token");
   };
 
   conditionalRender = () => {
@@ -35,7 +33,20 @@ class App extends Component {
       <div>
         <Switch>
           <Route path="/home" component={Home} />
-          <Route path="/" component={Landing} />
+          <Route
+            path="/"
+            render={() => {
+              return (
+                <div>
+                  {this.isUserLoggedIn() ? (
+                    <Redirect to="/home" />
+                  ) : (
+                    <Landing />
+                  )}
+                </div>
+              );
+            }}
+          />
           {/*<Route
             path="/home"
             render={() => {
