@@ -1,28 +1,51 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import {
   openLoginModal,
-  openSignupModal
+  openSignupModal,
+  logOut
 } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/actions.js";
 import Login from "/Users/taimur/Bootcamp/Five/mod-5-front/src/Components/Modals/Login.js";
 import Signup from "/Users/taimur/Bootcamp/Five/mod-5-front/src/Components/Modals/Signup.js";
 
+const isUserLoggedIn = () => {
+  return localStorage.getItem("token");
+};
+
 const LandingNavbar = props => {
   return (
-    <ul>
-      <li onClick={props.openLoginModal}>login</li>
-      {props.loginOpen ? <Login /> : null}
-      <li onClick={props.openSignupModal}>sign up</li>
-      {props.signupOpen ? <Signup /> : null}
-    </ul>
+    <div>
+      {isUserLoggedIn() ? (
+        <ul>
+          <li
+            onClick={() => {
+              localStorage.removeItem("token");
+              props.logOut();
+            }}
+          >
+            logout
+          </li>
+        </ul>
+      ) : (
+        <ul>
+          <li onClick={props.openLoginModal}>login</li>
+          {props.loginOpen ? <Login /> : null}
+          <li onClick={props.openSignupModal}>sign up</li>
+          {props.signupOpen ? <Signup /> : null}
+        </ul>
+      )}
+    </div>
   );
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     openLoginModal: () => dispatch(openLoginModal()),
-    openSignupModal: () => dispatch(openSignupModal())
+    openSignupModal: () => dispatch(openSignupModal()),
+    logOut: () => {
+      dispatch(logOut());
+    }
   };
 };
 
@@ -33,7 +56,9 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(LandingNavbar);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(LandingNavbar)
+);

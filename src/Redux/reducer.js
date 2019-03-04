@@ -43,6 +43,13 @@ const reducer = (state = initialState, action) => {
       return { ...state, currentUser: action.payload };
     case "JWT_LOG":
       return { ...state, currentUser: action.payload };
+    case "LOGOUT":
+      return {
+        ...state,
+        currentUser: action.payload,
+        loginModalOpen: false,
+        signupModalOpen: false
+      };
     default:
       return state;
   }

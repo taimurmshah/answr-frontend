@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { withRouter, Redirect } from "react-router-dom";
 import { logUserInWithToken } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/thunks.js";
+import LandingNavbar from "/Users/taimur/Bootcamp/Five/mod-5-front/src/Components/Navbars/LandingNavbar.js";
 
 class Home extends React.Component {
   isUserLoggedIn = () => {
@@ -23,6 +24,7 @@ class Home extends React.Component {
     console.log("is the user logged in?", this.isUserLoggedIn());
     return (
       <div>
+        <LandingNavbar />
         {this.isUserLoggedIn() ? (
           <h1>{`Welcome, ${this.props.currentUser.name}`}</h1>
         ) : (

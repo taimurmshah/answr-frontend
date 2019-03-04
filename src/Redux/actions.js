@@ -83,3 +83,10 @@ export const jwtLog = res => {
     payload: res.user
   };
 };
+
+export const logOut = () => {
+  return {
+    type: "LOGOUT",
+    payload: {}
+  };
+};

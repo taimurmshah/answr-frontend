@@ -47,16 +47,6 @@ class App extends Component {
               );
             }}
           />
-          {/*<Route
-            path="/home"
-            render={() => {
-              return (
-                <div>
-                  {this.isUserLoggedIn() ? <Home /> : <Redirect to="/" />}
-                </div>
-              );
-            }}
-          />*/}
         </Switch>
       </div>
     );
