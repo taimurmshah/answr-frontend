@@ -76,3 +76,10 @@ export const logUser = res => {
     payload: res.user
   };
 };
+
+export const jwtLog = res => {
+  return {
+    type: "JWT_LOG",
+    payload: res.user
+  };
+};

@@ -1,5 +1,5 @@
 /*----------------THUNK CREATORS---------------*/
-import { loadMemes, postMeme, regUser, logUser } from "./actions";
+import { loadMemes, postMeme, regUser, logUser, jwtLog } from "./actions";
 
 export const getMemes = () => {
   return dispatch => {
@@ -95,6 +95,22 @@ export const logUserIn = userObj => {
       .catch(err => {
         console.error("this is the error:", err);
         alert(err.message);
+      });
+  };
+};
+
+export const logUserInWithToken = token => {
+  return dispatch => {
+    return fetch("http://localhost:3000/api/v1/user", {
+      headers: {
+        "Content-Type": "application/json",
+        Accepts: "application/json",
+        Authorization: `${token}`
+      }
+    })
+      .then(res => res.json())
+      .then(res => {
+        dispatch(jwtLog(res));
       });
   };
 };

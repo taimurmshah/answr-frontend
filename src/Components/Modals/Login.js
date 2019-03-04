@@ -18,8 +18,8 @@ class Login extends React.Component {
   };
 
   submitHandler = e => {
-    e.preventDefault();
     this.props.logUserIn(this.state);
+    this.props.history.push("/home");
     this.setState(
       {
         email: "",
@@ -51,9 +51,7 @@ class Login extends React.Component {
           />
         </Modal.Content>
         <Modal.Actions>
-          <Button as={Link} to="/home" onClick={this.submitHandler}>
-            Log in
-          </Button>
+          <Button onClick={this.submitHandler}>Log in</Button>
           <Button onClick={this.props.closeLoginModal}>Close</Button>
         </Modal.Actions>
       </Modal>
