@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import Home from "./Containers/Home";
+import Game from "/Users/taimur/Bootcamp/Five/mod-5-front/src/Containers/Game.js";
 import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 import Landing from "./Containers/Landing";
 import { connect } from "react-redux";
@@ -20,19 +21,22 @@ class App extends Component {
     return localStorage.getItem("token");
   };
 
-  conditionalRender = () => {
-    if (this.isUserLoggedIn()) {
-      return <Home />;
-    } else {
-      return <Redirect to="/" />;
-    }
-  };
   render() {
     console.log("App props:", this.props);
     return (
       <div>
         <Switch>
           <Route path="/home" component={Home} />
+          <Route
+            path="/game"
+            render={() => {
+              return (
+                <div>
+                  {this.props.isGameOpen ? <Game /> : <Redirect to="/home" />}
+                </div>
+              );
+            }}
+          />
           <Route
             path="/"
             render={() => {
@@ -55,7 +59,8 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    currentUser: state.currentUser
+    currentUser: state.currentUser,
+    isGameOpen: state.isGameOpen
   };
 };
 

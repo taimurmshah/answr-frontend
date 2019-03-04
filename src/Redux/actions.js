@@ -90,3 +90,9 @@ export const logOut = () => {
     payload: {}
   };
 };
+
+export const toggleGame = () => {
+  return {
+    type: "TOGGLE_GAME"
+  };
+};
