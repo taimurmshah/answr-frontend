@@ -19,14 +19,17 @@ const Navbar = props => {
     <div>
       {isUserLoggedIn() ? (
         <ul>
-          <li
-            onClick={() => {
-              localStorage.removeItem("token");
-              props.logOut();
-            }}
-          >
-            logout
-          </li>
+          {props.isGameOpen ? null : (
+            <li
+              onClick={() => {
+                localStorage.removeItem("token");
+                props.logOut();
+                props.toggleGame();
+              }}
+            >
+              log out
+            </li>
+          )}
           <li
             onClick={() => {
               props.toggleGame();
