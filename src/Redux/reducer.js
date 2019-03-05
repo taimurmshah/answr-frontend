@@ -8,8 +8,12 @@ const initialState = {
   newMemeUrl: "",
   loginModalOpen: false,
   signupModalOpen: false,
+  newGameModal: false,
   currentUser: {},
-  isGameOpen: false
+  isGameInPlay: false,
+  availableGames: [],
+  currentGame: {},
+  rounds: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -53,6 +57,8 @@ const reducer = (state = initialState, action) => {
       };
     case "TOGGLE_GAME":
       return { ...state, isGameOpen: !state.isGameOpen };
+    case "TOGGLE_NEW_GAME_MODAL":
+      return { ...state, newGameModal: !state.newGameModal };
     default:
       return state;
   }

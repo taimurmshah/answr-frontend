@@ -12,6 +12,8 @@ import { Provider } from "react-redux";
 
 import { BrowserRouter } from "react-router-dom";
 
+import { ActionCableProvider } from "react-actioncable-provider";
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
 
@@ -20,7 +22,9 @@ const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <App />
+      <ActionCableProvider url={process.env.REACT_APP_CABLE}>
+        <App />
+      </ActionCableProvider>
     </BrowserRouter>
   </Provider>,
   document.getElementById("root")

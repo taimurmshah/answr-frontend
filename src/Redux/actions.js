@@ -96,3 +96,9 @@ export const toggleGame = () => {
     type: "TOGGLE_GAME"
   };
 };
+
+export const toggleNewGameModal = () => {
+  return {
+    type: "TOGGLE_NEW_GAME_MODAL"
+  };
+};

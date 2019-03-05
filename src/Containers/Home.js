@@ -3,14 +3,14 @@ import { connect } from "react-redux";
 import { withRouter, Redirect } from "react-router-dom";
 import { logUserInWithToken } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/thunks.js";
 import Navbar from "/Users/taimur/Bootcamp/Five/mod-5-front/src/Components/Navbars/Navbar.js";
-
+import NewGame from "/Users/taimur/Bootcamp/Five/mod-5-front/src/Components/Modals/NewGame.js";
 class Home extends React.Component {
   isUserLoggedIn = () => {
-    return localStorage.getItem("token");
+    return localStorage.getItem("token") && this.props.currentUser;
   };
 
   componentDidMount() {
-    console.log("token:", localStorage.getItem("token"));
+    // console.log("token:", localStorage.getItem("token"));
     if (localStorage.getItem("token")) {
       let token = localStorage.getItem("token");
       this.props.logUserInWithToken(token);
@@ -20,8 +20,8 @@ class Home extends React.Component {
   }
 
   render() {
-    console.log("homepage props:", this.props.currentUser);
-    console.log("is the user logged in?", this.isUserLoggedIn());
+    // console.log("homepage props:", this.props.currentUser);
+    // console.log("is the user logged in?", this.isUserLoggedIn());
     return (
       <div>
         <Navbar />
@@ -30,6 +30,7 @@ class Home extends React.Component {
         ) : (
           <Redirect to="/" />
         )}
+        {this.props.newGameModal ? <NewGame /> : null}
       </div>
     );
   }
@@ -37,7 +38,8 @@ class Home extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    currentUser: state.currentUser
+    currentUser: state.currentUser,
+    newGameModal: state.newGameModal
   };
 };
 

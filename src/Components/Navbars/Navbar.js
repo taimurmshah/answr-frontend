@@ -5,7 +5,8 @@ import {
   openLoginModal,
   openSignupModal,
   logOut,
-  toggleGame
+  toggleGame,
+  toggleNewGameModal
 } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/actions.js";
 import Login from "/Users/taimur/Bootcamp/Five/mod-5-front/src/Components/Modals/Login.js";
 import Signup from "/Users/taimur/Bootcamp/Five/mod-5-front/src/Components/Modals/Signup.js";
@@ -24,20 +25,16 @@ const Navbar = props => {
               onClick={() => {
                 localStorage.removeItem("token");
                 props.logOut();
-                props.toggleGame();
+                //props.toggleGame();
               }}
             >
-              log out
+              Log Out
             </li>
           )}
-          <li
-            onClick={() => {
-              props.toggleGame();
-              props.history.push("/game");
-            }}
-          >
-            {props.isGameOpen ? "exit game" : "play game"}
-          </li>
+          {props.isGameOpen ? null : <li>View Available Games</li>}
+          {props.isGameOpen ? null : (
+            <li onClick={props.toggleNewGameModal}>Create New Game</li>
+          )}
         </ul>
       ) : (
         <ul>
@@ -58,7 +55,8 @@ const mapDispatchToProps = dispatch => {
     logOut: () => {
       dispatch(logOut());
     },
-    toggleGame: () => dispatch(toggleGame())
+    toggleGame: () => dispatch(toggleGame()),
+    toggleNewGameModal: () => dispatch(toggleNewGameModal())
   };
 };
 
@@ -76,3 +74,16 @@ export default withRouter(
     mapDispatchToProps
   )(Navbar)
 );
+
+/*
+
+<li
+  onClick={() => {
+    props.toggleGame();
+    props.history.push("/game");
+  }}
+>
+  {props.isGameOpen ? "exit game" : "play game"}
+</li>
+
+*/
