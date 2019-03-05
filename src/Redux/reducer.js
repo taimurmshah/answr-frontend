@@ -59,6 +59,12 @@ const reducer = (state = initialState, action) => {
       return { ...state, isGameOpen: !state.isGameOpen };
     case "TOGGLE_NEW_GAME_MODAL":
       return { ...state, newGameModal: !state.newGameModal };
+    case "NEW_CURRENT_GAME":
+      return {
+        ...state,
+        currentGame: action.payload,
+        isGameInPlay: !state.isGameInPlay
+      };
     default:
       return state;
   }

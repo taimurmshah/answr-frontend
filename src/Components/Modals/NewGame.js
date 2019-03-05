@@ -2,7 +2,7 @@ import React from "react";
 import { Modal, Input, Button } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { toggleNewGameModal } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/actions.js";
-
+import { createNewGame } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/thunks.js";
 class NewGame extends React.Component {
   state = {
     title: ""
@@ -14,20 +14,24 @@ class NewGame extends React.Component {
     });
   };
 
+  createHandler = () => {
+    this.props.createNewGame(this.state);
+  };
+
   render() {
     return (
       <Modal open={true} size={"mini"}>
         <Modal.Content>
           <p>Create New Game:</p>
           <Input
-            name="Title"
+            name="title"
             value={this.state.title}
             placeholder="enter title"
             onChange={this.changeHandler}
           />
         </Modal.Content>
         <Modal.Actions>
-          <Button>Submit</Button>
+          <Button onClick={this.createHandler}>Submit</Button>
           <Button onClick={this.props.toggleNewGameModal}>Go Back</Button>
         </Modal.Actions>
       </Modal>
@@ -37,7 +41,8 @@ class NewGame extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    toggleNewGameModal: () => dispatch(toggleNewGameModal())
+    toggleNewGameModal: () => dispatch(toggleNewGameModal()),
+    createNewGame: gameObj => dispatch(createNewGame(gameObj))
   };
 };
 

@@ -102,3 +102,10 @@ export const toggleNewGameModal = () => {
     type: "TOGGLE_NEW_GAME_MODAL"
   };
 };
+
+export const newCurrentGame = res => {
+  return {
+    type: "NEW_CURRENT_GAME",
+    payload: res
+  };
+};

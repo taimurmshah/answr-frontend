@@ -1,5 +1,12 @@
 /*----------------THUNK CREATORS---------------*/
-import { loadMemes, postMeme, regUser, logUser, jwtLog } from "./actions";
+import {
+  loadMemes,
+  postMeme,
+  regUser,
+  logUser,
+  jwtLog,
+  newCurrentGame
+} from "./actions";
 
 export const getMemes = () => {
   return dispatch => {
@@ -111,6 +118,25 @@ export const logUserInWithToken = token => {
       .then(res => res.json())
       .then(res => {
         dispatch(jwtLog(res));
+      });
+  };
+};
+
+export const createNewGame = gameObj => {
+  return dispatch => {
+    return fetch("http://localhost:3000/api/v1/games", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accepts: "application/json"
+      },
+      body: JSON.stringify({
+        title: gameObj.title
+      })
+    })
+      .then(res => res.json())
+      .then(res => {
+        console.log("Create new game res:", res);
       });
   };
 };
