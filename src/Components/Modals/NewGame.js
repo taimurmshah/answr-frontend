@@ -3,6 +3,7 @@ import { Modal, Input, Button } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { toggleNewGameModal } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/actions.js";
 import { createNewGame } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/thunks.js";
+
 class NewGame extends React.Component {
   state = {
     title: ""
@@ -15,7 +16,7 @@ class NewGame extends React.Component {
   };
 
   createHandler = () => {
-    this.props.createNewGame(this.state);
+    this.props.createNewGame(this.state, this.props.currentUser);
   };
 
   render() {
@@ -42,11 +43,18 @@ class NewGame extends React.Component {
 const mapDispatchToProps = dispatch => {
   return {
     toggleNewGameModal: () => dispatch(toggleNewGameModal()),
-    createNewGame: gameObj => dispatch(createNewGame(gameObj))
+    createNewGame: (gameObj, userObj) =>
+      dispatch(createNewGame(gameObj, userObj))
+  };
+};
+
+const mapStateToProps = state => {
+  return {
+    currentUser: state.currentUser
   };
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(NewGame);

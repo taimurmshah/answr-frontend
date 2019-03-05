@@ -10,6 +10,7 @@ import {
 } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/actions.js";
 import Login from "/Users/taimur/Bootcamp/Five/mod-5-front/src/Components/Modals/Login.js";
 import Signup from "/Users/taimur/Bootcamp/Five/mod-5-front/src/Components/Modals/Signup.js";
+// import { getGames } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/thunks.js";
 
 const isUserLoggedIn = () => {
   return localStorage.getItem("token");
@@ -31,7 +32,15 @@ const Navbar = props => {
               Log Out
             </li>
           )}
-          {props.isGameOpen ? null : <li>View Available Games</li>}
+          {props.isGameOpen ? null : (
+            <li
+              onClick={() => {
+                props.history.push("/games");
+              }}
+            >
+              View Available Games
+            </li>
+          )}
           {props.isGameOpen ? null : (
             <li onClick={props.toggleNewGameModal}>Create New Game</li>
           )}

@@ -1,1 +1,3 @@
-1. convert modal inputs to forms
+- create new game should open the game by changing the redux store.
+- convert modal inputs to forms
+- change Navbar into a full Component, not a functional Component

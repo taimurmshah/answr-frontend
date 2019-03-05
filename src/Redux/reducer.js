@@ -65,6 +65,13 @@ const reducer = (state = initialState, action) => {
         currentGame: action.payload,
         isGameInPlay: !state.isGameInPlay
       };
+    case "ADD_GAMES":
+      return { ...state, availableGames: action.payload };
+    case "HANDLE_RECEIVED_GAME":
+      return {
+        ...state,
+        availableGames: [...state.availableGames, action.payload]
+      };
     default:
       return state;
   }

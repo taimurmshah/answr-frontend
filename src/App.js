@@ -2,16 +2,21 @@ import React, { Component } from "react";
 import "./App.css";
 import Home from "./Containers/Home";
 import Game from "/Users/taimur/Bootcamp/Five/mod-5-front/src/Containers/Game.js";
+import GameListContainer from "/Users/taimur/Bootcamp/Five/mod-5-front/src/Containers/GameListContainer.js";
 import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 import Landing from "./Containers/Landing";
 import { connect } from "react-redux";
-import { logUserInWithToken } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/thunks.js";
+import {
+  logUserInWithToken,
+  getGames
+} from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/thunks.js";
 
 class App extends Component {
   componentDidMount() {
     if (localStorage.getItem("token")) {
       let token = localStorage.getItem("token");
       this.props.logUserInWithToken(token);
+      this.props.getGames();
     } else {
       console.log("no token");
     }
@@ -26,6 +31,20 @@ class App extends Component {
     return (
       <div>
         <Switch>
+          <Route
+            path="/games"
+            render={() => {
+              return (
+                <div>
+                  {this.isUserLoggedIn() ? (
+                    <GameListContainer />
+                  ) : (
+                    <Redirect to="/" />
+                  )}
+                </div>
+              );
+            }}
+          />
           <Route path="/home" component={Home} />
           <Route
             path="/game"
@@ -66,7 +85,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    logUserInWithToken: token => dispatch(logUserInWithToken(token))
+    logUserInWithToken: token => dispatch(logUserInWithToken(token)),
+    getGames: () => dispatch(getGames())
   };
 };
 

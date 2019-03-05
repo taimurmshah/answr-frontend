@@ -109,3 +109,17 @@ export const newCurrentGame = res => {
     payload: res
   };
 };
+
+export const addGames = res => {
+  return {
+    type: "ADD_GAMES",
+    payload: res
+  };
+};
+
+export const handleReceivedGame = gameObj => {
+  return {
+    type: "HANDLE_RECEIVED_GAME",
+    payload: gameObj
+  };
+};

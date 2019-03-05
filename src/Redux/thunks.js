@@ -5,7 +5,8 @@ import {
   regUser,
   logUser,
   jwtLog,
-  newCurrentGame
+  newCurrentGame,
+  addGames
 } from "./actions";
 
 export const getMemes = () => {
@@ -122,7 +123,8 @@ export const logUserInWithToken = token => {
   };
 };
 
-export const createNewGame = gameObj => {
+export const createNewGame = (gameObj, userObj) => {
+  console.log("this is the userObj", userObj);
   return dispatch => {
     return fetch("http://localhost:3000/api/v1/games", {
       method: "POST",
@@ -131,12 +133,27 @@ export const createNewGame = gameObj => {
         Accepts: "application/json"
       },
       body: JSON.stringify({
-        title: gameObj.title
+        title: gameObj.title,
+        user_id: userObj.id
       })
     })
       .then(res => res.json())
       .then(res => {
         console.log("Create new game res:", res);
+      });
+  };
+};
+
+export const getGames = () => {
+  return dispatch => {
+    return fetch("http://localhost:3000/api/v1/games")
+      .then(res => res.json())
+      .then(res => {
+        console.log("this is the response from the get request:", res);
+        let availableGames = res.filter(game => {
+          return game.is_game_in_play === false;
+        });
+        dispatch(addGames(availableGames));
       });
   };
 };
