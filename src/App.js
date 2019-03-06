@@ -31,7 +31,20 @@ class App extends Component {
     return (
       <div>
         <Switch>
-          <Route path="/play-game" component={GamePlayContainer} />
+          <Route
+            path="/play-game"
+            render={() => {
+              return (
+                <div>
+                  {this.isUserLoggedIn() ? (
+                    <GamePlayContainer />
+                  ) : (
+                    <Redirect to="/" />
+                  )}
+                </div>
+              );
+            }}
+          />
           <Route
             path="/games"
             render={() => {

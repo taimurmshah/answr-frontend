@@ -7,7 +7,8 @@ import {
   jwtLog,
   newCurrentGame,
   addGames,
-  putRounds
+  putRounds,
+  removeCurrentGame
 } from "./actions";
 
 export const getMemes = () => {
@@ -158,5 +159,14 @@ export const getGames = () => {
         });
         dispatch(addGames(availableGames));
       });
+  };
+};
+
+export const deleteGame = gameObj => {
+  console.log("i am in the delete game thunk, here's the object:", gameObj);
+  return dispatch => {
+    return fetch(`http://localhost:3000/api/v1/games/${gameObj.id}`, {
+      method: "DELETE"
+    }).then(dispatch(removeCurrentGame()));
   };
 };

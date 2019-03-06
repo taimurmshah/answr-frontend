@@ -137,3 +137,9 @@ export const putRounds = roundsArray => {
     payload: roundsArray
   };
 };
+
+export const removeCurrentGame = () => {
+  return {
+    type: "REMOVE_CURRENT_GAME"
+  };
+};

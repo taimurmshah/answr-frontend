@@ -10,7 +10,7 @@ const initialState = {
   signupModalOpen: false,
   newGameModal: false,
   currentUser: {},
-  isGameInPlay: false,
+  isGameOpen: false,
   availableGames: [],
   currentGame: {},
   rounds: [],
@@ -76,6 +76,8 @@ const reducer = (state = initialState, action) => {
       return { ...state, viewGames: !state.viewGames };
     case "PUT_ROUNDS":
       return { ...state, rounds: action.payload };
+    case "REMOVE_CURRENT_GAME":
+      return { ...state, currentGame: {} };
     default:
       return state;
   }

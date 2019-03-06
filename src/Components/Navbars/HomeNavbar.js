@@ -39,7 +39,7 @@ class HomeNavbar extends React.Component {
             </li>
           )}
           {this.props.isGameOpen ? null : (
-            <li onClick={this.props.toggleNewGameModal}>Create New Game</li>
+            <li onClick={this.props.toggleNewGameModal}>Host New Game</li>
           )}
         </ul>
       </div>
