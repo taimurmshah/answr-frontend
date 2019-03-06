@@ -13,7 +13,8 @@ const initialState = {
   isGameInPlay: false,
   availableGames: [],
   currentGame: {},
-  rounds: []
+  rounds: [],
+  viewGames: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -62,8 +63,7 @@ const reducer = (state = initialState, action) => {
     case "NEW_CURRENT_GAME":
       return {
         ...state,
-        currentGame: action.payload,
-        isGameInPlay: !state.isGameInPlay
+        currentGame: action.payload
       };
     case "ADD_GAMES":
       return { ...state, availableGames: action.payload };
@@ -72,6 +72,10 @@ const reducer = (state = initialState, action) => {
         ...state,
         availableGames: [...state.availableGames, action.payload]
       };
+    case "TOGGLE_VIEW_GAMES":
+      return { ...state, viewGames: !state.viewGames };
+    case "PUT_ROUNDS":
+      return { ...state, rounds: action.payload };
     default:
       return state;
   }

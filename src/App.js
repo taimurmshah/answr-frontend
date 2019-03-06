@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
 import Home from "./Containers/Home";
-import Game from "/Users/taimur/Bootcamp/Five/mod-5-front/src/Containers/Game.js";
 import GameListContainer from "/Users/taimur/Bootcamp/Five/mod-5-front/src/Containers/GameListContainer.js";
 import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 import Landing from "./Containers/Landing";
@@ -46,16 +45,6 @@ class App extends Component {
             }}
           />
           <Route path="/home" component={Home} />
-          <Route
-            path="/game"
-            render={() => {
-              return (
-                <div>
-                  {this.props.isGameOpen ? <Game /> : <Redirect to="/home" />}
-                </div>
-              );
-            }}
-          />
           <Route
             path="/"
             render={() => {

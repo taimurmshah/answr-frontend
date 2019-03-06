@@ -6,7 +6,8 @@ import {
   openSignupModal,
   logOut,
   toggleGame,
-  toggleNewGameModal
+  toggleNewGameModal,
+  toggleViewGames
 } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/actions.js";
 import Login from "/Users/taimur/Bootcamp/Five/mod-5-front/src/Components/Modals/Login.js";
 import Signup from "/Users/taimur/Bootcamp/Five/mod-5-front/src/Components/Modals/Signup.js";

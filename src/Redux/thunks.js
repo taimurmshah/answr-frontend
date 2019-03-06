@@ -6,7 +6,8 @@ import {
   logUser,
   jwtLog,
   newCurrentGame,
-  addGames
+  addGames,
+  putRounds
 } from "./actions";
 
 export const getMemes = () => {
@@ -140,6 +141,8 @@ export const createNewGame = (gameObj, userObj) => {
       .then(res => res.json())
       .then(res => {
         console.log("Create new game res:", res);
+        dispatch(newCurrentGame(res.game));
+        dispatch(putRounds(res.rounds));
       });
   };
 };

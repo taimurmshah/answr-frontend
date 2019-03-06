@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { ActionCableConsumer } from "react-actioncable-provider";
 import GameList from "./GameList";
 import { handleReceivedGame } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/actions.js";
+import Navbar from "/Users/taimur/Bootcamp/Five/mod-5-front/src/Components/Navbars/Navbar.js";
 
 class GameListContainer extends React.Component {
   socketHandler = gameObj => {
@@ -13,6 +14,7 @@ class GameListContainer extends React.Component {
     console.log("I am in the GameListContainer");
     return (
       <div>
+        <Navbar />
         <ActionCableConsumer
           channel={{ channel: "GameChannel" }}
           onReceived={data => {

@@ -1,10 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
+import GameCard from "/Users/taimur/Bootcamp/Five/mod-5-front/src/Components/GameCard.js";
 
 class GameList extends React.Component {
   render() {
     let games = this.props.availableGames.map(game => {
-      return <li key={game.id}>{game.title}</li>;
+      return <GameCard key={game.id} title={game.title} />;
     });
     return (
       <div>
