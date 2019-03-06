@@ -11,7 +11,6 @@ class CreateForm extends React.Component {
 
   submitHandler = e => {
     e.preventDefault();
-    console.log("this is getting hit");
     this.props.addMeme(this.state);
   };
 

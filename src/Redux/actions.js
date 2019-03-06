@@ -62,7 +62,6 @@ export const closeSignupModal = () => {
 };
 
 export const regUser = res => {
-  console.log("this is the res:", res);
   return {
     type: "REG_USER",
     payload: res.user
@@ -70,7 +69,6 @@ export const regUser = res => {
 };
 
 export const logUser = res => {
-  console.log("this is the res:", res);
   return {
     type: "LOG_USER_IN",
     payload: res.user

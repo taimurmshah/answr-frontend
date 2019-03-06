@@ -8,8 +8,6 @@ import { connect } from "react-redux";
 
 class MainPage extends React.Component {
   render() {
-    console.log("MainPage props:", this.props);
-
     return (
       <div>
         <h1>Welcome to MemeList!</h1>

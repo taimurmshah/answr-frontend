@@ -64,11 +64,9 @@ export const registerUser = userObj => {
       })
       .then(res => {
         localStorage.setItem("token", `${res.jwt}`);
-        console.log("this is local storage:", localStorage.getItem("token"));
         dispatch(regUser(res));
       })
       .catch(err => {
-        console.error("this is the error:", err);
         alert(err.message);
       });
   };
@@ -99,11 +97,9 @@ export const logUserIn = userObj => {
       })
       .then(res => {
         localStorage.setItem("token", `${res.jwt}`);
-        console.log("this is local storage:", localStorage.getItem("token"));
         dispatch(logUser(res));
       })
       .catch(err => {
-        console.error("this is the error:", err);
         alert(err.message);
       });
   };
@@ -126,7 +122,6 @@ export const logUserInWithToken = token => {
 };
 
 export const createNewGame = (gameObj, userObj) => {
-  console.log("this is the userObj", userObj);
   return dispatch => {
     return fetch("http://localhost:3000/api/v1/games", {
       method: "POST",
@@ -141,7 +136,6 @@ export const createNewGame = (gameObj, userObj) => {
     })
       .then(res => res.json())
       .then(res => {
-        console.log("Create new game res:", res);
         dispatch(newCurrentGame(res.game));
         dispatch(putRounds(res.rounds));
       });
@@ -153,7 +147,6 @@ export const getGames = () => {
     return fetch("http://localhost:3000/api/v1/games")
       .then(res => res.json())
       .then(res => {
-        console.log("this is the response from the get request:", res);
         let availableGames = res.filter(game => {
           return game.is_game_in_play === false;
         });
@@ -163,7 +156,6 @@ export const getGames = () => {
 };
 
 export const deleteGame = gameObj => {
-  console.log("i am in the delete game thunk, here's the object:", gameObj);
   return dispatch => {
     return fetch(`http://localhost:3000/api/v1/games/${gameObj.id}`, {
       method: "DELETE"

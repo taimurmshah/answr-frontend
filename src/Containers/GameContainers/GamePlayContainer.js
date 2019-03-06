@@ -9,7 +9,6 @@ class GamePlayContainer extends React.Component {
   componentDidMount() {}
 
   componentWillUnmount() {
-    console.log("I am in the componentWillUnmount");
     this.props.deleteGame(this.props.currentGame);
   }
 

@@ -16,7 +16,6 @@ class App extends Component {
     if (localStorage.getItem("token")) {
       let token = localStorage.getItem("token");
       this.props.logUserInWithToken(token);
-      this.props.getGames();
     } else {
       console.log("no token");
     }

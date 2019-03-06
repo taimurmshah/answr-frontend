@@ -20,15 +20,10 @@ class Login extends React.Component {
   submitHandler = e => {
     this.props.logUserIn(this.state);
     this.props.history.push("/home");
-    this.setState(
-      {
-        email: "",
-        password: ""
-      },
-      () => {
-        console.log("updated state:", this.state);
-      }
-    );
+    this.setState({
+      email: "",
+      password: ""
+    });
   };
 
   render() {

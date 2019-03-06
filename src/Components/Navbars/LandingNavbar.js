@@ -51,16 +51,3 @@ export default withRouter(
     mapDispatchToProps
   )(LandingNavbar)
 );
-
-/*
-
-<li
-  onClick={() => {
-    props.toggleGame();
-    props.history.push("/game");
-  }}
->
-  {props.isGameOpen ? "exit game" : "play game"}
-</li>
-
-*/
