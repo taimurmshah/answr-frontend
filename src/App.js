@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
 import Home from "./Containers/Home";
-import GameListContainer from "/Users/taimur/Bootcamp/Five/mod-5-front/src/Containers/GameListContainer.js";
+import GameListContainer from "/Users/taimur/Bootcamp/Five/mod-5-front/src/Containers/GameContainers/GameListContainer.js";
+import GamePlayContainer from "/Users/taimur/Bootcamp/Five/mod-5-front/src/Containers/GameContainers/GamePlayContainer.js";
 import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 import Landing from "./Containers/Landing";
 import { connect } from "react-redux";
@@ -30,6 +31,7 @@ class App extends Component {
     return (
       <div>
         <Switch>
+          <Route path="/play-game" component={GamePlayContainer} />
           <Route
             path="/games"
             render={() => {

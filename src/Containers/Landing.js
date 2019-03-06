@@ -1,10 +1,10 @@
 import React from "react";
-import Navbar from "/Users/taimur/Bootcamp/Five/mod-5-front/src/Components/Navbars/Navbar.js";
+import LandingNavbar from "/Users/taimur/Bootcamp/Five/mod-5-front/src/Components/Navbars/LandingNavbar.js";
 
 const Landing = () => {
   return (
     <div>
-      <Navbar />
+      <LandingNavbar />
       <h1>Welcome to Meme-maker</h1>
     </div>
   );
