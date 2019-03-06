@@ -78,6 +78,21 @@ const reducer = (state = initialState, action) => {
       return { ...state, rounds: action.payload };
     case "REMOVE_CURRENT_GAME":
       return { ...state, currentGame: {} };
+    case "REMOVE_AVAILABLE_GAME":
+      return {
+        ...state,
+        availableGames: state.availableGames.filter(game => {
+          console.log(
+            "This is the game:",
+            game,
+            "this is the game.id:",
+            game.id,
+            "this is the payload:",
+            action.payload
+          );
+          return game.id !== action.payload;
+        })
+      };
     default:
       return state;
   }

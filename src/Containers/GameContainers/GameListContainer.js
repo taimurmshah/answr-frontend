@@ -2,12 +2,23 @@ import React from "react";
 import { connect } from "react-redux";
 import { ActionCableConsumer } from "react-actioncable-provider";
 import GameList from "./GameList";
-import { handleReceivedGame } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/actions.js";
+import {
+  handleReceivedGame,
+  removeAvailableGame
+} from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/actions.js";
 import GameListNavbar from "/Users/taimur/Bootcamp/Five/mod-5-front/src/Components/Navbars/GameListNavbar.js";
 
 class GameListContainer extends React.Component {
   socketHandler = gameObj => {
-    this.props.handleReceivedGame(gameObj);
+    gameObj.game
+      ? this.props.handleReceivedGame(gameObj.game)
+      : this.removeHandler(gameObj.id);
+  };
+
+  removeHandler = id => {
+    console.log(id);
+    let gameId = parseInt(id);
+    this.props.removeAvailableGame(gameId);
   };
 
   render() {
@@ -20,7 +31,7 @@ class GameListContainer extends React.Component {
           onReceived={data => {
             console.log("websocket:", data);
             console.log("gameObj:", data.game);
-            this.socketHandler(data.game);
+            this.socketHandler(data);
           }}
         />
         <GameList />
@@ -31,7 +42,8 @@ class GameListContainer extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    handleReceivedGame: gameObj => dispatch(handleReceivedGame(gameObj))
+    handleReceivedGame: gameObj => dispatch(handleReceivedGame(gameObj)),
+    removeAvailableGame: gameId => dispatch(removeAvailableGame(gameId))
   };
 };
 

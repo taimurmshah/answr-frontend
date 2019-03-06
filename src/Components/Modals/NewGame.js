@@ -19,6 +19,7 @@ class NewGame extends React.Component {
   createHandler = () => {
     this.props.createNewGame(this.state, this.props.currentUser);
     this.props.history.push("/play-game");
+    this.props.toggleNewGameModal();
   };
 
   render() {

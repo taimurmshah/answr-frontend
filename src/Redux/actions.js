@@ -143,3 +143,10 @@ export const removeCurrentGame = () => {
     type: "REMOVE_CURRENT_GAME"
   };
 };
+
+export const removeAvailableGame = gameId => {
+  return {
+    type: "REMOVE_AVAILABLE_GAME",
+    payload: gameId
+  };
+};
