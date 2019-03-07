@@ -7,6 +7,7 @@ import {
   toggleNewGameModal,
   toggleViewGames
 } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/actions.js";
+import { Menu, Image } from "semantic-ui-react";
 
 /* view available Games, host new game */
 
@@ -17,32 +18,36 @@ class HomeNavbar extends React.Component {
 
   render() {
     return (
-      <div>
-        <ul>
-          {this.isUserLoggedIn() ? (
-            <li
-              onClick={() => {
-                localStorage.removeItem("token");
-                this.props.logOut();
-              }}
-            >
-              Log Out
-            </li>
-          ) : null}
-          {this.props.isGameOpen ? null : (
-            <li
-              onClick={() => {
-                this.props.history.push("/games");
-              }}
-            >
-              View Available Games
-            </li>
-          )}
-          {this.props.isGameOpen ? null : (
-            <li onClick={this.props.toggleNewGameModal}>Host New Game</li>
-          )}
-        </ul>
-      </div>
+      <Menu>
+        <Menu.Item position="left">
+          <img alt="" src="../../../mod-5-logo.png" />
+        </Menu.Item>
+        {this.isUserLoggedIn() ? (
+          <Menu.Item
+            position="right"
+            onClick={() => {
+              localStorage.removeItem("token");
+              this.props.logOut();
+            }}
+          >
+            Log Out
+          </Menu.Item>
+        ) : null}
+        {this.props.isGameOpen ? null : (
+          <Menu.Item
+            onClick={() => {
+              this.props.history.push("/games");
+            }}
+          >
+            View Available Games
+          </Menu.Item>
+        )}
+        {this.props.isGameOpen ? null : (
+          <Menu.Item onClick={this.props.toggleNewGameModal}>
+            Host New Game
+          </Menu.Item>
+        )}
+      </Menu>
     );
   }
 }

@@ -2,6 +2,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { logOut } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/actions.js";
+import { Menu, Icon } from "semantic-ui-react";
 
 class GameListNavbar extends React.Component {
   isUserLoggedIn = () => {
@@ -10,27 +11,29 @@ class GameListNavbar extends React.Component {
 
   render() {
     return (
-      <div>
-        <ul>
-          {this.isUserLoggedIn() ? (
-            <li
-              onClick={() => {
-                localStorage.removeItem("token");
-                this.props.logOut();
-              }}
-            >
-              Log Out
-            </li>
-          ) : null}
-          <li
+      <Menu>
+        <Menu.Item position="left">
+          <img alt="" src="../../../mod-5-logo.png" />
+        </Menu.Item>
+        {this.isUserLoggedIn() ? (
+          <Menu.Item
+            position="right"
             onClick={() => {
-              this.props.history.push("/home");
+              localStorage.removeItem("token");
+              this.props.logOut();
             }}
           >
-            Home
-          </li>
-        </ul>
-      </div>
+            Log Out
+          </Menu.Item>
+        ) : null}
+        <Menu.Item
+          onClick={() => {
+            this.props.history.push("/home");
+          }}
+        >
+          Home
+        </Menu.Item>
+      </Menu>
     );
   }
 }

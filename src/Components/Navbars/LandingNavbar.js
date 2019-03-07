@@ -1,6 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import { Menu } from "semantic-ui-react";
 import {
   openLoginModal,
   openSignupModal,
@@ -14,14 +15,17 @@ import Signup from "/Users/taimur/Bootcamp/Five/mod-5-front/src/Components/Modal
 
 const LandingNavbar = props => {
   return (
-    <div>
-      <ul>
-        <li onClick={props.openLoginModal}>login</li>
-        {props.loginOpen ? <Login /> : null}
-        <li onClick={props.openSignupModal}>sign up</li>
-        {props.signupOpen ? <Signup /> : null}
-      </ul>
-    </div>
+    <Menu>
+      <Menu.Item position="left">
+        <img alt="" src="../../../mod-5-logo.png" />
+      </Menu.Item>
+      <Menu.Item position="right" onClick={props.openLoginModal}>
+        login
+      </Menu.Item>
+      {props.loginOpen ? <Login /> : null}
+      <Menu.Item onClick={props.openSignupModal}>sign up</Menu.Item>
+      {props.signupOpen ? <Signup /> : null}
+    </Menu>
   );
 };
 

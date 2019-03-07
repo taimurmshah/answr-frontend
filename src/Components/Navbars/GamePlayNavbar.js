@@ -2,6 +2,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { logOut } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/actions.js";
+import { Menu } from "semantic-ui-react";
 
 class GamePlayNavbar extends React.Component {
   isUserLoggedIn = () => {
@@ -10,32 +11,47 @@ class GamePlayNavbar extends React.Component {
 
   render() {
     return (
-      <div>
-        <ul>
-          {this.isUserLoggedIn() ? (
-            <li
-              onClick={() => {
-                localStorage.removeItem("token");
-                this.props.logOut();
-              }}
-            >
-              Log Out
-            </li>
-          ) : null}
-          <li
+      <Menu>
+        <Menu.Item position="left">
+          <img alt="" src="../../../mod-5-logo.png" />
+        </Menu.Item>
+        {this.props.friend.name ? (
+          <Menu.Item position="middle" className="friend-status">
+            You are playing with {this.props.friend.name}
+          </Menu.Item>
+        ) : (
+          <Menu.Item position="left" className="friend-status">
+            Waiting for a friend to join
+          </Menu.Item>
+        )}
+        {this.isUserLoggedIn() ? (
+          <Menu.Item
+            position="right"
             onClick={() => {
-              this.props.history.push("/home");
+              localStorage.removeItem("token");
+              this.props.logOut();
             }}
           >
-            Home
-          </li>
-        </ul>
-      </div>
+            Log Out
+          </Menu.Item>
+        ) : null}
+        <Menu.Item
+          onClick={() => {
+            this.props.history.push("/home");
+          }}
+        >
+          Home
+        </Menu.Item>
+      </Menu>
     );
   }
 }
 
-const mapStateToProps = state => {};
+const mapStateToProps = state => {
+  return {
+    friend: state.friend
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {

@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import GameCard from "/Users/taimur/Bootcamp/Five/mod-5-front/src/Components/GameCard.js";
+import { Grid } from "semantic-ui-react";
 
 class GameList extends React.Component {
   render() {

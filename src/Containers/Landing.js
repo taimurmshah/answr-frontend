@@ -5,7 +5,7 @@ const Landing = () => {
   return (
     <div>
       <LandingNavbar />
-      <h1>Welcome to Asgard</h1>
+      <h1>Welcome to Answr</h1>
     </div>
   );
 };

@@ -27,7 +27,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div id="top-div">
         <Switch>
           <Route
             path="/play-game"
@@ -74,6 +74,7 @@ class App extends Component {
             }}
           />
         </Switch>
+        <img alt="" className="background-img" src="../mod-5-logo.png" />
       </div>
     );
   }

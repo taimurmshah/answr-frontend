@@ -17,6 +17,8 @@ import {
   exitGame
 } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/actions.js";
 import AnswerForm from "/Users/taimur/Bootcamp/Five/mod-5-front/src/Components/Forms/AnswerForm.js";
+import { Grid } from "semantic-ui-react";
+
 class GamePlayContainer extends React.Component {
   componentDidMount() {}
 
@@ -75,9 +77,18 @@ class GamePlayContainer extends React.Component {
         )}
 
         <GamePlayNavbar />
-        <h3>{this.props.currentGame.title}</h3>
-        <PromptContainer />
-        <AnswerForm />
+        <Grid centered verticalAlign="middle" columns={1}>
+          <Grid.Row>
+            <Grid.Column textAlign="center">
+              <h1 className="title">
+                "{this.props.currentGame.title}" is in session
+              </h1>
+              <PromptContainer />
+
+              <AnswerForm />
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
       </div>
     );
   }

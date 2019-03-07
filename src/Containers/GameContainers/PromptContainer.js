@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Button, Loader, Dimmer, Segment } from "semantic-ui-react";
+import { Button, Loader, Dimmer, Segment, Grid } from "semantic-ui-react";
 import {
   toggleStartGame,
   toggleAnswerForm
@@ -86,17 +86,18 @@ class PromptContainer extends React.Component {
     console.log("these are the props:", this.props);
     return (
       <div>
-        {this.props.startGame ? (
-          <h2>{this.props.rounds[this.props.index].prompt}</h2>
-        ) : null}
-        {this.showAnswers()}
-        {this.checkSubmitButtonRender()}
-        <h4>
-          {this.props.friend.name
-            ? `You are playing with ${this.props.friend.name}`
-            : "Waiting for a friend"}
-        </h4>
-        {this.nextRoundButton()}
+        <Grid centered verticalAlign="middle" columns={1}>
+          <Grid.Column textAlign="center">
+            {this.props.startGame ? (
+              <h2>{this.props.rounds[this.props.index].prompt}</h2>
+            ) : null}
+
+            {this.showAnswers()}
+            {this.checkSubmitButtonRender()}
+          </Grid.Column>
+
+          {this.nextRoundButton()}
+        </Grid>
       </div>
     );
   }

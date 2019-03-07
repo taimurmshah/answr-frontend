@@ -27,17 +27,16 @@ class AnswerForm extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="answer-form">
         {this.props.startGame && this.props.answerForm ? (
           <>
-            <h3>Enter your answer here</h3>
             <Form onSubmit={this.submitHandler}>
               <Form.Field>
-                <label>Answer</label>
                 <input
                   required
                   type="text"
                   name="text"
+                  placeholder="Enter Your Answer Here"
                   value={this.state.text}
                   onChange={this.changeHandler}
                 />
