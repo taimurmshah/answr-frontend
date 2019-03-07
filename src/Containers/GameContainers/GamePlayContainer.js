@@ -9,7 +9,8 @@ import {
   addFriend,
   removeFriend,
   addUsers,
-  removeUsers
+  removeUsers,
+  toggleStartGame
 } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/actions.js";
 import AnswerForm from "/Users/taimur/Bootcamp/Five/mod-5-front/src/Components/Forms/AnswerForm.js";
 class GamePlayContainer extends React.Component {
@@ -34,6 +35,9 @@ class GamePlayContainer extends React.Component {
       friend = friend[0];
       console.log("this is my friend:", friend);
       this.props.addFriend(friend);
+    } else if (message.start) {
+      console.log("link start-u");
+      this.props.toggleStartGame();
     }
   };
 
@@ -70,7 +74,8 @@ const mapDispatchToProps = dispatch => {
     addFriend: friend => dispatch(addFriend(friend)),
     removeFriend: () => dispatch(removeFriend()),
     addUsers: users => dispatch(addUsers(users)),
-    removeUsers: () => dispatch(removeUsers())
+    removeUsers: () => dispatch(removeUsers()),
+    toggleStartGame: () => dispatch(toggleStartGame())
   };
 };
 

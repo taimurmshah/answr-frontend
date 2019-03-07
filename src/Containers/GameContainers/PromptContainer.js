@@ -16,7 +16,16 @@ class PromptContainer extends React.Component {
 
   startHandler = () => {
     console.log("This is working");
-    this.props.toggleStartGame();
+    fetch("http://localhost:3000/api/v1/start", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accepts: "application/json"
+      },
+      body: JSON.stringify({
+        game_id: this.props.gameId
+      })
+    });
   };
 
   render() {
@@ -41,7 +50,8 @@ const mapStateToProps = state => {
     rounds: state.rounds,
     startGame: state.startGame,
     currentUser: state.currentUser,
-    users: state.users
+    users: state.users,
+    gameId: state.currentGame.id
   };
 };
 
