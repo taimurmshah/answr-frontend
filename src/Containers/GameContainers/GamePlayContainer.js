@@ -9,12 +9,27 @@ class GamePlayContainer extends React.Component {
   componentDidMount() {}
 
   componentWillUnmount() {
+    //not working with a refresh.
     this.props.deleteGame(this.props.currentGame);
   }
 
   render() {
     return (
       <div>
+        {Object.keys(this.props.currentGame).length > 0 ? (
+          <ActionCableConsumer
+            channel={{
+              channel: "RoundsChannel",
+              game_id: this.props.currentGame.id
+            }}
+            onReceived={message => {
+              console.log("websocket in GamesPlayContainer:", message);
+            }}
+          />
+        ) : (
+          console.log("currentUser not yet loaded")
+        )}
+
         <GamePlayNavbar />
         <h1>GamePlayContainer</h1>
         <h3>{this.props.currentGame.title}</h3>

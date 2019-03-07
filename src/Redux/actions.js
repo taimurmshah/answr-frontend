@@ -129,7 +129,6 @@ export const toggleViewGames = () => {
 };
 
 export const putRounds = roundsArray => {
-  console.log("putRounds is being hit, here is the roundsArray:", roundsArray);
   return {
     type: "PUT_ROUNDS",
     payload: roundsArray

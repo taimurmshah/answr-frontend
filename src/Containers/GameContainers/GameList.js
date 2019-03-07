@@ -5,7 +5,7 @@ import GameCard from "/Users/taimur/Bootcamp/Five/mod-5-front/src/Components/Gam
 class GameList extends React.Component {
   render() {
     let games = this.props.availableGames.map(game => {
-      return <GameCard key={game.id} title={game.title} />;
+      return <GameCard key={game.id} title={game.title} id={game.id} />;
     });
     return (
       <div>

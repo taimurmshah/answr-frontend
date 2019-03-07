@@ -162,3 +162,23 @@ export const deleteGame = gameObj => {
     }).then(dispatch(removeCurrentGame()));
   };
 };
+
+export const playerTwoJoinsGame = (gameId, userId) => {
+  return dispatch => {
+    return fetch(`http://localhost:3000/api/v1/games/${gameId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Accepts: "application/json"
+      },
+      body: JSON.stringify({
+        game_id: gameId,
+        user_id: userId
+      })
+    })
+      .then(res => res.json())
+      .then(res => {
+        console.log("User joining game thunk response:", res);
+      });
+  };
+};
