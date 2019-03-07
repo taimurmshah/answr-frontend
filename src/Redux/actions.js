@@ -166,3 +166,42 @@ export const openGame = () => {
     type: "OPEN_GAME"
   };
 };
+
+export const addFriend = friend => {
+  return {
+    type: "ADD_FRIEND",
+    payload: friend
+  };
+};
+
+export const removeFriend = () => {
+  return {
+    type: "REMOVE_FRIEND"
+  };
+};
+
+export const setCurrentRound = round => {
+  return {
+    type: "SET_CURRENT_ROUND",
+    payload: round
+  };
+};
+
+export const toggleStartGame = () => {
+  return {
+    type: "TOGGLE_START_GAME"
+  };
+};
+
+export const addUsers = users => {
+  return {
+    type: "ADD_USERS",
+    payload: users
+  };
+};
+
+export const removeUsers = () => {
+  return {
+    type: "REMOVE_USERS"
+  };
+};

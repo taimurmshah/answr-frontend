@@ -14,7 +14,11 @@ const initialState = {
   availableGames: [],
   currentGame: {},
   rounds: [],
-  viewGames: false
+  viewGames: false,
+  friend: [],
+  users: [],
+  currentRound: 1,
+  startGame: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -91,6 +95,18 @@ const reducer = (state = initialState, action) => {
       return { ...state, isGameOpen: false };
     case "OPEN_GAME":
       return { ...state, isGameOpen: true };
+    case "ADD_FRIEND":
+      return { ...state, friend: action.payload };
+    case "REMOVE_FRIEND":
+      return { ...state, friend: [] };
+    case "SET_CURRENT_ROUND":
+      return { ...state, currentRound: action.payload };
+    case "TOGGLE_START_GAME":
+      return { ...state, startGame: !state.startGame };
+    case "ADD_USERS":
+      return { ...state, users: action.payload };
+    case "REMOVE_USERS":
+      return { ...state, users: [] };
     default:
       return state;
   }

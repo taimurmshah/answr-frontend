@@ -1,7 +1,5 @@
 /*----------------THUNK CREATORS---------------*/
 import {
-  loadMemes,
-  postMeme,
   regUser,
   logUser,
   jwtLog,
@@ -9,35 +7,10 @@ import {
   addGames,
   putRounds,
   removeCurrentGame,
-  playerTwoAddsCurrentGame
+  playerTwoAddsCurrentGame,
+  addFriend,
+  addUsers
 } from "./actions";
-
-export const getMemes = () => {
-  return dispatch => {
-    return fetch("http://localhost:3000/api/v1/memes")
-      .then(res => res.json())
-      .then(res => {
-        dispatch(loadMemes(res));
-      });
-  };
-};
-
-export const addMeme = meme => {
-  return dispatch => {
-    return fetch("http://localhost:3000/api/v1/memes", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      },
-      body: JSON.stringify({ meme })
-    })
-      .then(res => res.json())
-      .then(res => {
-        dispatch(postMeme(meme));
-      });
-  };
-};
 
 export const registerUser = userObj => {
   return dispatch => {
@@ -148,10 +121,10 @@ export const getGames = () => {
     return fetch("http://localhost:3000/api/v1/games")
       .then(res => res.json())
       .then(res => {
-        let availableGames = res.filter(game => {
-          return game.is_game_in_play === false;
-        });
-        dispatch(addGames(availableGames));
+        // let availableGames = res.filter(game => {
+        //   return game.is_game_in_play === false;
+        // });
+        dispatch(addGames(res));
       });
   };
 };
@@ -180,6 +153,11 @@ export const playerTwoJoinsGame = (gameId, userId) => {
       .then(res => res.json())
       .then(res => {
         console.log("User joining game thunk response:", res);
+        let friend = res.users.filter(user => user.id !== userId);
+        friend = friend[0];
+        console.log("this is my friend from thunk:", friend);
+        dispatch(addUsers(res.users));
+        dispatch(addFriend(friend));
         dispatch(playerTwoAddsCurrentGame(res));
       });
   };
