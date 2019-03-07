@@ -95,7 +95,7 @@ export const logUserInWithToken = token => {
   };
 };
 
-export const createNewGame = (gameObj, userObj) => {
+export const createNewGame = (gameObj, userObj, historyObj) => {
   return dispatch => {
     return fetch("http://localhost:3000/api/v1/games", {
       method: "POST",
@@ -112,6 +112,7 @@ export const createNewGame = (gameObj, userObj) => {
       .then(res => {
         dispatch(newCurrentGame(res.game));
         dispatch(putRounds(res.rounds));
+        historyObj.push("/play-game");
       });
   };
 };
@@ -137,7 +138,7 @@ export const deleteGame = gameObj => {
   };
 };
 
-export const playerTwoJoinsGame = (gameId, userId) => {
+export const playerTwoJoinsGame = (gameId, userId, historyObj) => {
   return dispatch => {
     return fetch(`http://localhost:3000/api/v1/games/${gameId}`, {
       method: "PATCH",
@@ -160,6 +161,7 @@ export const playerTwoJoinsGame = (gameId, userId) => {
         dispatch(addUsers(res.users));
         dispatch(addFriend(friend));
         dispatch(playerTwoAddsCurrentGame(res));
+        historyObj.push("/play-game");
       });
   };
 };

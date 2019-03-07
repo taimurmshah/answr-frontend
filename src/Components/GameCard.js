@@ -8,9 +8,12 @@ import { openGame } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/acti
 class GameCard extends React.Component {
   clickHandler = () => {
     console.log("join game clickHandler. here're the props:", this.props);
-    this.props.playerTwoJoinsGame(this.props.id, this.props.currentUser.id);
+    this.props.playerTwoJoinsGame(
+      this.props.id,
+      this.props.currentUser.id,
+      this.props.history
+    );
     this.props.openGame();
-    this.props.history.push("/play-game");
   };
   render() {
     console.log("game card props:", this.props);
@@ -36,8 +39,8 @@ class GameCard extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    playerTwoJoinsGame: (gameId, userId) =>
-      dispatch(playerTwoJoinsGame(gameId, userId)),
+    playerTwoJoinsGame: (gameId, userId, historyObj) =>
+      dispatch(playerTwoJoinsGame(gameId, userId, historyObj)),
     openGame: () => dispatch(openGame())
   };
 };

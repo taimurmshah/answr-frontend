@@ -34,7 +34,8 @@ class App extends Component {
             render={() => {
               return (
                 <div>
-                  {this.isUserLoggedIn() ? (
+                  {this.isUserLoggedIn() &&
+                  Object.keys(this.props.currentGame).length > 0 ? (
                     <GamePlayContainer />
                   ) : (
                     <Redirect to="/" />
@@ -81,7 +82,8 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     currentUser: state.currentUser,
-    isGameOpen: state.isGameOpen
+    isGameOpen: state.isGameOpen,
+    currentGame: state.currentGame
   };
 };
 

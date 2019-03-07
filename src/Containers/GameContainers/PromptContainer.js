@@ -29,10 +29,13 @@ class PromptContainer extends React.Component {
   };
 
   render() {
-    console.log("these are the users:", this.props.users);
+    console.log("these are the props:", this.props);
     return (
       <div>
         <h1>PromptContainer</h1>
+        {this.props.startGame ? (
+          <h2>{this.props.rounds[this.props.index].prompt}</h2>
+        ) : null}
         {this.checkButtonRender()}
         <h4>
           {this.props.friend.name
@@ -51,7 +54,9 @@ const mapStateToProps = state => {
     startGame: state.startGame,
     currentUser: state.currentUser,
     users: state.users,
-    gameId: state.currentGame.id
+    gameId: state.currentGame.id,
+    currentRound: state.currentRound,
+    index: (state.currentRound -= 1)
   };
 };
 

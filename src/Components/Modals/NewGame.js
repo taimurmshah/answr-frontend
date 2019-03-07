@@ -20,9 +20,12 @@ class NewGame extends React.Component {
   };
 
   createHandler = () => {
-    this.props.createNewGame(this.state, this.props.currentUser);
+    this.props.createNewGame(
+      this.state,
+      this.props.currentUser,
+      this.props.history
+    );
     this.props.openGame();
-    this.props.history.push("/play-game");
     this.props.toggleNewGameModal();
   };
 
@@ -50,8 +53,8 @@ class NewGame extends React.Component {
 const mapDispatchToProps = dispatch => {
   return {
     toggleNewGameModal: () => dispatch(toggleNewGameModal()),
-    createNewGame: (gameObj, userObj) =>
-      dispatch(createNewGame(gameObj, userObj)),
+    createNewGame: (gameObj, userObj, historyObj) =>
+      dispatch(createNewGame(gameObj, userObj, historyObj)),
     openGame: () => dispatch(openGame())
   };
 };
