@@ -156,6 +156,7 @@ export const playerTwoJoinsGame = (gameId, userId) => {
         let friend = res.users.filter(user => user.id !== userId);
         friend = friend[0];
         console.log("this is my friend from thunk:", friend);
+        dispatch(putRounds(res.rounds));
         dispatch(addUsers(res.users));
         dispatch(addFriend(friend));
         dispatch(playerTwoAddsCurrentGame(res));
