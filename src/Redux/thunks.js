@@ -165,3 +165,35 @@ export const playerTwoJoinsGame = (gameId, userId, historyObj) => {
       });
   };
 };
+
+export const submitAnswer = (answerText, gameId, userId) => {
+  return dispatch => {
+    return fetch("http://localhost:3000/api/v1/answer", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accepts: "application/json"
+      },
+      body: JSON.stringify({
+        answer: answerText,
+        game_id: gameId,
+        user_id: userId
+      })
+    });
+  };
+};
+
+export const incrementGameRound = gameId => {
+  return dispatch => {
+    return fetch("http://localhost:3000/api/v1/increment", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accepts: "application/json"
+      },
+      body: JSON.stringify({
+        game_id: gameId
+      })
+    });
+  };
+};

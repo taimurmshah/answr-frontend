@@ -2,10 +2,7 @@
 //import memes from "../memes";
 
 const initialState = {
-  memes: [],
-  selectedMeme: {},
   isModalOpen: false,
-  newMemeUrl: "",
   loginModalOpen: false,
   signupModalOpen: false,
   newGameModal: false,
@@ -18,7 +15,9 @@ const initialState = {
   friend: [],
   users: [],
   currentRound: 1,
-  startGame: false
+  startGame: false,
+  answers: { 1: [], 2: [], 3: [] },
+  answerForm: true
 };
 
 const reducer = (state = initialState, action) => {
@@ -107,6 +106,31 @@ const reducer = (state = initialState, action) => {
       return { ...state, users: action.payload };
     case "REMOVE_USERS":
       return { ...state, users: [] };
+    case "ADD_ANSWERS":
+      let array = state.answers[state.currentRound];
+      array = [...array, action.payload];
+      let answers = { ...state.answers };
+      answers[state.currentRound] = array;
+      return { ...state, answers: answers };
+    case "TOGGLE_ANSWER_FORM":
+      return { ...state, answerForm: !state.answerForm };
+    case "INCREMENT_ROUND":
+      let newRound = state.currentRound + 1;
+      return { ...state, currentRound: newRound };
+    case "EXIT_GAME":
+      return {
+        ...state,
+        isGameOpen: false,
+        currentGame: {},
+        rounds: [],
+        viewGames: false,
+        friend: [],
+        users: [],
+        currentRound: 1,
+        startGame: false,
+        answers: { 1: [], 2: [], 3: [] },
+        answerForm: true
+      };
     default:
       return state;
   }

@@ -1,16 +1,41 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Button } from "semantic-ui-react";
-import { toggleStartGame } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/actions.js";
-
+import {
+  toggleStartGame,
+  toggleAnswerForm
+} from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/actions.js";
+import { incrementGameRound } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/thunks.js";
+import { withRouter } from "react-router-dom";
 class PromptContainer extends React.Component {
-  checkButtonRender = () => {
+  checkSubmitButtonRender = () => {
     if (
       !this.props.startGame &&
       this.props.users.length === 2 &&
       this.props.currentUser.id === this.props.users[0].id
     ) {
       return <Button onClick={this.startHandler}>Start Game</Button>;
+    }
+  };
+
+  showAnswers = () => {
+    if (this.props.answers.length === 1) {
+      return <h3>Waiting for answers</h3>;
+    } else if (this.props.answers.length === 2) {
+      let myAnswer = this.props.answers.filter(
+        answer => answer.user_id === this.props.currentUser.id
+      )[0].answer;
+      let friendAnswer = this.props.answers.filter(
+        answer => answer.user_id !== this.props.currentUser.id
+      )[0].answer;
+      return (
+        <div>
+          <h3>You answered: {myAnswer}</h3>
+          <h3>
+            {this.props.friend.name} answered: {friendAnswer}
+          </h3>
+        </div>
+      );
     }
   };
 
@@ -28,20 +53,44 @@ class PromptContainer extends React.Component {
     });
   };
 
+  exitHandler = () => {
+    this.props.history.push("/home");
+  };
+
+  nextRoundButton = () => {
+    if (
+      this.props.currentRound < 3 &&
+      this.props.answers.length === 2 &&
+      this.props.currentUser.id === this.props.users[0].id
+    ) {
+      return <Button onClick={this.nextRoundHandler}>Next Round</Button>;
+    } else if (
+      this.props.currentRound === 3 &&
+      this.props.answers.length === 2
+    ) {
+      return <Button onClick={this.exitHandler}>Exit Game</Button>;
+    }
+  };
+
+  nextRoundHandler = () => {
+    this.props.incrementGameRound(this.props.gameId);
+  };
+
   render() {
     console.log("these are the props:", this.props);
     return (
       <div>
-        <h1>PromptContainer</h1>
         {this.props.startGame ? (
           <h2>{this.props.rounds[this.props.index].prompt}</h2>
         ) : null}
-        {this.checkButtonRender()}
+        {this.showAnswers()}
+        {this.checkSubmitButtonRender()}
         <h4>
           {this.props.friend.name
             ? `You are playing with ${this.props.friend.name}`
             : "Waiting for a friend"}
         </h4>
+        {this.nextRoundButton()}
       </div>
     );
   }
@@ -56,17 +105,22 @@ const mapStateToProps = state => {
     users: state.users,
     gameId: state.currentGame.id,
     currentRound: state.currentRound,
-    index: (state.currentRound -= 1)
+    index: state.currentRound - 1,
+    answers: state.answers[state.currentRound]
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    toggleStartGame: () => dispatch(toggleStartGame())
+    toggleStartGame: () => dispatch(toggleStartGame()),
+    toggleAnswerForm: () => dispatch(toggleAnswerForm()),
+    incrementGameRound: gameId => dispatch(incrementGameRound(gameId))
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(PromptContainer);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(PromptContainer)
+);

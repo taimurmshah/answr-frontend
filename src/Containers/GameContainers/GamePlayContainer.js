@@ -10,7 +10,11 @@ import {
   removeFriend,
   addUsers,
   removeUsers,
-  toggleStartGame
+  toggleStartGame,
+  addAnswers,
+  incrementRound,
+  toggleAnswerForm,
+  exitGame
 } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/actions.js";
 import AnswerForm from "/Users/taimur/Bootcamp/Five/mod-5-front/src/Components/Forms/AnswerForm.js";
 class GamePlayContainer extends React.Component {
@@ -22,6 +26,7 @@ class GamePlayContainer extends React.Component {
     this.props.deleteGame(this.props.currentGame);
     this.props.removeFriend();
     this.props.removeUsers();
+    this.props.exitGame();
   }
 
   handleReceivedMessage = message => {
@@ -38,9 +43,22 @@ class GamePlayContainer extends React.Component {
     } else if (message.start) {
       console.log("link start-u");
       this.props.toggleStartGame();
+    } else if (message.answer) {
+      console.log(
+        "Here's the total message:",
+        message,
+        "Here's the answer:",
+        message.answer,
+        "user_id",
+        message.user_id
+      );
+      this.props.addAnswers(message);
+    } else if (message.increment) {
+      this.props.incrementRound();
+      this.props.toggleAnswerForm();
     }
   };
-
+  /*in the future, write this in a switch, or an actioncable reducer*/
   render() {
     return (
       <div>
@@ -57,8 +75,6 @@ class GamePlayContainer extends React.Component {
         )}
 
         <GamePlayNavbar />
-        <h3>{}</h3>
-        <h1>GamePlayContainer</h1>
         <h3>{this.props.currentGame.title}</h3>
         <PromptContainer />
         <AnswerForm />
@@ -75,7 +91,11 @@ const mapDispatchToProps = dispatch => {
     removeFriend: () => dispatch(removeFriend()),
     addUsers: users => dispatch(addUsers(users)),
     removeUsers: () => dispatch(removeUsers()),
-    toggleStartGame: () => dispatch(toggleStartGame())
+    toggleStartGame: () => dispatch(toggleStartGame()),
+    addAnswers: answerObj => dispatch(addAnswers(answerObj)),
+    incrementRound: () => dispatch(incrementRound()),
+    toggleAnswerForm: () => dispatch(toggleAnswerForm()),
+    exitGame: () => dispatch(exitGame())
   };
 };
 

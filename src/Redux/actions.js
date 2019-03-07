@@ -205,3 +205,28 @@ export const removeUsers = () => {
     type: "REMOVE_USERS"
   };
 };
+
+export const addAnswers = answerObj => {
+  return {
+    type: "ADD_ANSWERS",
+    payload: answerObj
+  };
+};
+
+export const toggleAnswerForm = () => {
+  return {
+    type: "TOGGLE_ANSWER_FORM"
+  };
+};
+
+export const incrementRound = () => {
+  return {
+    type: "INCREMENT_ROUND"
+  };
+};
+
+export const exitGame = () => {
+  return {
+    type: "EXIT_GAME"
+  };
+};
