@@ -4,12 +4,14 @@ import { ActionCableConsumer } from "react-actioncable-provider";
 import PromptContainer from "./PromptContainer";
 import GamePlayNavbar from "/Users/taimur/Bootcamp/Five/mod-5-front/src/Components/Navbars/GamePlayNavbar.js";
 import { deleteGame } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/thunks.js";
+import { gameNoLongerOpen } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/actions.js";
 
 class GamePlayContainer extends React.Component {
   componentDidMount() {}
 
   componentWillUnmount() {
     //not working with a refresh.
+    this.props.gameNoLongerOpen();
     this.props.deleteGame(this.props.currentGame);
   }
 
@@ -41,7 +43,8 @@ class GamePlayContainer extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    deleteGame: gameObj => dispatch(deleteGame(gameObj))
+    deleteGame: gameObj => dispatch(deleteGame(gameObj)),
+    gameNoLongerOpen: () => dispatch(gameNoLongerOpen())
   };
 };
 

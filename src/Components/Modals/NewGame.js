@@ -1,7 +1,10 @@
 import React from "react";
 import { Modal, Input, Button } from "semantic-ui-react";
 import { connect } from "react-redux";
-import { toggleNewGameModal } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/actions.js";
+import {
+  toggleNewGameModal,
+  openGame
+} from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/actions.js";
 import { createNewGame } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/thunks.js";
 import { withRouter } from "react-router-dom";
 
@@ -18,6 +21,7 @@ class NewGame extends React.Component {
 
   createHandler = () => {
     this.props.createNewGame(this.state, this.props.currentUser);
+    this.props.openGame();
     this.props.history.push("/play-game");
     this.props.toggleNewGameModal();
   };
@@ -47,7 +51,8 @@ const mapDispatchToProps = dispatch => {
   return {
     toggleNewGameModal: () => dispatch(toggleNewGameModal()),
     createNewGame: (gameObj, userObj) =>
-      dispatch(createNewGame(gameObj, userObj))
+      dispatch(createNewGame(gameObj, userObj)),
+    openGame: () => dispatch(openGame())
   };
 };
 

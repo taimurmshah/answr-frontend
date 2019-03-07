@@ -8,7 +8,8 @@ import {
   newCurrentGame,
   addGames,
   putRounds,
-  removeCurrentGame
+  removeCurrentGame,
+  playerTwoAddsCurrentGame
 } from "./actions";
 
 export const getMemes = () => {
@@ -179,6 +180,7 @@ export const playerTwoJoinsGame = (gameId, userId) => {
       .then(res => res.json())
       .then(res => {
         console.log("User joining game thunk response:", res);
+        dispatch(playerTwoAddsCurrentGame(res));
       });
   };
 };

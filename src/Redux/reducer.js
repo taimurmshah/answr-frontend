@@ -85,6 +85,12 @@ const reducer = (state = initialState, action) => {
           return game.id !== action.payload;
         })
       };
+    case "PLAYER_TWO_ADDS_CURRENT_GAME":
+      return { ...state, currentGame: action.payload };
+    case "GAME_NO_LONGER_OPEN":
+      return { ...state, isGameOpen: false };
+    case "OPEN_GAME":
+      return { ...state, isGameOpen: true };
     default:
       return state;
   }

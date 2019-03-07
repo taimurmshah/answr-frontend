@@ -147,3 +147,22 @@ export const removeAvailableGame = gameId => {
     payload: gameId
   };
 };
+
+export const playerTwoAddsCurrentGame = gameObj => {
+  return {
+    type: "PLAYER_TWO_ADDS_CURRENT_GAME",
+    payload: gameObj
+  };
+};
+
+export const gameNoLongerOpen = () => {
+  return {
+    type: "GAME_NO_LONGER_OPEN"
+  };
+};
+
+export const openGame = () => {
+  return {
+    type: "OPEN_GAME"
+  };
+};

@@ -2,11 +2,15 @@ import React from "react";
 import { Card, Button } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { playerTwoJoinsGame } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/thunks.js";
+import { withRouter } from "react-router-dom";
+import { openGame } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/actions.js";
 
 class GameCard extends React.Component {
   clickHandler = () => {
     console.log("join game clickHandler. here're the props:", this.props);
     this.props.playerTwoJoinsGame(this.props.id, this.props.currentUser.id);
+    this.props.openGame();
+    this.props.history.push("/play-game");
   };
   render() {
     console.log("game card props:", this.props);
@@ -33,7 +37,8 @@ class GameCard extends React.Component {
 const mapDispatchToProps = dispatch => {
   return {
     playerTwoJoinsGame: (gameId, userId) =>
-      dispatch(playerTwoJoinsGame(gameId, userId))
+      dispatch(playerTwoJoinsGame(gameId, userId)),
+    openGame: () => dispatch(openGame())
   };
 };
 
@@ -43,7 +48,9 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(GameCard);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(GameCard)
+);
