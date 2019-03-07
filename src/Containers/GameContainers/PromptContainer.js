@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Button } from "semantic-ui-react";
+import { Button, Loader, Dimmer, Segment } from "semantic-ui-react";
 import {
   toggleStartGame,
   toggleAnswerForm
@@ -20,7 +20,13 @@ class PromptContainer extends React.Component {
 
   showAnswers = () => {
     if (this.props.answers.length === 1) {
-      return <h3>Waiting for answers</h3>;
+      return (
+        <Segment>
+          <Dimmer active inverted>
+            <Loader>Waiting</Loader>
+          </Dimmer>
+        </Segment>
+      );
     } else if (this.props.answers.length === 2) {
       let myAnswer = this.props.answers.filter(
         answer => answer.user_id === this.props.currentUser.id
