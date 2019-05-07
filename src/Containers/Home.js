@@ -1,9 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter, Redirect } from "react-router-dom";
-import { logUserInWithToken } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/thunks.js";
-import HomeNavbar from "/Users/taimur/Bootcamp/Five/mod-5-front/src/Components/Navbars/HomeNavbar.js";
-import NewGame from "/Users/taimur/Bootcamp/Five/mod-5-front/src/Components/Modals/NewGame.js";
+import { logUserInWithToken } from "../redux/thunks.js";
+import HomeNavbar from "../Components/Navbars/HomeNavbar";
+import NewGame from "../Components/Modals/NewGame";
+
 class Home extends React.Component {
   isUserLoggedIn = () => {
     return localStorage.getItem("token") && this.props.currentUser;

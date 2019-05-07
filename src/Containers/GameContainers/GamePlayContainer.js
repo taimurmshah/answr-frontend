@@ -2,8 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { ActionCableConsumer } from "react-actioncable-provider";
 import PromptContainer from "./PromptContainer";
-import GamePlayNavbar from "/Users/taimur/Bootcamp/Five/mod-5-front/src/Components/Navbars/GamePlayNavbar.js";
-import { deleteGame } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/thunks.js";
+import GamePlayNavbar from "../../Components/Navbars/GamePlayNavbar.js";
+import { deleteGame } from "../../redux/thunks.js";
 import {
   gameNoLongerOpen,
   addFriend,
@@ -15,8 +15,8 @@ import {
   incrementRound,
   toggleAnswerForm,
   exitGame
-} from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/actions.js";
-import AnswerForm from "/Users/taimur/Bootcamp/Five/mod-5-front/src/Components/Forms/AnswerForm.js";
+} from "../../redux/actions.js";
+import AnswerForm from "../../Components/Forms/AnswerForm.js";
 import { Grid } from "semantic-ui-react";
 
 class GamePlayContainer extends React.Component {

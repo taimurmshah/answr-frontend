@@ -1,7 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { logOut } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/actions.js";
+import { logOut } from "../../redux/actions.js";
 import { Menu } from "semantic-ui-react";
 
 class GamePlayNavbar extends React.Component {

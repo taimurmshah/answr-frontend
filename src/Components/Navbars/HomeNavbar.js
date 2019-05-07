@@ -6,7 +6,7 @@ import {
   toggleGame,
   toggleNewGameModal,
   toggleViewGames
-} from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/actions.js";
+} from "../../redux/actions.js";
 import { Menu, Image } from "semantic-ui-react";
 
 /* view available Games, host new game */

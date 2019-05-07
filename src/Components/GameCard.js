@@ -1,9 +1,9 @@
 import React from "react";
 import { Card, Button } from "semantic-ui-react";
 import { connect } from "react-redux";
-import { playerTwoJoinsGame } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/thunks.js";
+import { playerTwoJoinsGame } from "../redux/thunks.js";
 import { withRouter } from "react-router-dom";
-import { openGame } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/actions.js";
+import { openGame } from "../redux/actions.js";
 
 class GameCard extends React.Component {
   clickHandler = () => {

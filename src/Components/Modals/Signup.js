@@ -1,8 +1,8 @@
 import React from "react";
 import { Modal, Input, Button } from "semantic-ui-react";
 import { connect } from "react-redux";
-import { closeSignupModal } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/actions.js";
-import { registerUser } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/thunks.js";
+import { closeSignupModal } from "../../redux/actions.js";
+import { registerUser } from "../../redux/thunks.js";
 
 class Signup extends React.Component {
   state = {

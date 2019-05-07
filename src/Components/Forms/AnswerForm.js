@@ -1,8 +1,8 @@
 import React from "react";
 import { Form, Button } from "semantic-ui-react";
 import { connect } from "react-redux";
-import { submitAnswer } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/thunks.js";
-import { toggleAnswerForm } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/actions.js";
+import { submitAnswer } from "../../redux/thunks.js";
+import { toggleAnswerForm } from "../../redux/actions.js";
 class AnswerForm extends React.Component {
   state = {
     text: ""

@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App";
 import "semantic-ui-css/semantic.min.css";
 
-import { createStore, applyMiddleware, compose } from "redux";
+import { createStore, applyMiddleware, compose } from "redux"; // lines 17-18; allows for redux devtools
 import reducer from "./redux/reducer";
 import thunk from "redux-thunk";
 

@@ -1,11 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Button, Loader, Dimmer, Segment, Grid } from "semantic-ui-react";
-import {
-  toggleStartGame,
-  toggleAnswerForm
-} from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/actions.js";
-import { incrementGameRound } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/thunks.js";
+import { toggleStartGame, toggleAnswerForm } from "../../redux/actions.js";
+import { incrementGameRound } from "../../redux/thunks.js";
 import { withRouter } from "react-router-dom";
 class PromptContainer extends React.Component {
   checkSubmitButtonRender = () => {

@@ -5,9 +5,9 @@ import GameList from "./GameList";
 import {
   handleReceivedGame,
   removeAvailableGame
-} from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/actions.js";
-import { getGames } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/thunks.js";
-import GameListNavbar from "/Users/taimur/Bootcamp/Five/mod-5-front/src/Components/Navbars/GameListNavbar.js";
+} from "../../redux/actions.js";
+import { getGames } from "../../redux/thunks.js";
+import GameListNavbar from "../../Components/Navbars/GameListNavbar.js";
 
 class GameListContainer extends React.Component {
   componentDidMount() {

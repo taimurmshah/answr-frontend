@@ -1,5 +1,5 @@
 import React from "react";
-import LandingNavbar from "/Users/taimur/Bootcamp/Five/mod-5-front/src/Components/Navbars/LandingNavbar.js";
+import LandingNavbar from "../Components/Navbars/LandingNavbar";
 
 const Landing = () => {
   return (

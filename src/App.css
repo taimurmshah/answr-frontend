@@ -36,10 +36,10 @@ input[type="text"] {
 }
 
 .background-img {
-  margin-top: -20em;
-  margin-left: -18em;
+  margin-top: -1em;
+  margin-left: -13em;
   position: absolute;
-  width: 60%;
+  width: 30%;
   z-index: -1;
   opacity: 0.7;
 }

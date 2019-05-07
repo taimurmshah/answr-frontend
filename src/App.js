@@ -1,15 +1,12 @@
 import React, { Component } from "react";
 import "./App.css";
 import Home from "./Containers/Home";
-import GameListContainer from "/Users/taimur/Bootcamp/Five/mod-5-front/src/Containers/GameContainers/GameListContainer.js";
-import GamePlayContainer from "/Users/taimur/Bootcamp/Five/mod-5-front/src/Containers/GameContainers/GamePlayContainer.js";
+import GameListContainer from "./Containers/GameContainers/GameListContainer.js";
+import GamePlayContainer from "./Containers/GameContainers/GamePlayContainer.js";
 import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 import Landing from "./Containers/Landing";
 import { connect } from "react-redux";
-import {
-  logUserInWithToken,
-  getGames
-} from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/thunks.js";
+import { logUserInWithToken, getGames } from "./redux/thunks.js";
 
 class App extends Component {
   componentDidMount() {

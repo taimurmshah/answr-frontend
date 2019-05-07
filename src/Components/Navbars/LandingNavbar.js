@@ -8,9 +8,9 @@ import {
   logOut,
   toggleGame,
   toggleNewGameModal
-} from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/actions.js";
-import Login from "/Users/taimur/Bootcamp/Five/mod-5-front/src/Components/Modals/Login.js";
-import Signup from "/Users/taimur/Bootcamp/Five/mod-5-front/src/Components/Modals/Signup.js";
+} from "../../redux/actions.js";
+import Login from "../Modals/Login.js";
+import Signup from "../Modals/Signup.js";
 // import { getGames } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/thunks.js";
 
 const LandingNavbar = props => {

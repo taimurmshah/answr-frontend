@@ -1,11 +1,8 @@
 import React from "react";
 import { Modal, Input, Button } from "semantic-ui-react";
 import { connect } from "react-redux";
-import {
-  toggleNewGameModal,
-  openGame
-} from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/actions.js";
-import { createNewGame } from "/Users/taimur/Bootcamp/Five/mod-5-front/src/redux/thunks.js";
+import { toggleNewGameModal, openGame } from "../../redux/actions.js";
+import { createNewGame } from "../../redux/thunks.js";
 import { withRouter } from "react-router-dom";
 
 class NewGame extends React.Component {
