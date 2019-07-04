@@ -32,15 +32,17 @@ class GamePlayContainer extends React.Component {
   }
 
   handleReceivedMessage = message => {
-    console.log("websocket in GamesPlayContainer:", message);
+    console.log(
+      "websocket in GamesPlayContainer, here is the response, called 'message':",
+      message
+    );
     if (message.game) {
-      console.log("this is the users array:", message.game.users);
+      console.log("");
       this.props.addUsers(message.game.users);
       let friend = message.game.users.filter(
         user => user.id !== this.props.currentUser.id
       );
       friend = friend[0];
-      console.log("this is my friend:", friend);
       this.props.addFriend(friend);
     } else if (message.start) {
       console.log("link start-u");

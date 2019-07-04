@@ -8,7 +8,7 @@ class PromptContainer extends React.Component {
   checkSubmitButtonRender = () => {
     if (
       !this.props.startGame &&
-      this.props.users.length === 2 &&
+      this.props.users.length === 3 /*changed from 2; adding a third player*/ &&
       this.props.currentUser.id === this.props.users[0].id
     ) {
       return <Button onClick={this.startHandler}>Start Game</Button>;
@@ -43,7 +43,6 @@ class PromptContainer extends React.Component {
   };
 
   startHandler = () => {
-    console.log("This is working");
     fetch("http://localhost:3000/api/v1/start", {
       method: "POST",
       headers: {
