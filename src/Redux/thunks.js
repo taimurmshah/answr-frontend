@@ -110,7 +110,9 @@ export const createNewGame = (gameObj, userObj, historyObj) => {
     })
       .then(res => res.json())
       .then(res => {
+        console.log("this is the res object:", res);
         dispatch(newCurrentGame(res.game));
+        //what happens when I create a new game?
         dispatch(putRounds(res.rounds));
         historyObj.push("/play-game");
       });

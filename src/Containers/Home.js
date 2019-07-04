@@ -32,6 +32,12 @@ class Home extends React.Component {
           <Redirect to="/" />
         )}
         {this.props.newGameModal ? <NewGame /> : null}
+        <p>
+          Answr is a game you can play with your friends. You can either host a
+          new game, or view if there are any available games. Each game consists
+          of three players, and each player will be a judge for one round. Lets
+          get started!
+        </p>
       </div>
     );
   }
