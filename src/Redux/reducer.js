@@ -15,13 +15,15 @@ const initialState = {
   friends: [],
   users: [],
   currentRound: 1,
+  questionNumber: null,
   startGame: false,
   answers: { 1: [], 2: [], 3: [] },
   answerForm: true,
   isJudge: false,
   judge1: null,
   judge2: null,
-  judge3: null
+  judge3: null,
+  currentJudge: null
 };
 
 const reducer = (state = initialState, action) => {
@@ -142,6 +144,14 @@ const reducer = (state = initialState, action) => {
         judge2: state.users[1],
         judge3: state.users[0]
       };
+    case "UPDATE_JUDGE":
+      if (state.currentRound === 1) {
+        return { ...state, currentJudge: state.judge1 };
+      } else if (state.currentRound === 2) {
+        return { ...state, currentJudge: state.judge2 };
+      } else {
+        return { ...state, currentJudge: state.judge3 };
+      }
     default:
       return state;
   }

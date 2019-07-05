@@ -236,3 +236,9 @@ export const loadJudges = () => {
     type: "LOAD_JUDGES"
   };
 };
+
+export const updateJudge = () => {
+  return {
+    type: "UPDATE_JUDGE"
+  };
+};

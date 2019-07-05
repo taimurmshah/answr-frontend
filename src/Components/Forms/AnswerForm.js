@@ -28,23 +28,48 @@ class AnswerForm extends React.Component {
   render() {
     return (
       <div className="answer-form">
-        {this.props.startGame && this.props.answerForm ? (
-          <>
-            <Form onSubmit={this.submitHandler}>
-              <Form.Field>
-                <input
-                  required
-                  type="text"
-                  name="text"
-                  placeholder="Enter Your Answer Here"
-                  value={this.state.text}
-                  onChange={this.changeHandler}
-                />
-              </Form.Field>
-              <Button type="submit">Submit</Button>
-            </Form>
-          </>
+        {this.props.startGame &&
+        this.props.answerForm &&
+        this.props.currentJudge ? (
+          this.props.currentJudge.id === this.props.userId ? (
+            <h2>judge capabilities here</h2>
+          ) : (
+            <>
+              <Form onSubmit={this.submitHandler}>
+                <Form.Field>
+                  <input
+                    required
+                    type="text"
+                    name="text"
+                    placeholder="Enter Your Answer Here"
+                    value={this.state.text}
+                    onChange={this.changeHandler}
+                  />
+                </Form.Field>
+                <Button type="submit">Submit</Button>
+              </Form>
+            </>
+          )
         ) : null}
+
+        {/*{this.props.startGame && this.props.answerForm && this.props.currentJudge ?*/}
+        {/*        {this.props.currentJudge.id === this.props.userId ? <h1>judge info here</h1>*/}
+        {/*  : (<>*/}
+        {/*    <Form onSubmit={this.submitHandler}>*/}
+        {/*      <Form.Field>*/}
+        {/*        <input*/}
+        {/*          required*/}
+        {/*          type="text"*/}
+        {/*          name="text"*/}
+        {/*          placeholder="Enter Your Answer Here"*/}
+        {/*          value={this.state.text}*/}
+        {/*          onChange={this.changeHandler}*/}
+        {/*        />*/}
+        {/*      </Form.Field>*/}
+        {/*      <Button type="submit">Submit</Button>*/}
+        {/*    </Form>*/}
+        {/*  </>) }*/}
+        {/* : null}*/}
       </div>
     );
   }
@@ -55,7 +80,8 @@ const mapStateToProps = state => {
     startGame: state.startGame,
     gameId: state.currentGame.id,
     userId: state.currentUser.id,
-    answerForm: state.answerForm
+    answerForm: state.answerForm,
+    currentJudge: state.currentJudge
   };
 };
 

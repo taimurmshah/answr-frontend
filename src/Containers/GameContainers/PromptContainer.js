@@ -4,7 +4,8 @@ import { Button, Loader, Dimmer, Segment, Grid } from "semantic-ui-react";
 import {
   toggleStartGame,
   toggleAnswerForm,
-  loadJudges
+  loadJudges,
+  updateJudge
 } from "../../redux/actions.js";
 import { incrementGameRound } from "../../redux/thunks.js";
 import { withRouter } from "react-router-dom";
@@ -56,7 +57,9 @@ class PromptContainer extends React.Component {
       body: JSON.stringify({
         game_id: this.props.gameId
       })
-    }).then(this.props.loadJudges());
+    })
+      .then(this.props.loadJudges())
+      .then(this.props.updateJudge());
   };
 
   exitHandler = () => {
@@ -83,13 +86,17 @@ class PromptContainer extends React.Component {
   };
 
   render() {
-    console.log("these are the props:", this.props);
+    console.log("promptcontainer, this.props:", this.props);
     return (
       <div>
         <Grid centered verticalAlign="middle" columns={1}>
           <Grid.Column textAlign="center">
-            {this.props.startGame ? (
-              <h2>In Here</h2>
+            {this.props.startGame && this.props.currentJudge ? (
+              this.props.currentUser.id === this.props.currentJudge.id ? (
+                <h2>You are the judge for this round</h2>
+              ) : (
+                <h2>You are not a judge; you are a participant</h2>
+              )
             ) : //<h2>{this.props.rounds.one.one.prompt}</h2>
             null}
 
@@ -114,7 +121,8 @@ const mapStateToProps = state => {
     gameId: state.currentGame.id,
     currentRound: state.currentRound,
     index: state.currentRound - 1,
-    answers: state.answers[state.currentRound]
+    answers: state.answers[state.currentRound],
+    currentJudge: state.currentJudge
   };
 };
 
@@ -123,7 +131,8 @@ const mapDispatchToProps = dispatch => {
     toggleStartGame: () => dispatch(toggleStartGame()),
     toggleAnswerForm: () => dispatch(toggleAnswerForm()),
     incrementGameRound: gameId => dispatch(incrementGameRound(gameId)),
-    loadJudges: () => dispatch(loadJudges())
+    loadJudges: () => dispatch(loadJudges()),
+    updateJudge: () => dispatch(updateJudge())
   };
 };
 
