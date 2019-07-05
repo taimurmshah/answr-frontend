@@ -37,13 +37,13 @@ class GamePlayContainer extends React.Component {
       message
     );
     if (message.game) {
-      console.log("");
       this.props.addUsers(message.game.users);
-      let friend = message.game.users.filter(
+      let friends = message.game.users.filter(
         user => user.id !== this.props.currentUser.id
       );
-      friend = friend[0];
-      this.props.addFriend(friend);
+      console.log("friends:", friends);
+
+      this.props.addFriend(friends);
     } else if (message.start) {
       console.log("link start-u");
       this.props.toggleStartGame();

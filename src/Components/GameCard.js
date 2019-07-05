@@ -1,14 +1,14 @@
 import React from "react";
 import { Card, Button } from "semantic-ui-react";
 import { connect } from "react-redux";
-import { playerTwoJoinsGame } from "../redux/thunks.js";
+import { playerJoinsGame } from "../redux/thunks.js";
 import { withRouter } from "react-router-dom";
 import { openGame } from "../redux/actions.js";
 
 class GameCard extends React.Component {
   clickHandler = () => {
     console.log("join game clickHandler. here're the props:", this.props);
-    this.props.playerTwoJoinsGame(
+    this.props.playerJoinsGame(
       this.props.id,
       this.props.currentUser.id,
       this.props.history
@@ -39,8 +39,8 @@ class GameCard extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    playerTwoJoinsGame: (gameId, userId, historyObj) =>
-      dispatch(playerTwoJoinsGame(gameId, userId, historyObj)),
+    playerJoinsGame: (gameId, userId, historyObj) =>
+      dispatch(playerJoinsGame(gameId, userId, historyObj)),
     openGame: () => dispatch(openGame())
   };
 };

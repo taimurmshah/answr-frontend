@@ -139,7 +139,7 @@ export const deleteGame = gameObj => {
   };
 };
 
-export const playerTwoJoinsGame = (gameId, userId, historyObj) => {
+export const playerJoinsGame = (gameId, userId, historyObj) => {
   return dispatch => {
     return fetch(`http://localhost:3000/api/v1/games/${gameId}`, {
       method: "PATCH",
@@ -154,13 +154,14 @@ export const playerTwoJoinsGame = (gameId, userId, historyObj) => {
     })
       .then(res => res.json())
       .then(res => {
-        console.log("User joining game thunk response:", res);
-        let friend = res.users.filter(user => user.id !== userId);
-        friend = friend[0];
-        console.log("this is my friend from thunk:", friend);
+        let friends = res.users.filter(user => user.id !== userId);
+        console.log("***");
+        console.log("in here, here's the res:", res);
+        console.log("***");
+
         dispatch(putRounds(res.rounds));
         dispatch(addUsers(res.users));
-        dispatch(addFriend(friend));
+        dispatch(addFriend(friends));
         dispatch(playerTwoAddsCurrentGame(res));
         historyObj.push("/play-game");
       });

@@ -15,13 +15,21 @@ class GamePlayNavbar extends React.Component {
         <Menu.Item position="left">
           <img alt="" src="../../../mod-5-logo.png" />
         </Menu.Item>
-        {this.props.friend.name ? (
-          <Menu.Item position="middle" className="friend-status">
-            You are playing with {this.props.friend.name}
-          </Menu.Item>
+        {this.props.friends.length > 0 ? (
+          this.props.friends.length === 1 ? (
+            <Menu.Item position="middle" className="friend-status">
+              You are playing with {this.props.friends[0].name}, waiting for one
+              more...
+            </Menu.Item>
+          ) : (
+            <Menu.Item position="middle" className="friend-status">
+              You are playing with {this.props.friends[0].name} and{" "}
+              {this.props.friends[1].name}
+            </Menu.Item>
+          )
         ) : (
           <Menu.Item position="left" className="friend-status">
-            Waiting for a friend to join
+            Waiting for friends to join
           </Menu.Item>
         )}
         {this.isUserLoggedIn() ? (
@@ -49,7 +57,7 @@ class GamePlayNavbar extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    friend: state.friend
+    friends: state.friends
   };
 };
 
