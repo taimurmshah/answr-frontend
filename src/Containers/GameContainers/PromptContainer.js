@@ -1,7 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Button, Loader, Dimmer, Segment, Grid } from "semantic-ui-react";
-import { toggleStartGame, toggleAnswerForm } from "../../redux/actions.js";
+import {
+  toggleStartGame,
+  toggleAnswerForm,
+  loadJudges
+} from "../../redux/actions.js";
 import { incrementGameRound } from "../../redux/thunks.js";
 import { withRouter } from "react-router-dom";
 class PromptContainer extends React.Component {
@@ -52,7 +56,7 @@ class PromptContainer extends React.Component {
       body: JSON.stringify({
         game_id: this.props.gameId
       })
-    });
+    }).then(this.props.loadJudges());
   };
 
   exitHandler = () => {
@@ -85,8 +89,9 @@ class PromptContainer extends React.Component {
         <Grid centered verticalAlign="middle" columns={1}>
           <Grid.Column textAlign="center">
             {this.props.startGame ? (
-              <h2>{this.props.rounds[this.props.index].prompt}</h2>
-            ) : null}
+              <h2>In Here</h2>
+            ) : //<h2>{this.props.rounds.one.one.prompt}</h2>
+            null}
 
             {this.showAnswers()}
             {this.checkSubmitButtonRender()}
@@ -117,7 +122,8 @@ const mapDispatchToProps = dispatch => {
   return {
     toggleStartGame: () => dispatch(toggleStartGame()),
     toggleAnswerForm: () => dispatch(toggleAnswerForm()),
-    incrementGameRound: gameId => dispatch(incrementGameRound(gameId))
+    incrementGameRound: gameId => dispatch(incrementGameRound(gameId)),
+    loadJudges: () => dispatch(loadJudges())
   };
 };
 

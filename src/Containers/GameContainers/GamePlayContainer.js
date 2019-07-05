@@ -14,7 +14,8 @@ import {
   addAnswers,
   incrementRound,
   toggleAnswerForm,
-  exitGame
+  exitGame,
+  loadJudges
 } from "../../redux/actions.js";
 import AnswerForm from "../../Components/Forms/AnswerForm.js";
 import { Grid } from "semantic-ui-react";
@@ -47,6 +48,7 @@ class GamePlayContainer extends React.Component {
     } else if (message.start) {
       console.log("link start-u");
       this.props.toggleStartGame();
+      this.props.loadJudges();
     } else if (message.answer) {
       console.log(
         "Here's the total message:",
@@ -108,7 +110,8 @@ const mapDispatchToProps = dispatch => {
     addAnswers: answerObj => dispatch(addAnswers(answerObj)),
     incrementRound: () => dispatch(incrementRound()),
     toggleAnswerForm: () => dispatch(toggleAnswerForm()),
-    exitGame: () => dispatch(exitGame())
+    exitGame: () => dispatch(exitGame()),
+    loadJudges: () => dispatch(loadJudges())
   };
 };
 

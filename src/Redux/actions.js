@@ -230,3 +230,9 @@ export const exitGame = () => {
     type: "EXIT_GAME"
   };
 };
+
+export const loadJudges = () => {
+  return {
+    type: "LOAD_JUDGES"
+  };
+};

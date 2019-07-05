@@ -17,7 +17,11 @@ const initialState = {
   currentRound: 1,
   startGame: false,
   answers: { 1: [], 2: [], 3: [] },
-  answerForm: true
+  answerForm: true,
+  isJudge: false,
+  judge1: null,
+  judge2: null,
+  judge3: null
 };
 
 const reducer = (state = initialState, action) => {
@@ -130,6 +134,13 @@ const reducer = (state = initialState, action) => {
         startGame: false,
         answers: { 1: [], 2: [], 3: [] },
         answerForm: true
+      };
+    case "LOAD_JUDGES":
+      return {
+        ...state,
+        judge1: state.users[2],
+        judge2: state.users[1],
+        judge3: state.users[0]
       };
     default:
       return state;
