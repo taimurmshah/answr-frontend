@@ -5,7 +5,6 @@ import { Grid } from "semantic-ui-react";
 
 class GameList extends React.Component {
   render() {
-    console.log("this.props:", this.props);
     let games = this.props.availableGames.map(game => {
       return <GameCard key={game.id} title={game.title} id={game.id} />;
     });

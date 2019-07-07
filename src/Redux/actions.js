@@ -242,3 +242,9 @@ export const updateJudge = () => {
     type: "UPDATE_JUDGE"
   };
 };
+
+export const loadFirstRound = () => {
+  return {
+    type: "LOAD_FIRST_ROUND"
+  };
+};

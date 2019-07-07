@@ -15,7 +15,7 @@ const initialState = {
   friends: [],
   users: [],
   currentRound: 1,
-  questionNumber: null,
+  currentQuestion: null,
   startGame: false,
   answers: { 1: [], 2: [], 3: [] },
   answerForm: true,
@@ -107,7 +107,10 @@ const reducer = (state = initialState, action) => {
     case "SET_CURRENT_ROUND":
       return { ...state, currentRound: action.payload };
     case "TOGGLE_START_GAME":
-      return { ...state, startGame: !state.startGame };
+      return {
+        ...state,
+        startGame: !state.startGame
+      };
     case "ADD_USERS":
       return { ...state, users: action.payload };
     case "REMOVE_USERS":
@@ -152,6 +155,12 @@ const reducer = (state = initialState, action) => {
       } else {
         return { ...state, currentJudge: state.judge3 };
       }
+    case "LOAD_FIRST_ROUND":
+      console.log("state.rounds:", state.rounds);
+      return {
+        ...state,
+        currentRound: state.rounds["one"][0]
+      };
     default:
       return state;
   }

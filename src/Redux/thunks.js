@@ -154,15 +154,15 @@ export const playerJoinsGame = (gameId, userId, historyObj) => {
     })
       .then(res => res.json())
       .then(res => {
-        let friends = res.users.filter(user => user.id !== userId);
         console.log("***");
         console.log("in here, here's the res:", res);
         console.log("***");
+        let friends = res.users.filter(user => user.id !== userId);
 
         dispatch(putRounds(res.rounds));
         dispatch(addUsers(res.users));
         dispatch(addFriend(friends));
-        dispatch(playerTwoAddsCurrentGame(res));
+        dispatch(playerTwoAddsCurrentGame(res.game));
         historyObj.push("/play-game");
       });
   };

@@ -1,11 +1,13 @@
 import React from "react";
+import Play from "./Play";
 import { connect } from "react-redux";
 import { Button, Loader, Dimmer, Segment, Grid } from "semantic-ui-react";
 import {
   toggleStartGame,
   toggleAnswerForm,
   loadJudges,
-  updateJudge
+  updateJudge,
+  loadFirstRound
 } from "../../redux/actions.js";
 import { incrementGameRound } from "../../redux/thunks.js";
 import { withRouter } from "react-router-dom";
@@ -59,7 +61,8 @@ class PromptContainer extends React.Component {
       })
     })
       .then(this.props.loadJudges())
-      .then(this.props.updateJudge());
+      .then(this.props.updateJudge())
+      .then(this.props.loadFirstRound());
   };
 
   exitHandler = () => {
@@ -86,7 +89,6 @@ class PromptContainer extends React.Component {
   };
 
   render() {
-    console.log("promptcontainer, this.props:", this.props);
     return (
       <div>
         <Grid centered verticalAlign="middle" columns={1}>
@@ -97,10 +99,11 @@ class PromptContainer extends React.Component {
               ) : (
                 <h2>You are not a judge; you are a participant</h2>
               )
-            ) : //<h2>{this.props.rounds.one.one.prompt}</h2>
-            null}
+            ) : (
+              <Play />
+            )}
 
-            {this.showAnswers()}
+            {/*{this.showAnswers()}*/}
             {this.checkSubmitButtonRender()}
           </Grid.Column>
 
@@ -132,7 +135,8 @@ const mapDispatchToProps = dispatch => {
     toggleAnswerForm: () => dispatch(toggleAnswerForm()),
     incrementGameRound: gameId => dispatch(incrementGameRound(gameId)),
     loadJudges: () => dispatch(loadJudges()),
-    updateJudge: () => dispatch(updateJudge())
+    updateJudge: () => dispatch(updateJudge()),
+    loadFirstRound: () => dispatch(loadFirstRound())
   };
 };
 

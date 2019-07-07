@@ -16,7 +16,8 @@ import {
   toggleAnswerForm,
   exitGame,
   loadJudges,
-  updateJudge
+  updateJudge,
+  loadFirstRound
 } from "../../redux/actions.js";
 import AnswerForm from "../../Components/Forms/AnswerForm.js";
 import { Grid } from "semantic-ui-react";
@@ -34,32 +35,21 @@ class GamePlayContainer extends React.Component {
   }
 
   handleReceivedMessage = message => {
-    console.log(
-      "websocket in GamesPlayContainer, here is the response, called 'message':",
-      message
-    );
     if (message.game) {
       this.props.addUsers(message.game.users);
       let friends = message.game.users.filter(
         user => user.id !== this.props.currentUser.id
       );
-      console.log("friends:", friends);
 
       this.props.addFriend(friends);
     } else if (message.start) {
-      console.log("link start-u");
       this.props.toggleStartGame();
+      console.log("one");
+      this.props.loadFirstRound();
+      console.log("two");
       this.props.loadJudges();
       this.props.updateJudge();
     } else if (message.answer) {
-      console.log(
-        "Here's the total message:",
-        message,
-        "Here's the answer:",
-        message.answer,
-        "user_id",
-        message.user_id
-      );
       this.props.addAnswers(message);
     } else if (message.increment) {
       this.props.incrementRound();
@@ -114,7 +104,8 @@ const mapDispatchToProps = dispatch => {
     toggleAnswerForm: () => dispatch(toggleAnswerForm()),
     exitGame: () => dispatch(exitGame()),
     loadJudges: () => dispatch(loadJudges()),
-    updateJudge: () => dispatch(updateJudge())
+    updateJudge: () => dispatch(updateJudge()),
+    loadFirstRound: () => dispatch(loadFirstRound())
   };
 };
 
