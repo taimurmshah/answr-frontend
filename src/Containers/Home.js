@@ -1,17 +1,25 @@
 import React from "react";
 import { connect } from "react-redux";
+
+/* todo brush up on withRouter; what does it do?
+ *   i think it allows the component to use history.push and other methods.*/
 import { withRouter, Redirect } from "react-router-dom";
 import { logUserInWithToken } from "../redux/thunks.js";
+
+//controls what logged in users will see on the home navbar & the respective logic.
 import HomeNavbar from "../Components/Navbars/HomeNavbar";
+
+//how a user creates a new game! i believe the navbar will control whether this modal is open.
 import NewGame from "../Components/Modals/NewGame";
 
 class Home extends React.Component {
   isUserLoggedIn = () => {
+    /* todo why is this different than the same method on app.js? probably because I will need to use some of the information from the user object.
+     *   could I potentially import this method from somewhere else? I've used it so far in two separate components.*/
     return localStorage.getItem("token") && this.props.currentUser;
   };
 
   componentDidMount() {
-    // console.log("token:", localStorage.getItem("token"));
     if (localStorage.getItem("token")) {
       let token = localStorage.getItem("token");
       this.props.logUserInWithToken(token);
@@ -21,8 +29,6 @@ class Home extends React.Component {
   }
 
   render() {
-    // console.log("homepage props:", this.props.currentUser);
-    // console.log("is the user logged in?", this.isUserLoggedIn());
     return (
       <div>
         <HomeNavbar />

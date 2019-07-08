@@ -1,5 +1,7 @@
+/* comments go ABOVE the code.*/
 import React from "react";
 import Play from "./Play";
+
 import { connect } from "react-redux";
 import { Button, Loader, Dimmer, Segment, Grid } from "semantic-ui-react";
 import {

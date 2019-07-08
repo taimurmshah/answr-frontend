@@ -1,6 +1,7 @@
 //state and action are both objects
 //import memes from "../memes";
 
+/* todo i should create many reducers, such as one for modals, one for gameplay, one for auth, etc. I can follow traversy brad's examples. */
 const initialState = {
   isModalOpen: false,
   loginModalOpen: false,
