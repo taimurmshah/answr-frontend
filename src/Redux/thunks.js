@@ -96,6 +96,7 @@ export const logUserInWithToken = token => {
 };
 
 export const createNewGame = (gameObj, userObj, historyObj) => {
+  //is there a socket listening to see if new games are created?
   return dispatch => {
     return fetch("http://localhost:3000/api/v1/games", {
       method: "POST",

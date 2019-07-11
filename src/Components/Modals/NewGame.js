@@ -5,6 +5,9 @@ import { toggleNewGameModal, openGame } from "../../redux/actions.js";
 import { createNewGame } from "../../redux/thunks.js";
 import { withRouter } from "react-router-dom";
 
+/*todo can i add an event listener that will allow the submit to work on 'enter'?
+ *  how would i go about implementing this? */
+
 class NewGame extends React.Component {
   state = {
     title: ""

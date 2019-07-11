@@ -1,13 +1,15 @@
 //state and action are both objects
 //import memes from "../memes";
 
-/* todo i should create many reducers, such as one for modals, one for gameplay, one for auth, etc. I can follow traversy brad's examples. */
+/* todo i should create many reducers, such as one for modals, one for gameplay, one for auth, etc. I can follow traversy brad's examples.
+ *   I can have a gamePlay reducer, an auth reducer, a modal reducer, a gameList reducer, and general state reducer?*/
 const initialState = {
   isModalOpen: false,
   loginModalOpen: false,
   signupModalOpen: false,
   newGameModal: false,
   currentUser: {},
+  /*todo what does isGameOpen control?*/
   isGameOpen: false,
   availableGames: [],
   currentGame: {},

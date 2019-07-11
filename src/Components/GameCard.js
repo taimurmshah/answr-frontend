@@ -8,20 +8,21 @@ import { openGame } from "../redux/actions.js";
 class GameCard extends React.Component {
   clickHandler = () => {
     console.log("join game clickHandler. here're the props:", this.props);
+    //todo does this method cause the backend to broadcast an updated array? Where is that information received? probably in gameList?
     this.props.playerJoinsGame(
       this.props.id,
       this.props.currentUser.id,
       this.props.history
     );
+    //i think this action is what takes a player into the game. openGame and startGame are different. it navigates the user to /play-game, todo via app.js Switch??
     this.props.openGame();
   };
   render() {
-    console.log("game card props:", this.props);
-
     return (
       <Card size="mini">
         <Card.Content>
           <Card.Header>{this.props.title}</Card.Header>
+          {/* todo I want to show how many players are in the game, and how many more are needed. how could I do this? pretty easily, i bet. */}
           <Button
             onClick={this.clickHandler}
             size="mini"
