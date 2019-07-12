@@ -2,17 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4bc26f7b-87f8-497f-9fe9-c562a7f53942" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/actioncableMethods.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/taimur.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/taimur.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Game/Answer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Game/Judge.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Game/Prompt.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Forms/CreateForm.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/GameCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/GameCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Modals/NewGame.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Modals/NewGame.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Navbars/HomeNavbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Navbars/HomeNavbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Containers/GameContainers/GameListContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Containers/GameContainers/GameListContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Containers/GameContainers/GamePlayContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Containers/GameContainers/GamePlayContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Redux/reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Redux/reducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Redux/thunks.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Redux/thunks.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -27,122 +20,35 @@
     <favorites_list name="mod-5-front" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/Containers/GameContainers/GamePlayContainer.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="922">
-                  <caret line="100" selection-start-line="100" selection-end-line="100" />
-                  <folding>
-                    <element signature="n#!!doc" expanded="true" />
-                    <element signature="e#1259#1285#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/actioncableMethods.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="210">
-                  <caret line="12" column="25" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/redux/thunks.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="420">
-                  <caret line="97" column="63" selection-start-line="97" selection-start-column="63" selection-end-line="97" selection-end-column="63" />
-                  <folding>
-                    <element signature="n#!!doc" expanded="true" />
-                    <element signature="e#50#226#0" expanded="true" />
-                    <element signature="e#267#1039#0" />
-                    <element signature="e#1078#1813#0" />
-                    <element signature="e#1859#2186#0" />
-                    <element signature="e#2252#2871#0" />
-                    <element signature="e#2904#3205#0" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/redux/actions.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-804">
-                  <caret line="123" selection-start-line="123" selection-end-line="123" />
-                  <folding>
-                    <element signature="e#34#96#0" />
-                    <element signature="e#133#195#0" />
-                    <element signature="e#232#294#0" />
-                    <element signature="e#329#389#0" />
-                    <element signature="e#427#512#0" />
-                    <element signature="e#551#618#0" />
-                    <element signature="e#658#727#0" />
-                    <element signature="e#767#835#0" />
-                    <element signature="e#876#946#0" />
-                    <element signature="e#979#1042#0" />
-                    <element signature="e#1075#1141#0" />
-                    <element signature="e#1173#1235#0" />
-                    <element signature="e#1266#1321#0" />
-                    <element signature="e#1356#1399#0" />
-                    <element signature="e#1442#1495#0" />
-                    <element signature="e#1535#1601#0" />
-                    <element signature="e#1635#1694#0" />
-                    <element signature="e#1742#1816#0" />
-                    <element signature="e#1856#1905#0" />
-                    <element signature="e#2058#2109#0" />
-                    <element signature="e#2157#2231#0" />
-                    <element signature="e#2285#2367#0" />
-                    <element signature="e#2408#2459#0" />
-                    <element signature="e#2571#2634#0" />
-                    <element signature="e#2671#2716#0" />
-                    <element signature="e#2759#2828#0" />
-                    <element signature="e#2953#3014#0" />
-                    <element signature="e#3050#3094#0" />
-                    <element signature="e#3136#3203#0" />
-                    <element signature="e#3244#3294#0" />
-                    <element signature="e#3333#3380#0" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/redux/reducer.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-2997">
-                  <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-                  <folding>
-                    <element signature="n#!!doc" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/actioncableMethods.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="439">
-                  <caret line="39" column="30" selection-start-line="14" selection-start-column="13" selection-end-line="52" />
-                  <folding>
-                    <element signature="e#0#38#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Game/Prompt.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="252">
+              <caret line="12" column="2" selection-start-line="12" selection-start-column="2" selection-end-line="12" selection-end-column="2" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Game/Judge.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="41" selection-start-column="41" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Game/Answer.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -185,13 +91,17 @@
         <option value="$PROJECT_DIR$/src/Components/GameCard.js" />
         <option value="$PROJECT_DIR$/src/actioncableMethods.js" />
         <option value="$PROJECT_DIR$/src/Containers/GameContainers/GamePlayContainer.js" />
+        <option value="$PROJECT_DIR$/src/Game/Answer.js" />
+        <option value="$PROJECT_DIR$/src/Game/Judge.js" />
+        <option value="$PROJECT_DIR$/src/Game/Prompt.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="y" value="23" />
-    <option name="width" value="1440" />
-    <option name="height" value="834" />
+    <option name="x" value="-294" />
+    <option name="y" value="-1080" />
+    <option name="width" value="1920" />
+    <option name="height" value="1080" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -223,41 +133,13 @@
               <item name="mod-5-front" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="~/Bootcamp/Five/Mod-5-project/mod-5-front" type="442cc68d:ScopeViewTreeModel$RootNode" />
               <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="Components" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="Forms" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="mod-5-front" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="~/Bootcamp/Five/Mod-5-project/mod-5-front" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="Components" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="Modals" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="mod-5-front" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="~/Bootcamp/Five/Mod-5-project/mod-5-front" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="Components" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="Navbars" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="mod-5-front" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="~/Bootcamp/Five/Mod-5-project/mod-5-front" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="Containers" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
             <path>
               <item name="mod-5-front" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="~/Bootcamp/Five/Mod-5-project/mod-5-front" type="442cc68d:ScopeViewTreeModel$RootNode" />
               <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="Containers" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="GameContainers" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="mod-5-front" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="~/Bootcamp/Five/Mod-5-project/mod-5-front" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="redux" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="Game" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
           </expand>
           <select />
@@ -278,7 +160,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="watcher.settings" />
+    <property name="settings.editor.selected.configurable" value="editing.templates" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -305,12 +187,12 @@
       <workItem from="1562273330362" duration="7487000" />
       <workItem from="1562302665830" duration="514000" />
       <workItem from="1562303287064" duration="9724000" />
-      <workItem from="1562579459923" duration="8695000" />
+      <workItem from="1562579459923" duration="10394000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26420000" />
+    <option name="totallyTimeSpent" value="28119000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -322,14 +204,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <frame x="-294" y="-1080" width="1920" height="1080" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" weight="0.32938644" />
       <window_info id="npm" order="1" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="2" weight="0.16560958" />
+      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.16535018" />
       <window_info id="Structure" order="3" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="0" weight="0.19617707" />
+      <window_info anchor="bottom" id="Terminal" order="0" weight="0.1953317" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" weight="0.32997987" />
       <window_info anchor="bottom" id="Version Control" order="2" weight="0.32997987" />
       <window_info anchor="bottom" id="Docker" order="3" show_stripe_button="false" />
@@ -403,16 +285,6 @@
     <entry file="file://$PROJECT_DIR$/src/Containers/Landing.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/Navbars/GamePlayNavbar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="25" column="72" selection-start-line="25" selection-start-column="72" selection-end-line="25" selection-end-column="72" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
@@ -575,6 +447,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/actioncableMethods.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="14" column="28" lean-forward="true" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Containers/GameContainers/GamePlayContainer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="8" column="148" selection-start-line="8" selection-start-column="148" selection-end-line="8" selection-end-column="148" />
+          <folding>
+            <element signature="e#1259#1285#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/Navbars/GamePlayNavbar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="25" column="72" selection-start-line="25" selection-start-column="72" selection-end-line="25" selection-end-column="72" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/redux/thunks.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
@@ -593,7 +495,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/redux/actions.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-804">
+        <state relative-caret-position="-641">
           <caret line="123" selection-start-line="123" selection-end-line="123" />
           <folding>
             <element signature="e#34#96#0" />
@@ -641,21 +543,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/actioncableMethods.js">
+    <entry file="file://$PROJECT_DIR$/src/Game/Answer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="12" column="25" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
+        <state>
+          <caret selection-end-column="41" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Containers/GameContainers/GamePlayContainer.js">
+    <entry file="file://$PROJECT_DIR$/src/Game/Judge.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="922">
-          <caret line="100" selection-start-line="100" selection-end-line="100" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#1259#1285#0" expanded="true" />
-          </folding>
+        <state>
+          <caret column="41" selection-start-column="41" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game/Prompt.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="12" column="2" selection-start-line="12" selection-start-column="2" selection-end-line="12" selection-end-column="2" />
         </state>
       </provider>
     </entry>
