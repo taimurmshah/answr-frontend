@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 class Prompt extends Component {
   render() {
@@ -6,4 +7,4 @@ class Prompt extends Component {
   }
 }
 
-export default Prompt;
+export default connect()(Prompt);

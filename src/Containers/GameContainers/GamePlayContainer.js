@@ -14,6 +14,9 @@ import { connect } from "react-redux";
 import { ActionCableConsumer } from "react-actioncable-provider";
 import PromptContainer from "./PromptContainer";
 import GamePlayNavbar from "../../Components/Navbars/GamePlayNavbar.js";
+import Prompt from "../../Game/Prompt";
+import Answer from "../../Game/Answer";
+import Judge from "../../Game/Judge";
 import { deleteGame } from "../../redux/thunks.js";
 import {
   gameNoLongerOpen,
@@ -131,6 +134,9 @@ class GamePlayContainer extends React.Component {
               {/* todo I think i'll have to create new components for the gameplay.
                     how should they work? They should be as SRP as possible. */}
               <PromptContainer />
+              {/*<Prompt/>*/}
+              {/*<Answer/>*/}
+              {/*<Judge/>*/}
 
               {/* todo the answer form looks like ass, I need to fix it up. */}
               <AnswerForm />
