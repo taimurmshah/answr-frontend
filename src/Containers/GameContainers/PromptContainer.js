@@ -1,4 +1,5 @@
 /* comments go ABOVE the code.*/
+/* todo this component will be redone in src/Game/Prompt*/
 import React from "react";
 import Play from "./Play";
 
@@ -14,6 +15,7 @@ import {
 import { incrementGameRound } from "../../redux/thunks.js";
 import { withRouter } from "react-router-dom";
 class PromptContainer extends React.Component {
+  //so that player one can start the game once the game is full (three users total).
   checkSubmitButtonRender = () => {
     if (
       !this.props.startGame &&
@@ -24,6 +26,9 @@ class PromptContainer extends React.Component {
     }
   };
 
+  //checks to see if the players have answered their questions
+  /* todo i'll probably have to redo this somehow including the judging. How am I going to incorporate the judging?
+   *   i'll need to hit the back end, and improve the schemas for existing models/create new models. */
   showAnswers = () => {
     if (this.props.answers.length === 1) {
       return (
@@ -51,6 +56,7 @@ class PromptContainer extends React.Component {
     }
   };
 
+  //this is how player one starts the game; this hits a route that is broadcasting to all the other users in the game room.
   startHandler = () => {
     fetch("http://localhost:3000/api/v1/start", {
       method: "POST",
