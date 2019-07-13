@@ -24,6 +24,8 @@ class Prompt extends Component {
         this.props.currentUser.id === this.props.users[0].id ? (
           <StartButton />
         ) : null}
+
+        {this.props.startGame ? <h1>The game has been started </h1> : null}
       </div>
     );
   }

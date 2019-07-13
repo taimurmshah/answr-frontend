@@ -133,13 +133,13 @@ class GamePlayContainer extends React.Component {
 
               {/* todo I think i'll have to create new components for the gameplay.
                     how should they work? They should be as SRP as possible. */}
-              <PromptContainer />
-              {/*<Prompt/>*/}
+              {/*<PromptContainer />*/}
+              {/*<AnswerForm />*/}
+              <Prompt />
               {/*<Answer/>*/}
               {/*<Judge/>*/}
 
               {/* todo the answer form looks like ass, I need to fix it up. */}
-              <AnswerForm />
             </Grid.Column>
           </Grid.Row>
         </Grid>
