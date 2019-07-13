@@ -1,41 +1,24 @@
-/* todo what this component needs to do:
-     - should this component also start the game? or should that be a separate component?
-        - I should aim to follow SRP as much as I can; but should a button be it's own component?
-        - it would definitely clean my code up a LOT.
-*    - show the current prompt
-*    - show users' answers;
-*       - show a "waiting for <friend name> to answer
-*       - show my opponent's answer one he's done
-*    - unsure: should I show the points in this component?
-*       - perhaps after a round is done.
-*   should this be a functional component?
-* */
-
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import StartButton from "./StartButton";
 
 class Prompt extends Component {
   render() {
+    let currentPrompt = this.props.rounds[this.props.currentRound][
+      this.props.currentPrompt
+    ].prompt;
     return (
-      <div>
-        {!this.props.startGame &&
-        this.props.users.length === 3 &&
-        this.props.currentUser.id === this.props.users[0].id ? (
-          <StartButton />
-        ) : null}
-
-        {this.props.startGame ? <h1>The game has been started </h1> : null}
-      </div>
+      <>
+        <h2>{currentPrompt}</h2>
+      </>
     );
   }
 }
 
 const mapStateToProps = state => {
   return {
-    startGame: state.startGame,
-    users: state.users,
-    currentUser: state.currentUser
+    rounds: state.rounds,
+    currentRound: state.currentRound,
+    currentPrompt: state.currentPrompt
   };
 };
 

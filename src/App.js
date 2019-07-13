@@ -11,7 +11,7 @@ import Home from "./Containers/Home";
 import GameListContainer from "./Containers/GameContainers/GameListContainer.js";
 
 //container for the flow of the game play.
-import GamePlayContainer from "./Containers/GameContainers/GamePlayContainer.js";
+import GamePlaySocketHandler from "./Containers/GameContainers/GamePlaySocketHandler.js";
 
 //navigation among different components; worth reading documentation/practicing more.
 import { Route, Switch, Redirect, withRouter } from "react-router-dom";
@@ -56,7 +56,7 @@ class App extends Component {
                   {this.isUserLoggedIn() &&
                   Object.keys(this.props.currentGame).length > 0 ? (
                     /*todo I want the game to be in play if the user accidentally refreshes. How can I accomplish this? could i potentially implement auth for a specific game? how would I do that?*/
-                    <GamePlayContainer />
+                    <GamePlaySocketHandler />
                   ) : (
                     <Redirect to="/" />
                   )}

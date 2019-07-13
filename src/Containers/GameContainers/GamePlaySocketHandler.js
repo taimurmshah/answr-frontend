@@ -12,11 +12,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { ActionCableConsumer } from "react-actioncable-provider";
-import PromptContainer from "./PromptContainer";
 import GamePlayNavbar from "../../Components/Navbars/GamePlayNavbar.js";
-import Prompt from "../../Game/Prompt";
-import Answer from "../../Game/Answer";
-import Judge from "../../Game/Judge";
+import GamePlayContainer from "../../Game/GamePlayContainer";
 import { deleteGame } from "../../redux/thunks.js";
 import {
   gameNoLongerOpen,
@@ -30,13 +27,11 @@ import {
   toggleAnswerForm,
   exitGame,
   loadJudges,
-  updateJudge,
-  loadFirstRound
+  updateJudge
 } from "../../redux/actions.js";
-import AnswerForm from "../../Components/Forms/AnswerForm.js";
 import { Grid } from "semantic-ui-react";
 
-class GamePlayContainer extends React.Component {
+class GamePlaySocketHandler extends React.Component {
   //todo the fuck is this for? could I use it? do I need to?
   componentDidMount() {}
 
@@ -80,9 +75,9 @@ class GamePlayContainer extends React.Component {
       //changes redux state key "startGame" to true, which in turn
       //controls what is rendered.
       this.props.toggleStartGame();
+      this.props.toggleAnswerForm();
 
       /* todo I need to rework how the rounds work, both on the front and in the back. how? */
-      this.props.loadFirstRound();
 
       //determines order of judges
       this.props.loadJudges();
@@ -133,11 +128,8 @@ class GamePlayContainer extends React.Component {
 
               {/* todo I think i'll have to create new components for the gameplay.
                     how should they work? They should be as SRP as possible. */}
-              {/*<PromptContainer />*/}
-              {/*<AnswerForm />*/}
-              <Prompt />
-              {/*<Answer/>*/}
-              {/*<Judge/>*/}
+
+              <GamePlayContainer />
 
               {/* todo the answer form looks like ass, I need to fix it up. */}
             </Grid.Column>
@@ -162,8 +154,7 @@ const mapDispatchToProps = dispatch => {
     toggleAnswerForm: () => dispatch(toggleAnswerForm()),
     exitGame: () => dispatch(exitGame()),
     loadJudges: () => dispatch(loadJudges()),
-    updateJudge: () => dispatch(updateJudge()),
-    loadFirstRound: () => dispatch(loadFirstRound())
+    updateJudge: () => dispatch(updateJudge())
   };
 };
 
@@ -177,4 +168,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(GamePlayContainer);
+)(GamePlaySocketHandler);

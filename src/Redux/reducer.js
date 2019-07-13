@@ -2,7 +2,8 @@
 //import memes from "../memes";
 
 /* todo i should create many reducers, such as one for modals, one for gameplay, one for auth, etc. I can follow traversy brad's examples.
- *   I can have a gamePlay reducer, an auth reducer, a modal reducer, a gameList reducer, and general state reducer?*/
+ *   I can have a gamePlay reducer, an auth reducer, a modal reducer, a gameList reducer, and general state reducer?
+ *    Create an action that sets EVERYTHING back to default when a user leaves a game. */
 const initialState = {
   isModalOpen: false,
   loginModalOpen: false,
@@ -13,15 +14,15 @@ const initialState = {
   isGameOpen: false,
   availableGames: [],
   currentGame: {},
-  rounds: [],
+  rounds: {},
   viewGames: false,
   friends: [],
   users: [],
   currentRound: 1,
-  currentQuestion: null,
+  currentPrompt: 0,
   startGame: false,
   answers: { 1: [], 2: [], 3: [] },
-  answerForm: true,
+  answerForm: false,
   isJudge: false,
   judge1: null,
   judge2: null,
@@ -115,7 +116,21 @@ const reducer = (state = initialState, action) => {
         startGame: !state.startGame
       };
     case "ADD_USERS":
-      return { ...state, users: action.payload };
+      if (action.payload.length === 1)
+        return { ...state, users: action.payload };
+      else {
+        let checker = {};
+        for (let i = 0; i < state.users.length; i++) {
+          checker[state.users[i].id] = true;
+        }
+        for (let i = 0; i < action.payload.length; i++) {
+          if (!checker[action.payload[i].id]) {
+            let newArray = [...state.users, action.payload[i]];
+            return { ...state, users: newArray };
+          }
+        }
+        break;
+      }
     case "REMOVE_USERS":
       return { ...state, users: [] };
     case "ADD_ANSWERS":
@@ -158,12 +173,6 @@ const reducer = (state = initialState, action) => {
       } else {
         return { ...state, currentJudge: state.judge3 };
       }
-    case "LOAD_FIRST_ROUND":
-      console.log("state.rounds:", state.rounds);
-      return {
-        ...state,
-        currentRound: state.rounds["one"][0]
-      };
     default:
       return state;
   }

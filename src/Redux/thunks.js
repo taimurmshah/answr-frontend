@@ -111,7 +111,9 @@ export const createNewGame = (gameObj, userObj, historyObj) => {
     })
       .then(res => res.json())
       .then(res => {
+        console.log("YO: here's the res:", res);
         dispatch(newCurrentGame(res.game));
+        dispatch(addUsers(res.game.users));
         //what happens when I create a new game?
         dispatch(putRounds(res.rounds));
         historyObj.push("/play-game");
@@ -161,7 +163,7 @@ export const playerJoinsGame = (gameId, userId, historyObj) => {
         let friends = res.users.filter(user => user.id !== userId);
 
         dispatch(putRounds(res.rounds));
-        dispatch(addUsers(res.users));
+        dispatch(addUsers(res.game.users));
         dispatch(addFriend(friends));
         dispatch(playerTwoAddsCurrentGame(res.game));
         historyObj.push("/play-game");

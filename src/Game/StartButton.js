@@ -6,7 +6,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Button } from "semantic-ui-react";
-import { loadJudges, updateJudge, loadFirstRound } from "../redux/actions";
+import { loadJudges, updateJudge, toggleAnswerForm } from "../redux/actions";
 
 const StartButton = props => {
   const startHandler = () => {
@@ -22,7 +22,7 @@ const StartButton = props => {
     })
       .then(props.loadJudges())
       .then(props.updateJudge())
-      .then(props.loadFirstRound());
+      .then(props.toggleAnswerForm());
   };
   return (
     <div>
@@ -44,7 +44,7 @@ const mapDispatchToProps = dispatch => {
   return {
     loadJudges: () => dispatch(loadJudges()),
     updateJudge: () => dispatch(updateJudge()),
-    loadFirstRound: () => dispatch(loadFirstRound())
+    toggleAnswerForm: () => dispatch(toggleAnswerForm())
   };
 };
 

@@ -3,7 +3,11 @@ import { connect } from "react-redux";
 
 class Judge extends Component {
   render() {
-    return <div />;
+    return (
+      <div>
+        <h2>I AM THE JUDGE</h2>
+      </div>
+    );
   }
 }
 
