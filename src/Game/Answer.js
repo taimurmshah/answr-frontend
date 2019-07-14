@@ -29,8 +29,8 @@ class Answer extends Component {
   render() {
     return (
       <div className="answer-form">
-        {this.state.answerForm ? (
-          <>
+        {this.props.answerForm ? (
+          <div>
             <Form onSubmit={this.submitHandler}>
               <Form.Field>
                 <input
@@ -44,7 +44,7 @@ class Answer extends Component {
               </Form.Field>
               <Button type="submit">Submit</Button>
             </Form>
-          </>
+          </div>
         ) : null}
       </div>
     );

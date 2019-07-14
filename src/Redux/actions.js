@@ -249,3 +249,9 @@ export const loadFirstRound = () => {
     type: "LOAD_FIRST_ROUND"
   };
 };
+
+export const clearAvailableGames = () => {
+  return {
+    type: "CLEAR_AVAILABLE_GAMES"
+  };
+};

@@ -33,7 +33,13 @@ class Home extends React.Component {
       <div>
         <HomeNavbar />
         {this.isUserLoggedIn() ? (
-          <h1 className="title">{`Welcome, ${this.props.currentUser.name}`}</h1>
+          this.props.currentUser.name ? (
+            <h1 className="title">{`Welcome, ${
+              this.props.currentUser.name
+            }`}</h1>
+          ) : (
+            <h1 className="title">Welcome</h1>
+          )
         ) : (
           <Redirect to="/" />
         )}

@@ -28,14 +28,20 @@ class GamePlayContainer extends Component {
         this.props.currentUser.id === this.props.users[0].id ? (
           <StartButton />
         ) : null}
+
         {this.props.startGame ? <Prompt /> : null}
 
-        {this.startGame &&
-        this.state.currentJudge.id === this.state.currentUser.id ? (
-          <Judge />
-        ) : (
-          <Answer />
-        )}
+        {this.props.startGame && this.props.currentJudge ? (
+          this.props.currentJudge.id !== this.props.currentUser.id ? (
+            <Answer />
+          ) : null
+        ) : null}
+
+        {this.props.startGame && this.props.currentJudge ? (
+          this.props.currentJudge.id === this.props.currentUser.id ? (
+            <Judge />
+          ) : null
+        ) : null}
       </div>
     );
   }

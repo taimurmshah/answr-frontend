@@ -116,9 +116,11 @@ const reducer = (state = initialState, action) => {
         startGame: !state.startGame
       };
     case "ADD_USERS":
-      if (action.payload.length === 1)
+      if (action.payload.length === 1 && state.users.length === 0)
         return { ...state, users: action.payload };
-      else {
+      else if (action.payload.length === 2 || (3 && state.users.length === 0)) {
+        return { ...state, users: action.payload };
+      } else {
         let checker = {};
         for (let i = 0; i < state.users.length; i++) {
           checker[state.users[i].id] = true;
@@ -151,12 +153,17 @@ const reducer = (state = initialState, action) => {
         currentGame: {},
         rounds: [],
         viewGames: false,
-        friend: [],
+        friends: [],
         users: [],
         currentRound: 1,
         startGame: false,
         answers: { 1: [], 2: [], 3: [] },
-        answerForm: true
+        answerForm: false,
+        isJudge: false,
+        judge1: null,
+        judge2: null,
+        judge3: null,
+        currentJudge: null
       };
     case "LOAD_JUDGES":
       return {
@@ -173,6 +180,8 @@ const reducer = (state = initialState, action) => {
       } else {
         return { ...state, currentJudge: state.judge3 };
       }
+    case "CLEAR_AVAILABLE_GAMES":
+      return { ...state, availableGames: [] };
     default:
       return state;
   }

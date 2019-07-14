@@ -74,6 +74,7 @@ class GamePlaySocketHandler extends React.Component {
     } else if (message.start) {
       //changes redux state key "startGame" to true, which in turn
       //controls what is rendered.
+      console.log("link start-u");
       this.props.toggleStartGame();
       this.props.toggleAnswerForm();
 

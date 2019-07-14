@@ -3,7 +3,7 @@ import { Card, Button } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { playerJoinsGame } from "../redux/thunks.js";
 import { withRouter } from "react-router-dom";
-import { openGame } from "../redux/actions.js";
+import { openGame, clearAvailableGames } from "../redux/actions.js";
 
 class GameCard extends React.Component {
   clickHandler = () => {
@@ -16,6 +16,7 @@ class GameCard extends React.Component {
     );
     //i think this action is what takes a player into the game. openGame and startGame are different. it navigates the user to /play-game, todo via app.js Switch??
     this.props.openGame();
+    this.props.clearAvailableGames();
   };
   render() {
     return (
@@ -42,7 +43,8 @@ const mapDispatchToProps = dispatch => {
   return {
     playerJoinsGame: (gameId, userId, historyObj) =>
       dispatch(playerJoinsGame(gameId, userId, historyObj)),
-    openGame: () => dispatch(openGame())
+    openGame: () => dispatch(openGame()),
+    clearAvailableGames: () => dispatch(clearAvailableGames())
   };
 };
 

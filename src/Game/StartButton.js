@@ -19,10 +19,7 @@ const StartButton = props => {
       body: JSON.stringify({
         game_id: props.gameId
       })
-    })
-      .then(props.loadJudges())
-      .then(props.updateJudge())
-      .then(props.toggleAnswerForm());
+    });
   };
   return (
     <div>
