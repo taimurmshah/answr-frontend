@@ -141,13 +141,10 @@ const reducer = (state = initialState, action) => {
       return { ...state, users: [] };
     case "ADD_ANSWERS":
       let newAnswers = state.answers;
+      // debugger;
       newAnswers[state.currentRound][state.currentPrompt].push(action.payload);
       return { ...state, answers: newAnswers };
-    // let array = state.answers[state.currentRound];
-    // array = [...array, action.payload];
-    // let answers = { ...state.answers };
-    // answers[state.currentRound] = array;
-    // return { ...state, answers: answers };
+
     case "TOGGLE_ANSWER_FORM":
       return { ...state, answerForm: !state.answerForm };
     case "INCREMENT_ROUND":

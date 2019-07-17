@@ -182,12 +182,12 @@ export const submitAnswer = (answerText, gameId, userId, roundId) => {
         Accepts: "application/json"
       },
       body: JSON.stringify({
-        round: {
-          answer_text: answerText,
-          game_id: gameId,
-          user_id: userId,
-          round_id: roundId
-        }
+        // round: {
+        answer_text: answerText,
+        game_id: gameId,
+        user_id: userId,
+        round_id: roundId
+        // }
       })
     });
   };
