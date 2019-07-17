@@ -171,7 +171,9 @@ export const playerJoinsGame = (gameId, userId, historyObj) => {
   };
 };
 
-export const submitAnswer = (answerText, gameId, userId) => {
+export const submitAnswer = (answerText, gameId, userId, roundId) => {
+  console.log("here's the round id:", roundId);
+
   return dispatch => {
     return fetch("http://localhost:3000/api/v1/answer", {
       method: "POST",
@@ -180,9 +182,12 @@ export const submitAnswer = (answerText, gameId, userId) => {
         Accepts: "application/json"
       },
       body: JSON.stringify({
-        answer: answerText,
-        game_id: gameId,
-        user_id: userId
+        round: {
+          answer_text: answerText,
+          game_id: gameId,
+          user_id: userId,
+          round_id: roundId
+        }
       })
     });
   };

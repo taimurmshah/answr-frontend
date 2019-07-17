@@ -17,10 +17,12 @@ class Answer extends Component {
 
   submitHandler = e => {
     e.preventDefault();
+    console.log("roundId:", this.props.roundId);
     this.props.submitAnswer(
       this.state.text,
       this.props.gameId,
-      this.props.userId
+      this.props.userId,
+      this.props.roundId
     );
     this.props.toggleAnswerForm();
     this.setState({ text: "" });
@@ -55,14 +57,15 @@ const mapStateToProps = state => {
   return {
     gameId: state.currentGame.id,
     userId: state.currentUser.id,
-    answerForm: state.answerForm
+    answerForm: state.answerForm,
+    roundId: state.rounds[state.currentRound][state.currentRound].id
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    submitAnswer: (answerText, gameId, userId) =>
-      dispatch(submitAnswer(answerText, gameId, userId)),
+    submitAnswer: (answerText, gameId, userId, roundId) =>
+      dispatch(submitAnswer(answerText, gameId, userId, roundId)),
     toggleAnswerForm: () => dispatch(toggleAnswerForm())
   };
 };
