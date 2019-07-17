@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4bc26f7b-87f8-497f-9fe9-c562a7f53942" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Containers/GameContainers/GamePlaySocketHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Containers/GameContainers/GamePlaySocketHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game/Answer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Answer.js" afterDir="false" />
-    </list>
+    <list default="true" id="4bc26f7b-87f8-497f-9fe9-c562a7f53942" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -65,8 +62,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/Containers/GameContainers/GamePlaySocketHandler.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-1667">
-                  <caret line="57" column="42" lean-forward="true" selection-start-line="57" selection-start-column="42" selection-end-line="57" selection-end-column="42" />
+                <state relative-caret-position="514">
+                  <caret line="88" column="32" lean-forward="true" selection-start-line="88" selection-start-column="32" selection-end-line="88" selection-end-column="32" />
                   <folding>
                     <element signature="n#!!doc" expanded="true" />
                     <element signature="e#1408#1434#0" expanded="true" />
@@ -273,12 +270,12 @@
       <workItem from="1562302665830" duration="514000" />
       <workItem from="1562303287064" duration="9724000" />
       <workItem from="1562579459923" duration="15899000" />
-      <workItem from="1562996288250" duration="13232000" />
+      <workItem from="1562996288250" duration="13446000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46856000" />
+    <option name="totallyTimeSpent" value="47070000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -297,7 +294,7 @@
       <window_info id="npm" order="1" side_tool="true" />
       <window_info content_ui="combo" id="Project" order="2" weight="0.16535018" />
       <window_info id="Structure" order="3" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="0" weight="0.20442571" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="0" visible="true" weight="0.20442571" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" weight="0.32997987" />
       <window_info anchor="bottom" id="Version Control" order="2" weight="0.32997987" />
       <window_info anchor="bottom" id="Docker" order="3" show_stripe_button="false" />
@@ -642,8 +639,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Containers/GameContainers/GamePlaySocketHandler.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1667">
-          <caret line="57" column="42" lean-forward="true" selection-start-line="57" selection-start-column="42" selection-end-line="57" selection-end-column="42" />
+        <state relative-caret-position="514">
+          <caret line="88" column="32" lean-forward="true" selection-start-line="88" selection-start-column="32" selection-end-line="88" selection-end-column="32" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#1408#1434#0" expanded="true" />
