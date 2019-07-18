@@ -15,6 +15,7 @@ import React, { Component } from "react";
 import Answer from "./Answer";
 import Judge from "./Judge";
 import Prompt from "./Prompt";
+import ShowAnswers from "./ShowAnswers";
 
 import { connect } from "react-redux";
 import StartButton from "./StartButton";
@@ -42,6 +43,8 @@ class GamePlayContainer extends Component {
             <Judge />
           ) : null
         ) : null}
+
+        {this.props.answerForm === false ? <ShowAnswers /> : null}
       </div>
     );
   }
@@ -52,7 +55,8 @@ const mapStateToProps = state => {
     startGame: state.startGame,
     users: state.users,
     currentUser: state.currentUser,
-    currentJudge: state.currentJudge
+    currentJudge: state.currentJudge,
+    answerForm: state.answerForm
   };
 };
 

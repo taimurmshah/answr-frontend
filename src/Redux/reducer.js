@@ -26,6 +26,7 @@ const initialState = {
     2: { 0: [], 1: [], 2: [] },
     3: { 0: [], 1: [], 2: [] }
   },
+  currentPromptAnswers: [],
   answerForm: false,
   isJudge: false,
   judge1: null,
@@ -140,11 +141,14 @@ const reducer = (state = initialState, action) => {
     case "REMOVE_USERS":
       return { ...state, users: [] };
     case "ADD_ANSWERS":
-      let newAnswers = state.answers;
-      // debugger;
+      let newAnswers = { ...state.answers };
       newAnswers[state.currentRound][state.currentPrompt].push(action.payload);
-      return { ...state, answers: newAnswers };
-
+      let newCurrentAnswers = [...state.currentPromptAnswers, action.payload];
+      return {
+        ...state,
+        answers: newAnswers,
+        currentPromptAnswers: newCurrentAnswers
+      };
     case "TOGGLE_ANSWER_FORM":
       return { ...state, answerForm: !state.answerForm };
     case "INCREMENT_ROUND":
