@@ -255,3 +255,15 @@ export const clearAvailableGames = () => {
     type: "CLEAR_AVAILABLE_GAMES"
   };
 };
+
+export const pregameExit = () => {
+  return {
+    type: "PREGAME_EXIT"
+  };
+};
+
+export const gameExit = () => {
+  return {
+    type: "GAME_EXIT"
+  };
+};

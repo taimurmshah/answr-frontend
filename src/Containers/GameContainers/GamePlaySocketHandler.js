@@ -27,7 +27,9 @@ import {
   toggleAnswerForm,
   exitGame,
   loadJudges,
-  updateJudge
+  updateJudge,
+  pregameExit,
+  gameExit
 } from "../../redux/actions.js";
 import { Grid } from "semantic-ui-react";
 
@@ -56,7 +58,9 @@ class GamePlaySocketHandler extends React.Component {
 
     //this does a fuckton of shit, but really, it's just returning state to
     //what it was before the game started.
-    this.props.exitGame();
+    //this.props.exitGame();
+    this.props.pregameExit();
+    this.props.gameExit();
   }
 
   handleReceivedMessage = message => {
@@ -156,6 +160,8 @@ const mapDispatchToProps = dispatch => {
     incrementRound: () => dispatch(incrementRound()),
     toggleAnswerForm: () => dispatch(toggleAnswerForm()),
     exitGame: () => dispatch(exitGame()),
+    pregameExit: () => dispatch(pregameExit()),
+    gameExit: () => dispatch(gameExit()),
     loadJudges: () => dispatch(loadJudges()),
     updateJudge: () => dispatch(updateJudge())
   };
