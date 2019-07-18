@@ -1,4 +1,8 @@
 - create new game should open the game by changing the redux store.
 - convert modal inputs to forms
 - change Navbar into a full Component, not a functional Component
-- split up navbars. Actually, gonna do that now. 
+- split up navbars. Actually, gonna do that now.
+- make sure a game is no longer available once a third member joins.
+- how can i possibly keep the game in play if a user accidentally refreshes?
+   - have it controlled by the backend
+
