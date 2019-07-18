@@ -166,7 +166,11 @@ const reducer = (state = initialState, action) => {
         users: [],
         currentRound: 1,
         startGame: false,
-        answers: { 1: [], 2: [], 3: [] },
+        answers: {
+          1: { 0: [], 1: [], 2: [] },
+          2: { 0: [], 1: [], 2: [] },
+          3: { 0: [], 1: [], 2: [] }
+        },
         answerForm: false,
         isJudge: false,
         judge1: null,
