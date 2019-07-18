@@ -141,6 +141,7 @@ const reducer = (state = initialState, action) => {
     case "REMOVE_USERS":
       return { ...state, users: [] };
     case "ADD_ANSWERS":
+      // debugger;
       let newAnswers = { ...state.answers };
       newAnswers[state.currentRound][state.currentPrompt].push(action.payload);
       let newCurrentAnswers = [...state.currentPromptAnswers, action.payload];
