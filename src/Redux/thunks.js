@@ -80,6 +80,7 @@ export const logUserIn = userObj => {
 };
 
 export const logUserInWithToken = token => {
+  console.log("hitting log user in with token");
   return dispatch => {
     return fetch("http://localhost:3000/api/v1/user", {
       headers: {

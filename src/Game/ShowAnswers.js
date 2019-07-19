@@ -48,9 +48,9 @@ class ShowAnswers extends Component {
 
 const mapStateToProps = state => {
   return {
-    answers: state.currentPromptAnswers,
-    myId: state.currentUser.id,
-    friends: state.friends
+    answers: state.game.currentPromptAnswers,
+    myId: state.auth.currentUser.id,
+    friends: state.pregame.friends
   };
 };
 

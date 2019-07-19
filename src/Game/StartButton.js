@@ -30,10 +30,10 @@ const StartButton = props => {
 
 const mapStateToProps = state => {
   return {
-    startGame: state.startGame,
-    users: state.users,
-    currentUser: state.currentUser,
-    gameId: state.currentGame.id
+    startGame: state.pregame.startGame,
+    users: state.pregame.users,
+    currentUser: state.auth.currentUser,
+    gameId: state.pregame.currentGame.id
   };
 };
 

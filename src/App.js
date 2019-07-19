@@ -12,6 +12,7 @@ class App extends Component {
   componentDidMount() {
     if (localStorage.getItem("token")) {
       let token = localStorage.getItem("token");
+      console.log("in the component did mount method");
       this.props.logUserInWithToken(token);
     } else {
       console.log("no token");
@@ -78,10 +79,11 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
+  console.log("state:", state);
   return {
-    currentUser: state.currentUser,
-    isGameOpen: state.isGameOpen,
-    currentGame: state.currentGame
+    currentUser: state.auth.currentUser,
+    isGameOpen: state.pregame.isGameOpen,
+    currentGame: state.pregame.currentGame
   };
 };
 

@@ -18,12 +18,12 @@ class Prompt extends Component {
 
 const mapStateToProps = state => {
   return {
-    rounds: state.rounds,
-    currentRound: state.currentRound,
-    currentPrompt: state.currentPrompt,
-    answers: state.answers,
-    currentUser: state.currentUser,
-    friends: state.friends
+    rounds: state.game.rounds,
+    currentRound: state.game.currentRound,
+    currentPrompt: state.game.currentPrompt,
+    answers: state.game.answers,
+    currentUser: state.auth.currentUser,
+    friends: state.pregame.friends
   };
 };
 

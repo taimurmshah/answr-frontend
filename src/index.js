@@ -41,6 +41,8 @@ const store = createStore(
   composeEnhancers(applyMiddleware(thunk))
 );
 
+// const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
+
 /*todo this is how i get an environment variable. look more into this when I am trying to deploy on heroku*/
 
 ReactDOM.render(

@@ -2,7 +2,6 @@ const initialState = {
   isModalOpen: false,
   loginModalOpen: false,
   signupModalOpen: false,
-  newGameModal: false,
   currentUser: {}
 };
 

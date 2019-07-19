@@ -60,7 +60,7 @@ class HomeNavbar extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    isGameOpen: state.isGameOpen
+    isGameOpen: state.pregame.isGameOpen
   };
 };
 

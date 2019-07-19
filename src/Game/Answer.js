@@ -55,10 +55,10 @@ class Answer extends Component {
 
 const mapStateToProps = state => {
   return {
-    gameId: state.currentGame.id,
-    userId: state.currentUser.id,
-    answerForm: state.answerForm,
-    roundId: state.rounds[state.currentRound][state.currentRound].id
+    gameId: state.pregame.currentGame.id,
+    userId: state.auth.currentUser.id,
+    answerForm: state.game.answerForm,
+    roundId: state.game.rounds[state.currentRound][state.currentRound].id
   };
 };
 
