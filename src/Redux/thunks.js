@@ -127,10 +127,10 @@ export const getGames = () => {
     return fetch("http://localhost:3000/api/v1/games")
       .then(res => res.json())
       .then(res => {
-        // let availableGames = res.filter(game => {
-        //   return game.is_game_in_play === false;
-        // });
-        dispatch(addGames(res));
+        let availableGames = res.filter(game => {
+          return game.users.length < 3;
+        });
+        dispatch(addGames(availableGames));
       });
   };
 };
