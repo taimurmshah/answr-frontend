@@ -209,6 +209,12 @@ export const updateJudge = () => {
   };
 };
 
+export const judgeAnswerForm = () => {
+  return {
+    type: "JUDGE_ANSWER_FORM"
+  }
+};
+
 export const loadFirstRound = () => {
   return {
     type: "LOAD_FIRST_ROUND"

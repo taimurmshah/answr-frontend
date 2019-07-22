@@ -54,9 +54,6 @@ export default function(state = initialState, action) {
         isGameOpen: false,
         viewGames: false,
         currentGame: {},
-        users: [],
-        friends: [],
-        rounds: {},
         startGame: false
       };
     default:

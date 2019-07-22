@@ -75,8 +75,10 @@ export default function(state = initialState, action) {
       }
 
     case "TOGGLE_ANSWER_FORM":
-      return { ...state, answerForm: !state.answerForm };
+     return { ...state, answerForm: !state.answerForm };
 
+    case "JUDGE_ANSWER_FORM":
+      return {...state, answerForm: false, isJudge: true};
     case "INCREMENT_ROUND":
       let newRound = state.currentRound + 1;
       return { ...state, currentRound: newRound };
@@ -94,6 +96,9 @@ export default function(state = initialState, action) {
     case "GAME_EXIT":
       return {
         ...state,
+        users: [],
+        friends: [],
+        rounds: {},
         currentRound: 1,
         currentPrompt: 0,
         answerForm: false,

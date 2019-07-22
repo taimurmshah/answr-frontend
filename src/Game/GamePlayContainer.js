@@ -19,8 +19,12 @@ import ShowAnswers from "./ShowAnswers";
 
 import { connect } from "react-redux";
 import StartButton from "./StartButton";
+import {judgeAnswerForm} from "../redux/actions";
 
 class GamePlayContainer extends Component {
+
+
+
   render() {
     return (
       <div>
@@ -41,14 +45,18 @@ class GamePlayContainer extends Component {
         {this.props.startGame && this.props.currentJudge ? (
           this.props.currentJudge.id === this.props.currentUser.id ? (
             <Judge />
-          ) : null
-        ) : null}
+          ) : console.log("inner tersh")
+        ) : console.log("outer tersh")}
 
         {this.props.answerForm === false ? <ShowAnswers /> : null}
+
+
       </div>
     );
   }
 }
+
+
 
 const mapStateToProps = state => {
   return {
@@ -59,5 +67,9 @@ const mapStateToProps = state => {
     answerForm: state.game.answerForm
   };
 };
+
+
+
+
 
 export default connect(mapStateToProps)(GamePlayContainer);

@@ -2,15 +2,20 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 class ShowAnswers extends Component {
+
+  componentDidMount() {
+    console.log("answers in ShowAnswers component:", this.props.answers)
+  }
+
   showAnswers = () => {
     if (this.props.answers.length === 1) {
-      debugger;
+
       console.log("one answer:", this.props.answers);
       if (this.props.answers[0].user_id === this.props.myId) {
         return <h3>You answered: {this.props.answers[0].answer}</h3>;
       }
     } else if (this.props.answers.length === 2) {
-      debugger;
+
       if (
         this.props.myId === this.props.answers[0].user_id ||
         this.props.myId === this.props.answers[1].user_id

@@ -81,8 +81,9 @@ class GamePlaySocketHandler extends React.Component {
       //controls what is rendered.
       console.log("link start-u");
       this.props.toggleStartGame();
-      this.props.toggleAnswerForm();
 
+
+      this.props.toggleAnswerForm();
       /* todo I need to rework how the rounds work, both on the front and in the back. how? */
 
       //determines order of judges
@@ -90,6 +91,8 @@ class GamePlaySocketHandler extends React.Component {
 
       //sets the judge based on what the current round is.
       this.props.updateJudge();
+
+
     } else if (message.answer) {
       console.log("message received, here is the message:", message.answer);
       /* todo i will most likely have to change how the answering system works too. */

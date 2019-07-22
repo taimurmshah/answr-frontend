@@ -127,6 +127,7 @@ export const getGames = () => {
     return fetch("http://localhost:3000/api/v1/games")
       .then(res => res.json())
       .then(res => {
+        // debugger
         let availableGames = res.filter(game => {
           return game.users.length < 3;
         });

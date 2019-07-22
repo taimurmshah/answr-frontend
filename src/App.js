@@ -80,7 +80,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log("state:", state);
+
   return {
     currentUser: state.auth.currentUser,
     isGameOpen: state.pregame.isGameOpen,
