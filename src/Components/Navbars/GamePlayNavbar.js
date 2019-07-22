@@ -15,14 +15,19 @@ class GamePlayNavbar extends React.Component {
         <Menu.Item position="left">
           <img alt="" src="../../../mod-5-logo.png" />
         </Menu.Item>
+
+      {this.props.currentJudge ?
+        <Menu.Item>The current judge is: {this.props.currentJudge.name}</Menu.Item>
+        : null}
+
         {this.props.friends.length > 0 ? (
           this.props.friends.length === 1 ? (
-            <Menu.Item position="middle" className="friend-status">
+            <Menu.Item className="friend-status">
               You are playing with {this.props.friends[0].name}, waiting for one
               more...
             </Menu.Item>
           ) : (
-            <Menu.Item position="middle" className="friend-status">
+            <Menu.Item className="friend-status">
               You are playing with {this.props.friends[0].name} and{" "}
               {this.props.friends[1].name}
             </Menu.Item>
@@ -57,7 +62,8 @@ class GamePlayNavbar extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    friends: state.game.friends
+    friends: state.game.friends,
+      currentJudge: state.game.currentJudge
   };
 };
 
