@@ -52,11 +52,11 @@ class GamePlayContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    startGame: state.startGame,
-    users: state.users,
-    currentUser: state.currentUser,
-    currentJudge: state.currentJudge,
-    answerForm: state.answerForm
+    startGame: state.pregame.startGame,
+    users: state.game.users,
+    currentUser: state.auth.currentUser,
+    currentJudge: state.game.currentJudge,
+    answerForm: state.game.answerForm
   };
 };
 

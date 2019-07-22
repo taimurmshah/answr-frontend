@@ -15,10 +15,10 @@ class Play extends Component {
 
 const mapStateToProps = state => {
   return {
-    rounds: state.rounds,
-    currentRound: state.currentRound,
-    currentQuestion: state.currentQuestion,
-    startGame: state.startGame
+    rounds: state.game.rounds,
+    currentRound: state.game.currentRound,
+    currentQuestion: state.game.currentQuestion,
+    startGame: state.pregame.startGame
   };
 };
 

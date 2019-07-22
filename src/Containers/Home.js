@@ -22,6 +22,7 @@ class Home extends React.Component {
   componentDidMount() {
     if (localStorage.getItem("token")) {
       let token = localStorage.getItem("token");
+      console.log("component: Home, in componentDidMount method");
       this.props.logUserInWithToken(token);
     } else {
       console.log("no token");
@@ -57,8 +58,8 @@ class Home extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    currentUser: state.currentUser,
-    newGameModal: state.newGameModal
+    currentUser: state.auth.currentUser,
+    newGameModal: state.pregame.newGameModal
   };
 };
 
