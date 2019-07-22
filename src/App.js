@@ -20,6 +20,7 @@ class App extends Component {
   }
 
   isUserLoggedIn = () => {
+    console.log("yer");
     return localStorage.getItem("token");
   };
 
@@ -47,10 +48,10 @@ class App extends Component {
             render={() => {
               return (
                 <div>
-                  this.isUserLoggedIn() ? (
-                  <GameListContainer />
+                  {this.isUserLoggedIn() ? (
+                    <GameListContainer />
                   ) : (
-                  <Redirect to="/" />
+                    <Redirect to="/" />
                   )}
                 </div>
               );
@@ -83,7 +84,7 @@ const mapStateToProps = state => {
   return {
     currentUser: state.auth.currentUser,
     isGameOpen: state.pregame.isGameOpen,
-    currentGame: state.pregame.currentGame
+    currentGame: state.game.currentGame
   };
 };
 

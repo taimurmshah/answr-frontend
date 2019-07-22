@@ -50,7 +50,7 @@ const mapStateToProps = state => {
   return {
     answers: state.game.currentPromptAnswers,
     myId: state.auth.currentUser.id,
-    friends: state.pregame.friends
+    friends: state.game.friends
   };
 };
 

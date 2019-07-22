@@ -169,7 +169,7 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
   return {
-    currentGame: state.pregame.currentGame,
+    currentGame: state.game.currentGame,
     currentUser: state.auth.currentUser
   };
 };

@@ -57,7 +57,7 @@ class GamePlayNavbar extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    friends: state.pregame.friends
+    friends: state.game.friends
   };
 };
 

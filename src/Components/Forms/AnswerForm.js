@@ -78,7 +78,7 @@ class AnswerForm extends React.Component {
 const mapStateToProps = state => {
   return {
     startGame: state.pregame.startGame,
-    gameId: state.pregame.currentGame.id,
+    gameId: state.game.currentGame.id,
     userId: state.auth.currentUser.id,
     answerForm: state.game.answerForm,
     currentJudge: state.game.currentJudge

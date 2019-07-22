@@ -4,9 +4,12 @@ import { connect } from "react-redux";
 class Prompt extends Component {
   render() {
     const { currentRound, answers, currentUser, friends } = this.props;
+
     let currentPrompt = this.props.rounds[this.props.currentRound][
       this.props.currentPrompt
     ].prompt;
+
+    console.log("currentPrompt:", currentPrompt);
 
     return (
       <div>
@@ -23,7 +26,7 @@ const mapStateToProps = state => {
     currentPrompt: state.game.currentPrompt,
     answers: state.game.answers,
     currentUser: state.auth.currentUser,
-    friends: state.pregame.friends
+    friends: state.game.friends
   };
 };
 

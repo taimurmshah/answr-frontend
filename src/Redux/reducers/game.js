@@ -1,4 +1,9 @@
 const initialState = {
+  currentGame: {},
+  users: [],
+  friends: [],
+  rounds: {},
+  //migrate above four.
   currentRound: 1,
   currentPrompt: 0,
   answerForm: false,
@@ -17,6 +22,38 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
+    case "NEW_CURRENT_GAME":
+      return {
+        ...state,
+        currentGame: action.payload
+      };
+
+    case "PUT_ROUNDS":
+      return { ...state, rounds: action.payload };
+
+    case "ADD_USERS":
+      if (action.payload.length === 1 && state.users.length === 0)
+        return { ...state, users: action.payload };
+      else if (action.payload.length === 2 || (3 && state.users.length === 0)) {
+        return { ...state, users: action.payload };
+      } else {
+        let checker = {};
+        for (let i = 0; i < state.users.length; i++) {
+          checker[state.users[i].id] = true;
+        }
+        for (let i = 0; i < action.payload.length; i++) {
+          if (!checker[action.payload[i].id]) {
+            let newArray = [...state.users, action.payload[i]];
+            return { ...state, users: newArray };
+          }
+        }
+        break;
+      }
+    case "PLAYER_TWO_ADDS_CURRENT_GAME":
+      return { ...state, currentGame: action.payload };
+    case "ADD_FRIEND":
+      return { ...state, friends: action.payload };
+
     case "SET_CURRENT_ROUND":
       return { ...state, currentRound: action.payload };
 

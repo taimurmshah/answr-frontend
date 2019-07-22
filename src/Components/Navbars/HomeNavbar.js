@@ -40,6 +40,7 @@ class HomeNavbar extends React.Component {
           <Menu.Item
             onClick={() => {
               // todo why am i having users redirected to the game list, and not to home?
+              console.log("I am hitting the /games route.");
               this.props.history.push("/games");
             }}
           >
