@@ -93,6 +93,12 @@ export default function(state = initialState, action) {
         answers: newAnswers,
         currentPromptAnswers: newCurrentAnswers
       };
+    case "REMOVE_FRIEND":
+      return { ...state, friends: [] };
+    case "REMOVE_USERS":
+      return { ...state, users: [] };
+    case "REMOVE_CURRENT_GAME":
+      return { ...state, currentGame: {} };
     case "GAME_EXIT":
       return {
         ...state,

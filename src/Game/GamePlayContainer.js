@@ -45,8 +45,8 @@ class GamePlayContainer extends Component {
         {this.props.startGame && this.props.currentJudge ? (
           this.props.currentJudge.id === this.props.currentUser.id ? (
             <Judge />
-          ) : console.log("inner tersh")
-        ) : console.log("outer tersh")}
+          ) : null
+        ) : null}
 
         {this.props.answerForm === false ? <ShowAnswers /> : null}
 

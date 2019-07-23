@@ -17,7 +17,6 @@ class Answer extends Component {
 
   submitHandler = e => {
     e.preventDefault();
-    console.log("roundId:", this.props.roundId);
     this.props.submitAnswer(
       this.state.text,
       this.props.gameId,

@@ -159,7 +159,6 @@ export const toggleStartGame = () => {
 };
 
 export const addUsers = users => {
-  console.log("these are the users:", users);
   return {
     type: "ADD_USERS",
     payload: users

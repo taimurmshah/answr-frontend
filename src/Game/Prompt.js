@@ -9,7 +9,6 @@ class Prompt extends Component {
       this.props.currentPrompt
     ].prompt;
 
-    console.log("currentPrompt:", currentPrompt);
 
     return (
       <div>

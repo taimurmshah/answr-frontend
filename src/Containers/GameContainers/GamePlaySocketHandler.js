@@ -66,9 +66,9 @@ class GamePlaySocketHandler extends React.Component {
   handleReceivedMessage = message => {
     /* todo this is a cluster fuck of a method. could it even be broken down? */
     //this is if someone joins the game. todo i should call this message.join
-    console.log("message received, here it is:", message);
     if (message.game) {
       //adds users, and broadcasts to other games.
+      console.log("socket handler, here's the message:", message)
       this.props.addUsers(message.game.users);
 
       let friends = message.game.users.filter(
@@ -94,7 +94,6 @@ class GamePlaySocketHandler extends React.Component {
 
 
     } else if (message.answer) {
-      console.log("message received, here is the message:", message.answer);
       /* todo i will most likely have to change how the answering system works too. */
       this.props.addAnswers(message);
     } else if (message.increment) {

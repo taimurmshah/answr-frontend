@@ -80,7 +80,6 @@ export const logUserIn = userObj => {
 };
 
 export const logUserInWithToken = token => {
-  console.log("hitting log user in with token");
   return dispatch => {
     return fetch("http://localhost:3000/api/v1/user", {
       headers: {
@@ -112,7 +111,6 @@ export const createNewGame = (gameObj, userObj, historyObj) => {
     })
       .then(res => res.json())
       .then(res => {
-        console.log("YO: here's the res:", res);
         dispatch(newCurrentGame(res.game));
         dispatch(addUsers(res.game.users));
         //what happens when I create a new game?
@@ -159,11 +157,9 @@ export const playerJoinsGame = (gameId, userId, historyObj) => {
     })
       .then(res => res.json())
       .then(res => {
-        console.log("***");
-        console.log("in here, here's the res:", res);
-        console.log("***");
-        let friends = res.users.filter(user => user.id !== userId);
 
+        let friends = res.users.filter(user => user.id !== userId);
+        console.log("here's the res from a player joining a game:",res)
         dispatch(putRounds(res.rounds));
         dispatch(addUsers(res.game.users));
         dispatch(addFriend(friends));
@@ -174,7 +170,6 @@ export const playerJoinsGame = (gameId, userId, historyObj) => {
 };
 
 export const submitAnswer = (answerText, gameId, userId, roundId) => {
-  console.log("here's the round id:", roundId);
 
   return dispatch => {
     return fetch("http://localhost:3000/api/v1/answer", {

@@ -31,8 +31,7 @@ export default function(state = initialState, action) {
         ...state,
         startGame: !state.startGame
       };
-    case "REMOVE_CURRENT_GAME":
-      return { ...state, currentGame: {} };
+
     case "REMOVE_AVAILABLE_GAME":
       return {
         ...state,
@@ -44,16 +43,12 @@ export default function(state = initialState, action) {
       return { ...state, availableGames: [] };
     case "GAME_NO_LONGER_OPEN":
       return { ...state, isGameOpen: false };
-    case "REMOVE_FRIEND":
-      return { ...state, friends: [] };
-    case "REMOVE_USERS":
-      return { ...state, users: [] };
+
     case "PREGAME_EXIT":
       return {
         ...state,
         isGameOpen: false,
         viewGames: false,
-        currentGame: {},
         startGame: false
       };
     default:

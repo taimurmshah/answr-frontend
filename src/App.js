@@ -12,7 +12,6 @@ class App extends Component {
   componentDidMount() {
     if (localStorage.getItem("token")) {
       let token = localStorage.getItem("token");
-      console.log("in the component did mount method");
       this.props.logUserInWithToken(token);
     } else {
       console.log("no token");
@@ -20,7 +19,6 @@ class App extends Component {
   }
 
   isUserLoggedIn = () => {
-    console.log("yer");
     return localStorage.getItem("token");
   };
 

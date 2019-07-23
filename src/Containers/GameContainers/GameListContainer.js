@@ -40,7 +40,6 @@ class GameListContainer extends React.Component {
         <ActionCableConsumer
           channel={{ channel: "GameChannel" }}
           onReceived={data => {
-            console.log("websocket in GamesListContainer:", data);
             this.socketHandler(data);
           }}
         />

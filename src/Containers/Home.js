@@ -22,10 +22,9 @@ class Home extends React.Component {
   componentDidMount() {
     if (localStorage.getItem("token")) {
       let token = localStorage.getItem("token");
-      console.log("component: Home, in componentDidMount method");
       this.props.logUserInWithToken(token);
     } else {
-      console.log("no token");
+      // console.log("no token");
     }
   }
 
