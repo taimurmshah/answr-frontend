@@ -34,6 +34,7 @@ class ShowAnswers extends Component {
 
         return (
           <div>
+            {this.props.voted && this.props.currentWinner ? <h2>The winner of this prompt is: {this.props.currentWinner}</h2> : null}
             <h3>You answered: {myAnswer.answer}</h3>
             <h3>
               {friendName} answered: {friendAnswer.answer}
@@ -53,7 +54,9 @@ const mapStateToProps = state => {
   return {
     answers: state.game.currentPromptAnswers,
     myId: state.auth.currentUser.id,
-    friends: state.game.friends
+    friends: state.game.friends,
+    voted: state.game.voted,
+    currentWinner: state.game.currentWinner
   };
 };
 

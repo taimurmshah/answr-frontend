@@ -19,6 +19,7 @@ const initialState = {
     },
     currentPromptAnswers: [],
     voted: false,
+    currentWinner: null,
     scoreBoard: {}
 };
 
@@ -127,7 +128,7 @@ export default function (state = initialState, action) {
         case "PROMPT_WINNER":
             let copyScoreBoard = state.scoreBoard;
             ++copyScoreBoard[action.payload];
-            return {...state, scoreBoard: copyScoreBoard};
+            return {...state, scoreBoard: copyScoreBoard, currentWinner: action.payload, voted: true};
 
         case "REMOVE_FRIEND":
             return {...state, friends: []};
@@ -155,7 +156,9 @@ export default function (state = initialState, action) {
                     3: {0: [], 1: [], 2: []}
                 },
                 currentPromptAnswers: [],
-                scoreBoard: {}
+                scoreBoard: {},
+                voted: false,
+                currentWinner: null
             };
         default:
             return state;

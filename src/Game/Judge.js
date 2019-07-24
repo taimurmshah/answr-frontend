@@ -5,12 +5,28 @@ import {judgeAnswerForm} from "../redux/actions";
 
 class Judge extends Component {
 
+    state = {
+        showButton: false
+    };
+
     componentDidMount() {
         console.log("component did mount of Judge component");
         if (this.props.answerForm === true && this.props.currentJudge === false) {
             this.props.judgeAnswerForm();
         }
     }
+
+    timer = () => {
+        let set = setTimeout(() => {
+            console.log("button will appear now");
+            this.setState({showButton: true}, () => {
+                    clearTimeout(set)
+                }
+            )
+        }, 2000)
+
+
+    };
 
     render() {
 
@@ -19,7 +35,7 @@ class Judge extends Component {
         if (this.props.answers.length === 2) {
             cards = this.props.answers.map(answer => (
                 <JudgeCard key={answer.user_id} user={this.props.users.filter(user => (user.id === answer.user_id))[0]}
-                           text={answer.answer} />))
+                           text={answer.answer}/>))
         }
 
         return (
@@ -27,6 +43,9 @@ class Judge extends Component {
 
                 {this.props.answers.length === 2 && this.props.voted === false ? (cards) : null}
 
+                {this.props.voted ? this.timer() : null}
+
+                {this.state.showButton ? <h2>Increment button here</h2> : null }
             </div>
         );
     }
