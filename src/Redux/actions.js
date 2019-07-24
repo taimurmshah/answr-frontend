@@ -248,3 +248,21 @@ export const addNewUser = (user) => {
   }
 };
 
+export const initializeScoreBoard = () => {
+  return {
+    type: "INITIALIZE_SCOREBOARD"
+  }
+};
+
+export const toggleVoted = () => {
+  return {
+    type: "TOGGLE_VOTED"
+  }
+};
+
+export const promptWinner = (winner) => {
+  return {
+    type: "PROMPT_WINNER",
+    payload: winner
+  }
+};

@@ -224,3 +224,18 @@ export const incrementGameRound = gameId => {
         });
     };
 };
+
+export const voteThunk = (roundId, userId)  => {
+    return dispatch => {
+        return fetch (`http://localhost:3000/api/v1/round/${roundId}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                Accepts: "application/json"
+            },
+            body: JSON.stringify({
+                roundId, userId
+            })
+        })
+    }
+}
