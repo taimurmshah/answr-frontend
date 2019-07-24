@@ -197,12 +197,14 @@ export const exitGame = () => {
 };
 
 export const loadJudges = () => {
+  console.log("loadJudges")
   return {
     type: "LOAD_JUDGES"
   };
 };
 
 export const updateJudge = () => {
+  console.log("updateJudge");
   return {
     type: "UPDATE_JUDGE"
   };
@@ -237,3 +239,12 @@ export const gameExit = () => {
     type: "GAME_EXIT"
   };
 };
+
+
+export const addNewUser = (user) => {
+  return {
+    type: "ADD_NEW_USER",
+    payload: user
+  }
+};
+

@@ -29,7 +29,7 @@ import {
   loadJudges,
   updateJudge,
   pregameExit,
-  gameExit
+  gameExit, addNewUser
 } from "../../redux/actions.js";
 import { Grid } from "semantic-ui-react";
 
@@ -67,9 +67,20 @@ class GamePlaySocketHandler extends React.Component {
     /* todo this is a cluster fuck of a method. could it even be broken down? */
     //this is if someone joins the game. todo i should call this message.join
     if (message.game) {
+
+      let newUser;
       //adds users, and broadcasts to other games.
-      console.log("socket handler, here's the message:", message)
-      this.props.addUsers(message.game.users);
+      console.log("socket handler, here's the message:", message);
+      // this.props.addUsers(message.game.users);
+
+      if (message.game.player_two_id && !message.game.player_three_id) {
+        // debugger
+        newUser = message.game.users.find((user) => (user.id === message.game.player_two_id));
+        this.props.addNewUser(newUser)
+      } else if (message.game.player_two_id && message.game.player_three_id) {
+        newUser = message.game.users.find((user) => (user.id === message.game.player_three_id));
+        this.props.addNewUser(newUser)
+      }
 
       let friends = message.game.users.filter(
         user => user.id !== this.props.currentUser.id
@@ -82,14 +93,16 @@ class GamePlaySocketHandler extends React.Component {
       console.log("link start-u");
       this.props.toggleStartGame();
 
-
+      console.log("right before toggleAnswerForm is triggered");
       this.props.toggleAnswerForm();
       /* todo I need to rework how the rounds work, both on the front and in the back. how? */
 
       //determines order of judges
+      console.log("right before loadJudges is triggered");
       this.props.loadJudges();
 
       //sets the judge based on what the current round is.
+      console.log("right before updateJudge is triggered");
       this.props.updateJudge();
 
 
@@ -165,7 +178,8 @@ const mapDispatchToProps = dispatch => {
     pregameExit: () => dispatch(pregameExit()),
     gameExit: () => dispatch(gameExit()),
     loadJudges: () => dispatch(loadJudges()),
-    updateJudge: () => dispatch(updateJudge())
+    updateJudge: () => dispatch(updateJudge()),
+    addNewUser: (user) => dispatch(addNewUser(user))
   };
 };
 

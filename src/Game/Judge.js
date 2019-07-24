@@ -6,6 +6,7 @@ import {judgeAnswerForm} from "../redux/actions";
 class Judge extends Component {
 
     componentDidMount() {
+        console.log("component did mount of Judge component")
         if (this.props.answerForm === true && this.props.currentJudge === false) {
             this.props.judgeAnswerForm();
         }
