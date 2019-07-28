@@ -20,7 +20,8 @@ const initialState = {
     currentPromptAnswers: [],
     voted: false,
     currentWinner: null,
-    scoreBoard: {}
+    scoreBoard: {},
+    final: false
 };
 
 export default function (state = initialState, action) {
@@ -87,13 +88,11 @@ export default function (state = initialState, action) {
 
         case "UPDATE_JUDGE":
             if (state.currentRound === 1) {
-                console.log("update judge, it's round 1 bitch");
-                console.log("here's the state:", state);
-                return {...state, currentJudge: state.judge1}
+                return {...state, currentJudge: state.judge1,}
             } else if (state.currentRound === 2) {
-                return {...state, currentJudge: state.judge2};
+                return {...state, currentJudge: state.judge2, isJudge: false, answerForm: true};
             } else {
-                return {...state, currentJudge: state.judge3};
+                return {...state, currentJudge: state.judge3, isJudge: false, answerForm: true};
             }
 
         case "INITIALIZE_SCOREBOARD":
@@ -106,11 +105,8 @@ export default function (state = initialState, action) {
             return {...state, answerForm: !state.answerForm};
 
         case "JUDGE_ANSWER_FORM":
-            console.log("JUDGE_ANSWER_FORM IS HIT");
             return {...state, answerForm: false, isJudge: true};
-        case "INCREMENT_ROUND":
-            let newRound = state.currentRound + 1;
-            return {...state, currentRound: newRound};
+
 
         case "ADD_ANSWERS":
             // debugger;
@@ -131,6 +127,31 @@ export default function (state = initialState, action) {
             ++copyScoreBoard[action.payload];
             return {...state, scoreBoard: copyScoreBoard, currentWinner: action.payload, voted: true};
 
+
+        case "INCREMENT_PROMPT":
+            let newPrompt = state.currentPrompt + 1;
+            return {...state, currentPrompt: newPrompt};
+        case "INCREMENT_ROUND":
+            let newRound = state.currentRound + 1;
+            return {...state, currentRound: newRound, currentPrompt: 0};
+
+        case "NEW_BEGINNING":
+            if (state.isJudge === true) return {
+                ...state, currentPromptAnswers: [], voted: false, currentWinner: null, answerForm: false, isJudge: true
+            }; else return {
+                ...state, currentPromptAnswers: [], voted: false, currentWinner: null, answerForm: true, isJudge: false
+            };
+
+        case "FINAL":
+            return {
+                ...state,
+                final: true,
+                voted: false,
+                isJudge: false,
+                answerForm: false,
+                currentPromptAnswers: [],
+                currentJudge: null
+            };
         case "REMOVE_FRIEND":
             return {...state, friends: []};
         case "REMOVE_USERS":

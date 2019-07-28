@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import JudgeCard from "./JudgeCard"
-import {judgeAnswerForm, toggleVoted} from "../redux/actions";
+import {judgeAnswerForm, toggleVoted, newBeginning} from "../redux/actions";
 import {Button} from "semantic-ui-react";
 
 class Judge extends Component {
@@ -11,13 +11,15 @@ class Judge extends Component {
     };
 
     componentDidMount() {
+        console.log("judge CDM, this.props.answerForm?", this.props.answerForm, "this.props.isJudge?", this.props.isJudge, "this.state.showButton?", this.state.showButton )
+
         if (this.props.answerForm === true && this.props.isJudge === false) {
-            console.log("component didMount, this should be setting the state of isjudge to true, and answerform to false. ");
             this.props.judgeAnswerForm();
         }
     }
 
     timer = () => {
+        console.log("this.timer has been triggered... why?");
         clearTimeout(myVar);
         let myVar = setTimeout(() => {
             this.setState({showButton: true}
@@ -30,15 +32,25 @@ class Judge extends Component {
         e.preventDefault();
         this.props.toggleVoted();
         this.setState({showButton: false});
-        console.log("currentRound:", this.props.currentRound, "currentPrompt:", this.props.currentPrompt);
+        this.props.newBeginning();
         if (this.props.currentPrompt !== 2) {
-            console.log("simply increment the round number")
-            //todo increment the round number here, with a fetch, as well as an action
-            //  the action should set currentPromptAnswers to nil, both for myself as well as for the other players (via actionCable)
-            //  it should also do the relevant shit to answerForm, etc.
+
+            this.increment("prompt", this.props.gameId)
         } else {
-            this.props.currentRound === 3 ? console.log("end game") : console.log("increment round")
+            this.props.currentRound === 3 ? this.increment("end", this.props.gameId) : this.increment("round", this.props.gameId)
         }
+    };
+
+    increment = (type, gameId) => {
+        fetch("http://localhost:3000/api/v1/increment", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                type: type, gameId
+            })
+        })
     };
 
     render() {
@@ -55,7 +67,8 @@ class Judge extends Component {
             <div>
                 {this.props.answers.length === 2 && this.props.voted === false ? (cards) : null}
 
-                {this.props.voted && !this.state.showButton ? this.timer() : null}
+                {this.props.voted && !this.state.showButton ? console.log('timer is about to be hit', "this.props.voted?", this.props.voted) : null}
+                {this.props.voted && !this.state.showButton ? this.timer()  : null}
 
                 {this.state.showButton ? <Button onClick={this.clickHandler}>Next Prompt</Button> : null}
             </div>
@@ -74,14 +87,17 @@ const mapStateToProps = state => {
         voted: state.game.voted,
         currentRound: state.game.currentRound,
         currentPrompt: state.game.currentPrompt,
-        isJudge: state.game.isJudge
+        isJudge: state.game.isJudge,
+        gameId: state.game.currentGame.id
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         judgeAnswerForm: () => dispatch(judgeAnswerForm()),
-        toggleVoted: () => dispatch(toggleVoted())
+        toggleVoted: () => dispatch(toggleVoted()),
+        newBeginning: () => dispatch(newBeginning()),
+
     }
 };
 

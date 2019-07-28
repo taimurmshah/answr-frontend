@@ -29,6 +29,7 @@ class Answer extends Component {
 
   render() {
     return (
+
       <div className="answer-form">
         {this.props.answerForm ? (
           <div>
@@ -53,12 +54,13 @@ class Answer extends Component {
 }
 
 const mapStateToProps = state => {
+
   return {
     gameId: state.game.currentGame.id,
     userId: state.auth.currentUser.id,
     answerForm: state.game.answerForm,
     roundId:
-      state.game.rounds[state.game.currentRound][state.game.currentRound].id
+      state.game.rounds[state.game.currentRound][state.game.currentPrompt].id
   };
 };
 

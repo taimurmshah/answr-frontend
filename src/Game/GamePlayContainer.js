@@ -16,10 +16,10 @@ import Answer from "./Answer";
 import Judge from "./Judge";
 import Prompt from "./Prompt";
 import ShowAnswers from "./ShowAnswers";
+import Results from "./Results"
 
 import { connect } from "react-redux";
 import StartButton from "./StartButton";
-import {judgeAnswerForm} from "../redux/actions";
 
 class GamePlayContainer extends Component {
 
@@ -28,27 +28,30 @@ class GamePlayContainer extends Component {
   render() {
     return (
       <div>
+
+        {this.props.final ? <Results/> : null}
+
         {!this.props.startGame &&
         this.props.users.length === 3 &&
-        this.props.currentUser.id === this.props.users[0].id ? (
+        this.props.currentUser.id === this.props.users[0].id && this.props.final === false ? (
           <StartButton />
         ) : null}
 
-        {this.props.startGame ? <Prompt /> : null}
+        {this.props.startGame && this.props.final === false ? <Prompt /> : null}
 
-        {this.props.startGame && this.props.currentJudge ? (
+        {this.props.startGame && this.props.currentJudge && this.props.final === false ? (
           this.props.currentJudge.id !== this.props.currentUser.id ? (
             <Answer />
           ) : null
         ) : null}
 
-        {this.props.startGame && this.props.currentJudge ? (
+        {this.props.startGame && this.props.currentJudge && this.props.final === false ? (
           this.props.currentJudge.id === this.props.currentUser.id ? (
             <Judge />
-          ) : console.log("inner tersh")
+          ) : null
         ) : null}
 
-        {this.props.answerForm === false ? <ShowAnswers /> : null}
+        {this.props.answerForm === false && this.props.final === false ? <ShowAnswers /> : null}
 
 
       </div>
@@ -64,7 +67,8 @@ const mapStateToProps = state => {
     users: state.game.users,
     currentUser: state.auth.currentUser,
     currentJudge: state.game.currentJudge,
-    answerForm: state.game.answerForm
+    answerForm: state.game.answerForm,
+    final: state.game.final
   };
 };
 

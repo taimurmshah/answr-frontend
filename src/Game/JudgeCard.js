@@ -7,7 +7,6 @@ import {toggleVoted} from "../redux/actions";
 class JudgeCard extends Component {
 
     voteHandler = () => {
-        console.log("roundId:", this.props.roundId, "userId:", this.props.user.id, "gameId:", this.props.gameId);
         this.props.toggleVoted();
         return fetch(`http://localhost:3000/api/v1/rounds/${this.props.roundId}`, {
             method: "PATCH",
@@ -22,7 +21,6 @@ class JudgeCard extends Component {
     };
 
     render() {
-        console.log("this.props:", this.props);
         return (
             <Card size="small">
                 <Card.Content>

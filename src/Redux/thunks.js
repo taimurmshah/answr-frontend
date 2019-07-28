@@ -112,7 +112,6 @@ export const createNewGame = (gameObj, userObj, historyObj) => {
         })
             .then(res => res.json())
             .then(res => {
-                console.log("in thunk createNewGame, here is the response object:", res);
 
                 dispatch(newCurrentGame(res.game));
                 // dispatch(addUsers(res.game.users));
@@ -130,7 +129,6 @@ export const getGames = () => {
             .then(res => res.json())
             .then(res => {
                 // debugger
-                console.log("is this method triggered?")
                 let availableGames = res.filter(game => {
                     return game.users.length < 3;
                 });
@@ -163,7 +161,6 @@ export const playerJoinsGame = (gameId, userId, historyObj) => {
             .then(res => res.json())
             .then(res => {
                 let users;
-                console.log("here's the res from a player joining a game:", res);
                 if (res.player_one && !res.player_two && !res.player_three) {
                     //when there is only one player.
                     dispatch(addNewUser(res.player_one))

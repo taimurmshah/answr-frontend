@@ -24,6 +24,8 @@ import {
     toggleStartGame,
     addAnswers,
     incrementRound,
+    incrementPrompt,
+    newBeginning,
     toggleAnswerForm,
     exitGame,
     loadJudges,
@@ -32,7 +34,8 @@ import {
     gameExit,
     addNewUser,
     initializeScoreBoard,
-    promptWinner
+    promptWinner,
+    final
 } from "../../redux/actions.js";
 import {Grid} from "semantic-ui-react";
 
@@ -70,43 +73,36 @@ class GamePlaySocketHandler extends React.Component {
     handleReceivedMessage = message => {
         /* todo this is a cluster fuck of a method. could it even be broken down? */
         //this is if someone joins the game. todo i should call this message.join
+
+        console.log("here's the grand message:", message);
         if (message.game) {
-
             let newUser;
-            //adds users, and broadcasts to other games.
-            console.log("socket handler, here's the message:", message);
-            // this.props.addUsers(message.game.users);
-
+            //adds users, and broadcasts to other games.// this.props.addUsers(message.game.users);
             if (message.game.player_two_id && !message.game.player_three_id) {
-                // debugger
+
                 newUser = message.game.users.find((user) => (user.id === message.game.player_two_id));
                 this.props.addNewUser(newUser)
             } else if (message.game.player_two_id && message.game.player_three_id) {
                 newUser = message.game.users.find((user) => (user.id === message.game.player_three_id));
                 this.props.addNewUser(newUser)
             }
-
             let friends = message.game.users.filter(
                 user => user.id !== this.props.currentUser.id
             );
-
             this.props.addFriend(friends);
         } else if (message.start) {
             //changes redux state key "startGame" to true, which in turn
             //controls what is rendered.
             console.log("link start-u");
             this.props.toggleStartGame();
-
-            console.log("right before toggleAnswerForm is triggered");
             this.props.toggleAnswerForm();
             /* todo I need to rework how the rounds work, both on the front and in the back. how? */
 
             //determines order of judges
-            console.log("right before loadJudges is triggered");
+
             this.props.loadJudges();
 
             //sets the judge based on what the current round is.
-            console.log("right before updateJudge is triggered");
             this.props.updateJudge();
 
             this.props.initializeScoreBoard();
@@ -118,11 +114,30 @@ class GamePlaySocketHandler extends React.Component {
              *   with the app right now is that the game isn't playable. I want to tackle
              *   this problem by having many single responsibility components, completely
              *   rewriting how it works. */
-            this.props.incrementRound();
 
-            this.props.toggleAnswerForm();
+            console.log("increment message:", message.increment);
+
+            if (message.increment === "prompt") {
+                console.log("it is time to increment the prompt");
+                this.props.newBeginning();
+                this.props.incrementPrompt();
+            } else if (message.increment === "round") {
+                console.log("it is time to increment the round");
+                this.props.newBeginning();
+                this.props.incrementRound();
+                this.props.updateJudge();
+
+            } else if (message.increment === "end") {
+                console.log("the game is over");
+                this.props.final();
+                this.props.newBeginning();
+            }
+
+
+            // this.props.incrementRound();
+            //
+            // this.props.toggleAnswerForm();
         } else if (message.winner) {
-            console.log("message.winner:", message.winner);
             this.props.promptWinner(message.winner);
         }
     };
@@ -151,9 +166,9 @@ class GamePlaySocketHandler extends React.Component {
                 <Grid centered verticalAlign="middle" columns={1}>
                     <Grid.Row>
                         <Grid.Column textAlign="center">
-                            <h1 className="title">
-                                "{this.props.currentGame.title}" is in session
-                            </h1>
+                            {/*<h1 className="title">*/}
+                            {/*    "{this.props.currentGame.title}" is in session*/}
+                            {/*</h1>*/}
 
                             {/* todo I think i'll have to create new components for the gameplay.
                     how should they work? They should be as SRP as possible. */}
@@ -180,6 +195,8 @@ const mapDispatchToProps = dispatch => {
         toggleStartGame: () => dispatch(toggleStartGame()),
         addAnswers: answerObj => dispatch(addAnswers(answerObj)),
         incrementRound: () => dispatch(incrementRound()),
+        incrementPrompt: () => dispatch(incrementPrompt()),
+        newBeginning: () => dispatch(newBeginning()),
         toggleAnswerForm: () => dispatch(toggleAnswerForm()),
         exitGame: () => dispatch(exitGame()),
         pregameExit: () => dispatch(pregameExit()),
@@ -188,8 +205,8 @@ const mapDispatchToProps = dispatch => {
         updateJudge: () => dispatch(updateJudge()),
         addNewUser: (user) => dispatch(addNewUser(user)),
         initializeScoreBoard: () => dispatch(initializeScoreBoard()),
-
-        promptWinner: (winner) => dispatch(promptWinner(winner))
+        promptWinner: (winner) => dispatch(promptWinner(winner)),
+        final: () => dispatch(final()),
     };
 };
 
@@ -197,6 +214,7 @@ const mapStateToProps = state => {
     return {
         currentGame: state.game.currentGame,
         currentUser: state.auth.currentUser
+
     };
 };
 

@@ -184,11 +184,6 @@ export const toggleAnswerForm = () => {
   };
 };
 
-export const incrementRound = () => {
-  return {
-    type: "INCREMENT_ROUND"
-  };
-};
 
 export const exitGame = () => {
   return {
@@ -204,13 +199,13 @@ export const loadJudges = () => {
 };
 
 export const updateJudge = () => {
-  console.log("updateJudge");
   return {
     type: "UPDATE_JUDGE"
   };
 };
 
 export const judgeAnswerForm = () => {
+  console.log("JUDGE ANSWER FORM");
   return {
     type: "JUDGE_ANSWER_FORM"
   }
@@ -264,5 +259,29 @@ export const promptWinner = (winner) => {
   return {
     type: "PROMPT_WINNER",
     payload: winner
+  }
+};
+
+export const incrementPrompt = () => {
+  return {
+    type: "INCREMENT_PROMPT"
+  }
+};
+
+export const incrementRound = () => {
+  return {
+    type: "INCREMENT_ROUND"
+  };
+};
+
+export const newBeginning = () => {
+  return {
+    type: "NEW_BEGINNING"
+  }
+};
+
+export const final = () => {
+  return {
+    type: "FINAL"
   }
 };
