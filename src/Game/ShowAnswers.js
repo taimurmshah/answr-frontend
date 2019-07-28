@@ -41,7 +41,7 @@ class ShowAnswers extends Component {
             </h3>
           </div>
         );
-      } else return <h3>this is where the judge will do his thing</h3>;
+      }
     }
   };
 

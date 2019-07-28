@@ -106,6 +106,7 @@ export default function (state = initialState, action) {
             return {...state, answerForm: !state.answerForm};
 
         case "JUDGE_ANSWER_FORM":
+            console.log("JUDGE_ANSWER_FORM IS HIT");
             return {...state, answerForm: false, isJudge: true};
         case "INCREMENT_ROUND":
             let newRound = state.currentRound + 1;

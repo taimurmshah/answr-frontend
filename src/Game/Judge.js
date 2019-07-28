@@ -1,7 +1,8 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import JudgeCard from "./JudgeCard"
-import {judgeAnswerForm} from "../redux/actions";
+import {judgeAnswerForm, toggleVoted} from "../redux/actions";
+import {Button} from "semantic-ui-react";
 
 class Judge extends Component {
 
@@ -10,22 +11,34 @@ class Judge extends Component {
     };
 
     componentDidMount() {
-        console.log("component did mount of Judge component");
-        if (this.props.answerForm === true && this.props.currentJudge === false) {
+        if (this.props.answerForm === true && this.props.isJudge === false) {
+            console.log("component didMount, this should be setting the state of isjudge to true, and answerform to false. ");
             this.props.judgeAnswerForm();
         }
     }
 
     timer = () => {
-        let set = setTimeout(() => {
-            console.log("button will appear now");
-            this.setState({showButton: true}, () => {
-                    clearTimeout(set)
-                }
+        clearTimeout(myVar);
+        let myVar = setTimeout(() => {
+            this.setState({showButton: true}
             )
-        }, 2000)
+        }, 2000);
 
+    };
 
+    clickHandler = (e) => {
+        e.preventDefault();
+        this.props.toggleVoted();
+        this.setState({showButton: false});
+        console.log("currentRound:", this.props.currentRound, "currentPrompt:", this.props.currentPrompt);
+        if (this.props.currentPrompt !== 2) {
+            console.log("simply increment the round number")
+            //todo increment the round number here, with a fetch, as well as an action
+            //  the action should set currentPromptAnswers to nil, both for myself as well as for the other players (via actionCable)
+            //  it should also do the relevant shit to answerForm, etc.
+        } else {
+            this.props.currentRound === 3 ? console.log("end game") : console.log("increment round")
+        }
     };
 
     render() {
@@ -40,12 +53,11 @@ class Judge extends Component {
 
         return (
             <div>
-
                 {this.props.answers.length === 2 && this.props.voted === false ? (cards) : null}
 
-                {this.props.voted ? this.timer() : null}
+                {this.props.voted && !this.state.showButton ? this.timer() : null}
 
-                {this.state.showButton ? <h2>Increment button here</h2> : null }
+                {this.state.showButton ? <Button onClick={this.clickHandler}>Next Prompt</Button> : null}
             </div>
         );
     }
@@ -53,22 +65,23 @@ class Judge extends Component {
 
 
 const mapStateToProps = state => {
-    console.log("here's state:", state);
-    console.log("state.game.rounds[state.game.currentRound][state.game.currentPrompt].id:", state.game.rounds[state.game.currentRound][state.game.currentPrompt].id);
     return {
         currentUser: state.auth.currentUser,
         currentJudge: state.game.currentJudge,
         answers: state.game.currentPromptAnswers,
         answerForm: state.game.answerForm,
         users: state.game.users,
-        voted: state.game.voted
-
+        voted: state.game.voted,
+        currentRound: state.game.currentRound,
+        currentPrompt: state.game.currentPrompt,
+        isJudge: state.game.isJudge
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        judgeAnswerForm: () => dispatch(judgeAnswerForm())
+        judgeAnswerForm: () => dispatch(judgeAnswerForm()),
+        toggleVoted: () => dispatch(toggleVoted())
     }
 };
 
