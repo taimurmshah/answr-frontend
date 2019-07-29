@@ -1,38 +1,3 @@
-export const addMeme = memeObj => {
-  return {
-    type: "ADD_MEME",
-    payload: memeObj
-  };
-};
-
-export const selectMeme = meme => {
-  return {
-    type: "SELECT_MEME",
-    payload: meme
-  };
-};
-
-export const loadMemes = memes => {
-  return {
-    type: "LOAD_MEMES",
-    payload: memes
-  };
-};
-
-export const postMeme = meme => {
-  return {
-    type: "POST_MEME",
-    payload: meme
-  };
-};
-
-export const newMemeClick = url => {
-  return {
-    type: "NEW_MEME_CLICK",
-    payload: { bool: true, url: url }
-  };
-};
-
 export const openLoginModal = () => {
   return {
     type: "OPEN_LOGIN_MODAL",
@@ -219,14 +184,104 @@ export const toggleAnswerForm = () => {
   };
 };
 
+
+export const exitGame = () => {
+  return {
+    type: "EXIT_GAME"
+  };
+};
+
+export const loadJudges = () => {
+  console.log("loadJudges")
+  return {
+    type: "LOAD_JUDGES"
+  };
+};
+
+export const updateJudge = () => {
+  return {
+    type: "UPDATE_JUDGE"
+  };
+};
+
+export const judgeAnswerForm = () => {
+  console.log("JUDGE ANSWER FORM");
+  return {
+    type: "JUDGE_ANSWER_FORM"
+  }
+};
+
+export const loadFirstRound = () => {
+  return {
+    type: "LOAD_FIRST_ROUND"
+  };
+};
+
+export const clearAvailableGames = () => {
+  return {
+    type: "CLEAR_AVAILABLE_GAMES"
+  };
+};
+
+export const pregameExit = () => {
+  return {
+    type: "PREGAME_EXIT"
+  };
+};
+
+export const gameExit = () => {
+  return {
+    type: "GAME_EXIT"
+  };
+};
+
+
+export const addNewUser = (user) => {
+  return {
+    type: "ADD_NEW_USER",
+    payload: user
+  }
+};
+
+export const initializeScoreBoard = () => {
+  return {
+    type: "INITIALIZE_SCOREBOARD"
+  }
+};
+
+export const toggleVoted = () => {
+  return {
+    type: "TOGGLE_VOTED"
+  }
+};
+
+export const promptWinner = (winner) => {
+  return {
+    type: "PROMPT_WINNER",
+    payload: winner
+  }
+};
+
+export const incrementPrompt = () => {
+  return {
+    type: "INCREMENT_PROMPT"
+  }
+};
+
 export const incrementRound = () => {
   return {
     type: "INCREMENT_ROUND"
   };
 };
 
-export const exitGame = () => {
+export const newBeginning = () => {
   return {
-    type: "EXIT_GAME"
-  };
+    type: "NEW_BEGINNING"
+  }
+};
+
+export const final = () => {
+  return {
+    type: "FINAL"
+  }
 };

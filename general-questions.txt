@@ -1,0 +1,3 @@
+- how would I make the game scalable?
+- how could I deploy the app to heroku?
+

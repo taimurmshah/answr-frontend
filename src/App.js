@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import Home from "./Containers/Home";
 import GameListContainer from "./Containers/GameContainers/GameListContainer.js";
-import GamePlayContainer from "./Containers/GameContainers/GamePlayContainer.js";
+import GamePlaySocketHandler from "./Containers/GameContainers/GamePlaySocketHandler.js";
 import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 import Landing from "./Containers/Landing";
 import { connect } from "react-redux";
@@ -33,7 +33,7 @@ class App extends Component {
                 <div>
                   {this.isUserLoggedIn() &&
                   Object.keys(this.props.currentGame).length > 0 ? (
-                    <GamePlayContainer />
+                    <GamePlaySocketHandler />
                   ) : (
                     <Redirect to="/" />
                   )}
@@ -78,10 +78,11 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
+
   return {
-    currentUser: state.currentUser,
-    isGameOpen: state.isGameOpen,
-    currentGame: state.currentGame
+    currentUser: state.auth.currentUser,
+    isGameOpen: state.pregame.isGameOpen,
+    currentGame: state.game.currentGame
   };
 };
 
@@ -98,11 +99,3 @@ export default withRouter(
     mapDispatchToProps
   )(App)
 );
-
-/* () => {
-  return (
-    <div>
-      {this.isUserLoggedIn() ? <Home /> : <Redirect to="/" />}
-    </div>
-  );
-} */

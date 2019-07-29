@@ -43,9 +43,9 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
   return {
-    loginOpen: state.loginModalOpen,
-    signupOpen: state.signupModalOpen,
-    isGameOpen: state.isGameOpen
+    loginOpen: state.auth.loginModalOpen,
+    signupOpen: state.auth.signupModalOpen,
+    isGameOpen: state.pregame.isGameOpen
   };
 };
 

@@ -18,7 +18,7 @@ class GameList extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    availableGames: state.availableGames
+    availableGames: state.pregame.availableGames
   };
 };
 

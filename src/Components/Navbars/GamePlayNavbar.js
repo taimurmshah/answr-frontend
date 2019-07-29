@@ -1,67 +1,86 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
-import { connect } from "react-redux";
-import { logOut } from "../../redux/actions.js";
-import { Menu } from "semantic-ui-react";
+import {withRouter} from "react-router-dom";
+import {connect} from "react-redux";
+import {logOut} from "../../redux/actions.js";
+import {Menu} from "semantic-ui-react";
 
 class GamePlayNavbar extends React.Component {
-  isUserLoggedIn = () => {
-    return localStorage.getItem("token");
-  };
+    isUserLoggedIn = () => {
+        return localStorage.getItem("token");
+    };
 
-  render() {
-    return (
-      <Menu>
-        <Menu.Item position="left">
-          <img alt="" src="../../../mod-5-logo.png" />
-        </Menu.Item>
-        {this.props.friend.name ? (
-          <Menu.Item position="middle" className="friend-status">
-            You are playing with {this.props.friend.name}
-          </Menu.Item>
-        ) : (
-          <Menu.Item position="left" className="friend-status">
-            Waiting for a friend to join
-          </Menu.Item>
-        )}
-        {this.isUserLoggedIn() ? (
-          <Menu.Item
-            position="right"
-            onClick={() => {
-              localStorage.removeItem("token");
-              this.props.logOut();
-            }}
-          >
-            Log Out
-          </Menu.Item>
-        ) : null}
-        <Menu.Item
-          onClick={() => {
-            this.props.history.push("/home");
-          }}
-        >
-          Home
-        </Menu.Item>
-      </Menu>
-    );
-  }
+    render() {
+        return (
+            <Menu>
+                <Menu.Item position="left">
+                    <img alt="" src="../../../mod-5-logo.png"/>
+                </Menu.Item>
+
+                {this.props.game ? <Menu.Item position="left">{this.props.game}</Menu.Item> : null}
+
+                {this.props.currentJudge ?
+                    <Menu.Item>The current judge is: {this.props.currentJudge.name}</Menu.Item>
+                    : null}
+
+                {this.props.friends.length > 0 ? (
+                    this.props.friends.length === 1 ? (
+                        <Menu.Item className="friend-status">
+                            You are playing with {this.props.friends[0].name}, waiting for one
+                            more...
+                        </Menu.Item>
+                    ) : (
+                        <Menu.Item className="friend-status">
+                            You are playing with {this.props.friends[0].name} and{" "}
+                            {this.props.friends[1].name}
+                        </Menu.Item>
+                    )
+                ) : (
+                    <Menu.Item position="left" className="friend-status">
+                        Waiting for friends to join
+                    </Menu.Item>
+                )}
+                {this.isUserLoggedIn() ? (
+                    <Menu.Item
+                        position="right"
+                        onClick={() => {
+                            localStorage.removeItem("token");
+                            this.props.logOut();
+                        }}
+                    >
+                        Log Out
+                    </Menu.Item>
+                ) : null}
+                <Menu.Item
+                    onClick={() => {
+                        this.props.history.push("/home");
+                    }}
+                >
+                    Home
+                </Menu.Item>
+            </Menu>
+        );
+    }
 }
 
 const mapStateToProps = state => {
-  return {
-    friend: state.friend
-  };
+    return {
+        friends: state.game.friends,
+        currentJudge: state.game.currentJudge,
+        game: state.game.currentGame.title
+
+
+    };
 };
 
 const mapDispatchToProps = dispatch => {
-  return {
-    logOut: () => dispatch(logOut())
-  };
+    return {
+        logOut: () => dispatch(logOut())
+    };
 };
 
 export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(GamePlayNavbar)
+    connect(
+        mapStateToProps,
+        mapDispatchToProps
+    )(GamePlayNavbar)
 );
