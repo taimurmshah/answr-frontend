@@ -22,7 +22,7 @@ class JudgeCard extends Component {
 
     render() {
         return (
-            <Card size="small">
+            <Card size="small" centered>
                 <Card.Content>
                     <Card.Header>{this.props.user.name}</Card.Header>
                     <Card.Description>{this.props.text}</Card.Description>

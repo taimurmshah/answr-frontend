@@ -161,6 +161,7 @@ export default function (state = initialState, action) {
         case "GAME_EXIT":
             return {
                 ...state,
+                currentGame: {},
                 users: [],
                 friends: [],
                 rounds: {},

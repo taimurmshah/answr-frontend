@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import JudgeCard from "./JudgeCard"
 import {judgeAnswerForm, toggleVoted, newBeginning} from "../redux/actions";
-import {Button} from "semantic-ui-react";
+import {Button, Grid} from "semantic-ui-react";
 
 class Judge extends Component {
 
@@ -11,7 +11,7 @@ class Judge extends Component {
     };
 
     componentDidMount() {
-        console.log("judge CDM, this.props.answerForm?", this.props.answerForm, "this.props.isJudge?", this.props.isJudge, "this.state.showButton?", this.state.showButton )
+        console.log("judge CDM, this.props.answerForm?", this.props.answerForm, "this.props.isJudge?", this.props.isJudge, "this.state.showButton?", this.state.showButton);
 
         if (this.props.answerForm === true && this.props.isJudge === false) {
             this.props.judgeAnswerForm();
@@ -59,16 +59,23 @@ class Judge extends Component {
 
         if (this.props.answers.length === 2) {
             cards = this.props.answers.map(answer => (
-                <JudgeCard key={answer.user_id} user={this.props.users.filter(user => (user.id === answer.user_id))[0]}
-                           text={answer.answer}/>))
+                <Grid.Column centered>
+                    <JudgeCard key={answer.user_id}
+                               user={this.props.users.filter(user => (user.id === answer.user_id))[0]}
+                               text={answer.answer}/>
+                </Grid.Column>
+            ))
         }
 
         return (
             <div>
-                {this.props.answers.length === 2 && this.props.voted === false ? (cards) : null}
-
+                <Grid textAlign='center' centered columns={1}>
+                    <Grid.Row centered columns={2}>
+                        {this.props.answers.length === 2 && this.props.voted === false ? (cards) : null}
+                    </Grid.Row>
+                </Grid>
                 {this.props.voted && !this.state.showButton ? console.log('timer is about to be hit', "this.props.voted?", this.props.voted) : null}
-                {this.props.voted && !this.state.showButton ? this.timer()  : null}
+                {this.props.voted && !this.state.showButton ? this.timer() : null}
 
                 {this.state.showButton ? <Button onClick={this.clickHandler}>Next Prompt</Button> : null}
             </div>
