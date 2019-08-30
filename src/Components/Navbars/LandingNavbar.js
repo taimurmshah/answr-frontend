@@ -1,7 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { Menu } from "semantic-ui-react";
+// import { Menu } from "semantic-ui-react";
 import {
   openLoginModal,
   openSignupModal,
@@ -15,17 +15,20 @@ import Signup from "../Modals/Signup.js";
 
 const LandingNavbar = props => {
   return (
-    <Menu>
-      <Menu.Item position="left">
-        <img alt="" src="../../../mod-5-logo.png" />
-      </Menu.Item>
-      <Menu.Item position="right" onClick={props.openLoginModal}>
-        login
-      </Menu.Item>
+    <>
+      {/*<Menu.Item position="left">*/}
+      {/*  <img alt="" src="../../../mod-5-logo.png" />*/}
+      {/*</Menu.Item>*/}
+      <button className="login-button button" onClick={props.openLoginModal}>
+        Login
+      </button>
       {props.loginOpen ? <Login /> : null}
-      <Menu.Item onClick={props.openSignupModal}>sign up</Menu.Item>
+
+      <button className="signup-button button" onClick={props.openSignupModal}>
+        Sign Up
+      </button>
       {props.signupOpen ? <Signup /> : null}
-    </Menu>
+    </>
   );
 };
 

@@ -4,7 +4,7 @@ import React from "react";
 import Play from "./Play";
 
 import { connect } from "react-redux";
-import { Button, Loader, Dimmer, Segment, Grid } from "semantic-ui-react";
+// import { Button, Loader, Dimmer, Segment, Grid } from "semantic-ui-react";
 import {
   toggleStartGame,
   toggleAnswerForm,
@@ -22,7 +22,7 @@ class PromptContainer extends React.Component {
       this.props.users.length === 3 /*changed from 2; adding a third player*/ &&
       this.props.currentUser.id === this.props.users[0].id
     ) {
-      return <Button onClick={this.startHandler}>Start Game</Button>;
+      return <button onClick={this.startHandler}>Start Game</button>;
     }
   };
 
@@ -31,13 +31,7 @@ class PromptContainer extends React.Component {
    *   i'll need to hit the back end, and improve the schemas for existing models/create new models. */
   showAnswers = () => {
     if (this.props.answers.length === 1) {
-      return (
-        <Segment>
-          <Dimmer active inverted>
-            <Loader>Waiting</Loader>
-          </Dimmer>
-        </Segment>
-      );
+      return null;
     } else if (this.props.answers.length === 2) {
       let myAnswer = this.props.answers.filter(
         answer => answer.user_id === this.props.currentUser.id
@@ -83,12 +77,12 @@ class PromptContainer extends React.Component {
       this.props.answers.length === 2 &&
       this.props.currentUser.id === this.props.users[0].id
     ) {
-      return <Button onClick={this.nextRoundHandler}>Next Round</Button>;
+      return <button onClick={this.nextRoundHandler}>Next Round</button>;
     } else if (
       this.props.currentRound === 3 &&
       this.props.answers.length === 2
     ) {
-      return <Button onClick={this.exitHandler}>Exit Game</Button>;
+      return <button onClick={this.exitHandler}>Exit Game</button>;
     }
   };
 
@@ -99,24 +93,22 @@ class PromptContainer extends React.Component {
   render() {
     return (
       <div>
-        <Grid centered verticalAlign="middle" columns={1}>
-          <Grid.Column textAlign="center">
-            {this.props.startGame && this.props.currentJudge ? (
-              this.props.currentUser.id === this.props.currentJudge.id ? (
-                <h2>You are the judge for this round</h2>
-              ) : (
-                <h2>You are not a judge; you are a participant</h2>
-              )
+        <div>
+          {this.props.startGame && this.props.currentJudge ? (
+            this.props.currentUser.id === this.props.currentJudge.id ? (
+              <h2>You are the judge for this round</h2>
             ) : (
-              <Play />
-            )}
+              <h2>You are not a judge; you are a participant</h2>
+            )
+          ) : (
+            <Play />
+          )}
 
-            {/*{this.showAnswers()}*/}
-            {this.checkSubmitButtonRender()}
-          </Grid.Column>
+          {/*{this.showAnswers()}*/}
+          {this.checkSubmitButtonRender()}
 
           {this.nextRoundButton()}
-        </Grid>
+        </div>
       </div>
     );
   }

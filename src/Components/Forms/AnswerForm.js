@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Button } from "semantic-ui-react";
+// import { Form, Button } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { submitAnswer } from "../../redux/thunks.js";
 import { toggleAnswerForm } from "../../redux/actions.js";
@@ -46,7 +46,7 @@ class AnswerForm extends React.Component {
                     onChange={this.changeHandler}
                   />
                 </Form.Field>
-                <Button type="submit">Submit</Button>
+                <button type="submit">Submit</button>
               </Form>
             </>
           )

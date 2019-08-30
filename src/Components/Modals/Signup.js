@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, Input, Button } from "semantic-ui-react";
+// import { Modal, Input, Button } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { closeSignupModal } from "../../redux/actions.js";
 import { registerUser } from "../../redux/thunks.js";
@@ -29,34 +29,39 @@ class Signup extends React.Component {
 
   render() {
     return (
-      <Modal open={true} size={"mini"}>
-        <Modal.Content>
+      <div className="landing-modal">
+        <div className="modal-form">
           <p>Sign Up:</p>
-          <Input
+          <input
             name="name"
             value={this.state.name}
             placeholder="name"
             onChange={this.changeHandler}
           />
-          <Input
+          <input
             name="email"
             value={this.state.email}
             placeholder="email"
             onChange={this.changeHandler}
           />
-          <Input
+          <input
             type="password"
             name="password"
             value={this.state.password}
             placeholder="password"
             onChange={this.changeHandler}
           />
-        </Modal.Content>
-        <Modal.Actions>
-          <Button onClick={this.submitHandler}>Register</Button>
-          <Button onClick={this.props.closeSignupModal}>Close</Button>
-        </Modal.Actions>
-      </Modal>
+          <button className="submit-button button" onClick={this.submitHandler}>
+            Register
+          </button>
+          <button
+            className="close-button button"
+            onClick={this.props.closeSignupModal}
+          >
+            Close
+          </button>
+        </div>
+      </div>
     );
   }
 }

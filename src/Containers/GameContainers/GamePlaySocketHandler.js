@@ -10,215 +10,210 @@
  * */
 
 import React from "react";
-import {connect} from "react-redux";
-import {ActionCableConsumer} from "react-actioncable-provider";
+import { connect } from "react-redux";
+import { ActionCableConsumer } from "react-actioncable-provider";
 import GamePlayNavbar from "../../Components/Navbars/GamePlayNavbar.js";
 import GamePlayContainer from "../../Game/GamePlayContainer";
-import {deleteGame} from "../../redux/thunks.js";
+import { deleteGame } from "../../redux/thunks.js";
 import {
-    gameNoLongerOpen,
-    addFriend,
-    removeFriend,
-    addUsers,
-    removeUsers,
-    toggleStartGame,
-    addAnswers,
-    incrementRound,
-    incrementPrompt,
-    newBeginning,
-    toggleAnswerForm,
-    exitGame,
-    loadJudges,
-    updateJudge,
-    pregameExit,
-    gameExit,
-    addNewUser,
-    initializeScoreBoard,
-    promptWinner,
-    final
+  gameNoLongerOpen,
+  addFriend,
+  removeFriend,
+  addUsers,
+  removeUsers,
+  toggleStartGame,
+  addAnswers,
+  incrementRound,
+  incrementPrompt,
+  newBeginning,
+  toggleAnswerForm,
+  exitGame,
+  loadJudges,
+  updateJudge,
+  pregameExit,
+  gameExit,
+  addNewUser,
+  initializeScoreBoard,
+  promptWinner,
+  final
 } from "../../redux/actions.js";
-import {Grid} from "semantic-ui-react";
+// import {Grid} from "semantic-ui-react";
 
 class GamePlaySocketHandler extends React.Component {
-    //todo the fuck is this for? could I use it? do I need to?
-    componentDidMount() {
-    }
+  //todo the fuck is this for? could I use it? do I need to?
+  componentDidMount() {}
 
-    //not working with a refresh.
-    /* todo to work with a refresh, I could potentially do an auth check again.
+  //not working with a refresh.
+  /* todo to work with a refresh, I could potentially do an auth check again.
         could i make auth for the game itself? game auth? how would I do that?
      *   I'd need to study how I implemented the JWT for regular auth. Are there
          any other ways? I could use the game id in the route, and check to see if the user
      *   belongs to the game.users array.   */
-    componentWillUnmount() {
-        //toggles store "gameOpen" from true to false, then app.js router navigates back to ./home.
-        this.props.gameNoLongerOpen();
+  componentWillUnmount() {
+    //toggles store "gameOpen" from true to false, then app.js router navigates back to ./home.
+    this.props.gameNoLongerOpen();
 
-        //this is a thunk. todo I want to broadcast the message to all users when this happens,
-        //                  so that they get an alert that the game is done, and they can choose to redirect.
-        this.props.deleteGame(this.props.currentGame);
+    //this is a thunk. todo I want to broadcast the message to all users when this happens,
+    //                  so that they get an alert that the game is done, and they can choose to redirect.
+    this.props.deleteGame(this.props.currentGame);
 
-        //turns "friends" array in reducer to an empty array.
-        this.props.removeFriend();
-        //same thing
-        this.props.removeUsers();
+    //turns "friends" array in reducer to an empty array.
+    this.props.removeFriend();
+    //same thing
+    this.props.removeUsers();
 
-        //this does a fuckton of shit, but really, it's just returning state to
-        //what it was before the game started.
-        //this.props.exitGame();
-        this.props.pregameExit();
-        this.props.gameExit();
+    //this does a fuckton of shit, but really, it's just returning state to
+    //what it was before the game started.
+    //this.props.exitGame();
+    this.props.pregameExit();
+    this.props.gameExit();
+  }
+
+  handleReceivedMessage = message => {
+    /* todo this is a cluster fuck of a method. could it even be broken down? */
+    //this is if someone joins the game. todo i should call this message.join
+
+    console.log("here's the grand message:", message);
+    if (message.game) {
+      let newUser;
+      //adds users, and broadcasts to other games.// this.props.addUsers(message.game.users);
+      if (message.game.player_two_id && !message.game.player_three_id) {
+        newUser = message.game.users.find(
+          user => user.id === message.game.player_two_id
+        );
+        this.props.addNewUser(newUser);
+      } else if (message.game.player_two_id && message.game.player_three_id) {
+        newUser = message.game.users.find(
+          user => user.id === message.game.player_three_id
+        );
+        this.props.addNewUser(newUser);
+      }
+      let friends = message.game.users.filter(
+        user => user.id !== this.props.currentUser.id
+      );
+      this.props.addFriend(friends);
+    } else if (message.start) {
+      //changes redux state key "startGame" to true, which in turn
+      //controls what is rendered.
+      console.log("link start-u");
+      this.props.toggleStartGame();
+      this.props.toggleAnswerForm();
+      /* todo I need to rework how the rounds work, both on the front and in the back. how? */
+
+      //determines order of judges
+
+      this.props.loadJudges();
+
+      //sets the judge based on what the current round is.
+      this.props.updateJudge();
+
+      this.props.initializeScoreBoard();
+    } else if (message.answer) {
+      /* todo i will most likely have to change how the answering system works too. */
+      this.props.addAnswers(message);
+    } else if (message.increment) {
+      /* todo again, i'll most likely need to change this shit too. The big problem
+       *   with the app right now is that the game isn't playable. I want to tackle
+       *   this problem by having many single responsibility components, completely
+       *   rewriting how it works. */
+
+      console.log("increment message:", message.increment);
+
+      if (message.increment === "prompt") {
+        console.log("it is time to increment the prompt");
+        this.props.newBeginning();
+        this.props.incrementPrompt();
+      } else if (message.increment === "round") {
+        console.log("it is time to increment the round");
+        this.props.newBeginning();
+        this.props.incrementRound();
+        this.props.updateJudge();
+      } else if (message.increment === "end") {
+        console.log("the game is over");
+        this.props.final();
+        this.props.newBeginning();
+      }
+
+      // this.props.incrementRound();
+      //
+      // this.props.toggleAnswerForm();
+    } else if (message.winner) {
+      this.props.promptWinner(message.winner);
     }
+  };
 
-    handleReceivedMessage = message => {
-        /* todo this is a cluster fuck of a method. could it even be broken down? */
-        //this is if someone joins the game. todo i should call this message.join
+  /*in the future, write this in a switch, or an actioncable reducer*/
+  render() {
+    return (
+      <div>
+        {/*if there is a current game, open up the connection. otherwise, don't. todo should i make the other condition a redirect? */}
+        {Object.keys(this.props.currentGame).length > 0 ? (
+          <ActionCableConsumer
+            channel={{
+              channel: "RoundsChannel",
+              game_id: this.props.currentGame.id
+            }}
+            onReceived={this.handleReceivedMessage}
+          />
+        ) : null}
 
-        console.log("here's the grand message:", message);
-        if (message.game) {
-            let newUser;
-            //adds users, and broadcasts to other games.// this.props.addUsers(message.game.users);
-            if (message.game.player_two_id && !message.game.player_three_id) {
-
-                newUser = message.game.users.find((user) => (user.id === message.game.player_two_id));
-                this.props.addNewUser(newUser)
-            } else if (message.game.player_two_id && message.game.player_three_id) {
-                newUser = message.game.users.find((user) => (user.id === message.game.player_three_id));
-                this.props.addNewUser(newUser)
-            }
-            let friends = message.game.users.filter(
-                user => user.id !== this.props.currentUser.id
-            );
-            this.props.addFriend(friends);
-        } else if (message.start) {
-            //changes redux state key "startGame" to true, which in turn
-            //controls what is rendered.
-            console.log("link start-u");
-            this.props.toggleStartGame();
-            this.props.toggleAnswerForm();
-            /* todo I need to rework how the rounds work, both on the front and in the back. how? */
-
-            //determines order of judges
-
-            this.props.loadJudges();
-
-            //sets the judge based on what the current round is.
-            this.props.updateJudge();
-
-            this.props.initializeScoreBoard();
-        } else if (message.answer) {
-            /* todo i will most likely have to change how the answering system works too. */
-            this.props.addAnswers(message);
-        } else if (message.increment) {
-            /* todo again, i'll most likely need to change this shit too. The big problem
-             *   with the app right now is that the game isn't playable. I want to tackle
-             *   this problem by having many single responsibility components, completely
-             *   rewriting how it works. */
-
-            console.log("increment message:", message.increment);
-
-            if (message.increment === "prompt") {
-                console.log("it is time to increment the prompt");
-                this.props.newBeginning();
-                this.props.incrementPrompt();
-            } else if (message.increment === "round") {
-                console.log("it is time to increment the round");
-                this.props.newBeginning();
-                this.props.incrementRound();
-                this.props.updateJudge();
-
-            } else if (message.increment === "end") {
-                console.log("the game is over");
-                this.props.final();
-                this.props.newBeginning();
-            }
-
-
-            // this.props.incrementRound();
-            //
-            // this.props.toggleAnswerForm();
-        } else if (message.winner) {
-            this.props.promptWinner(message.winner);
-        }
-    };
-
-    /*in the future, write this in a switch, or an actioncable reducer*/
-    render() {
-        return (
-            <div>
-                {/*if there is a current game, open up the connection. otherwise, don't. todo should i make the other condition a redirect? */}
-                {Object.keys(this.props.currentGame).length > 0 ? (
-                    <ActionCableConsumer
-                        channel={{
-                            channel: "RoundsChannel",
-                            game_id: this.props.currentGame.id
-                        }}
-                        onReceived={this.handleReceivedMessage}
-                    />
-                ) : null}
-
-                {/*this navbar will just show the players in the game, as well as the options
+        {/*this navbar will just show the players in the game, as well as the options
             to hit home or logout. in both cases,
             todo I should end the game for other players and have that alert that the game has ended. */}
-                <GamePlayNavbar/>
+        <GamePlayNavbar />
 
-                {/* todo how the fuck does this work? I gotta read the docs for this shit. i'm probably using it shittily*/}
-                <Grid centered verticalAlign="middle" columns={1}>
-                    <Grid.Row>
-                        <Grid.Column textAlign="center">
-                            {/*<h1 className="title">*/}
-                            {/*    "{this.props.currentGame.title}" is in session*/}
-                            {/*</h1>*/}
+        {/* todo how the fuck does this work? I gotta read the docs for this shit. i'm probably using it shittily*/}
+        <div>
+          {/*<h1 className="title">*/}
+          {/*    "{this.props.currentGame.title}" is in session*/}
+          {/*</h1>*/}
 
-                            {/* todo I think i'll have to create new components for the gameplay.
+          {/* todo I think i'll have to create new components for the gameplay.
                     how should they work? They should be as SRP as possible. */}
 
-                            <GamePlayContainer/>
+          <GamePlayContainer />
 
-                            {/* todo the answer form looks like ass, I need to fix it up. */}
-                        </Grid.Column>
-                    </Grid.Row>
-                </Grid>
-            </div>
-        );
-    }
+          {/* todo the answer form looks like ass, I need to fix it up. */}
+        </div>
+      </div>
+    );
+  }
 }
 
 const mapDispatchToProps = dispatch => {
-    return {
-        deleteGame: gameObj => dispatch(deleteGame(gameObj)),
-        gameNoLongerOpen: () => dispatch(gameNoLongerOpen()),
-        addFriend: friend => dispatch(addFriend(friend)),
-        removeFriend: () => dispatch(removeFriend()),
-        addUsers: users => dispatch(addUsers(users)),
-        removeUsers: () => dispatch(removeUsers()),
-        toggleStartGame: () => dispatch(toggleStartGame()),
-        addAnswers: answerObj => dispatch(addAnswers(answerObj)),
-        incrementRound: () => dispatch(incrementRound()),
-        incrementPrompt: () => dispatch(incrementPrompt()),
-        newBeginning: () => dispatch(newBeginning()),
-        toggleAnswerForm: () => dispatch(toggleAnswerForm()),
-        exitGame: () => dispatch(exitGame()),
-        pregameExit: () => dispatch(pregameExit()),
-        gameExit: () => dispatch(gameExit()),
-        loadJudges: () => dispatch(loadJudges()),
-        updateJudge: () => dispatch(updateJudge()),
-        addNewUser: (user) => dispatch(addNewUser(user)),
-        initializeScoreBoard: () => dispatch(initializeScoreBoard()),
-        promptWinner: (winner) => dispatch(promptWinner(winner)),
-        final: () => dispatch(final()),
-    };
+  return {
+    deleteGame: gameObj => dispatch(deleteGame(gameObj)),
+    gameNoLongerOpen: () => dispatch(gameNoLongerOpen()),
+    addFriend: friend => dispatch(addFriend(friend)),
+    removeFriend: () => dispatch(removeFriend()),
+    addUsers: users => dispatch(addUsers(users)),
+    removeUsers: () => dispatch(removeUsers()),
+    toggleStartGame: () => dispatch(toggleStartGame()),
+    addAnswers: answerObj => dispatch(addAnswers(answerObj)),
+    incrementRound: () => dispatch(incrementRound()),
+    incrementPrompt: () => dispatch(incrementPrompt()),
+    newBeginning: () => dispatch(newBeginning()),
+    toggleAnswerForm: () => dispatch(toggleAnswerForm()),
+    exitGame: () => dispatch(exitGame()),
+    pregameExit: () => dispatch(pregameExit()),
+    gameExit: () => dispatch(gameExit()),
+    loadJudges: () => dispatch(loadJudges()),
+    updateJudge: () => dispatch(updateJudge()),
+    addNewUser: user => dispatch(addNewUser(user)),
+    initializeScoreBoard: () => dispatch(initializeScoreBoard()),
+    promptWinner: winner => dispatch(promptWinner(winner)),
+    final: () => dispatch(final())
+  };
 };
 
 const mapStateToProps = state => {
-    return {
-        currentGame: state.game.currentGame,
-        currentUser: state.auth.currentUser
-
-    };
+  return {
+    currentGame: state.game.currentGame,
+    currentUser: state.auth.currentUser
+  };
 };
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(GamePlaySocketHandler);

@@ -16,50 +16,49 @@ import Answer from "./Answer";
 import Judge from "./Judge";
 import Prompt from "./Prompt";
 import ShowAnswers from "./ShowAnswers";
-import Results from "./Results"
+import Results from "./Results";
 
 import { connect } from "react-redux";
 import StartButton from "./StartButton";
 
 class GamePlayContainer extends Component {
-
-
-
   render() {
     return (
       <div>
-
-        {this.props.final ? <Results/> : null}
+        {this.props.final ? <Results /> : null}
 
         {!this.props.startGame &&
         this.props.users.length === 3 &&
-        this.props.currentUser.id === this.props.users[0].id && this.props.final === false ? (
+        this.props.currentUser.id === this.props.users[0].id &&
+        this.props.final === false ? (
           <StartButton />
         ) : null}
 
         {this.props.startGame && this.props.final === false ? <Prompt /> : null}
 
-        {this.props.startGame && this.props.currentJudge && this.props.final === false ? (
+        {this.props.startGame &&
+        this.props.currentJudge &&
+        this.props.final === false ? (
           this.props.currentJudge.id !== this.props.currentUser.id ? (
             <Answer />
           ) : null
         ) : null}
 
-        {this.props.startGame && this.props.currentJudge && this.props.final === false ? (
+        {this.props.startGame &&
+        this.props.currentJudge &&
+        this.props.final === false ? (
           this.props.currentJudge.id === this.props.currentUser.id ? (
             <Judge />
           ) : null
         ) : null}
 
-        {this.props.answerForm === false && this.props.final === false ? <ShowAnswers /> : null}
-
-
+        {this.props.answerForm === false && this.props.final === false ? (
+          <ShowAnswers />
+        ) : null}
       </div>
     );
   }
 }
-
-
 
 const mapStateToProps = state => {
   return {
@@ -71,9 +70,5 @@ const mapStateToProps = state => {
     final: state.game.final
   };
 };
-
-
-
-
 
 export default connect(mapStateToProps)(GamePlayContainer);

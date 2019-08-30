@@ -3,9 +3,9 @@ import LandingNavbar from "../Components/Navbars/LandingNavbar";
 
 const Landing = () => {
   return (
-    <div>
+    <div className="landing">
+      <h1 className="title">Welcome to Answr</h1>
       <LandingNavbar />
-      <h1>Welcome to Answr</h1>
     </div>
   );
 };

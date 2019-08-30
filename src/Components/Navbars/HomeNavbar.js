@@ -7,7 +7,7 @@ import {
   toggleNewGameModal,
   toggleViewGames
 } from "../../redux/actions.js";
-import { Menu, Image } from "semantic-ui-react";
+// import { Menu, Image } from "semantic-ui-react";
 
 /* view available Games, host new game */
 
@@ -19,12 +19,9 @@ class HomeNavbar extends React.Component {
 
   render() {
     return (
-      <Menu>
-        <Menu.Item position="left">
-          <img alt="" src="../../../mod-5-logo.png" />
-        </Menu.Item>
+      <div>
         {this.isUserLoggedIn() ? (
-          <Menu.Item
+          <button
             position="right"
             onClick={() => {
               localStorage.removeItem("token");
@@ -33,11 +30,11 @@ class HomeNavbar extends React.Component {
             }}
           >
             Log Out
-          </Menu.Item>
+          </button>
         ) : null}
         {/*todo not sure what this method does; is it checking to see if someone is looking at the game list? or is it checking to see if there is a game in session.*/}
         {this.props.isGameOpen ? null : (
-          <Menu.Item
+          <button
             onClick={() => {
               // todo why am i having users redirected to the game list, and not to home?
 
@@ -45,16 +42,14 @@ class HomeNavbar extends React.Component {
             }}
           >
             View Available Games
-          </Menu.Item>
+          </button>
         )}
         {/*todo i think this is checking to see whether a user is in a game, or if the gamelist page is on. what redux action makes this boolean true? */}
         {this.props.isGameOpen ? null : (
           /*todo look @ newGameModal.*/
-          <Menu.Item onClick={this.props.toggleNewGameModal}>
-            Host New Game
-          </Menu.Item>
+          <button onClick={this.props.toggleNewGameModal}>Host New Game</button>
         )}
-      </Menu>
+      </div>
     );
   }
 }
