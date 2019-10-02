@@ -29,11 +29,12 @@ class Answer extends Component {
 
   render() {
     return (
-      <div className="answer-form">
+      <div className="answer-form-container">
         {this.props.answerForm ? (
           <div>
             <form onSubmit={this.submitHandler}>
               <input
+                className="answer-input"
                 required
                 type="text"
                 name="text"
@@ -42,7 +43,11 @@ class Answer extends Component {
                 onChange={this.changeHandler}
               />
 
-              <button type="submit">Submit</button>
+              <div>
+                <button className="button answer-submit-button" type="submit">
+                  Submit
+                </button>
+              </div>
             </form>
           </div>
         ) : null}

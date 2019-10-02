@@ -24,7 +24,7 @@ import StartButton from "./StartButton";
 class GamePlayContainer extends Component {
   render() {
     return (
-      <div>
+      <div className="gameplay-container">
         {this.props.final ? <Results /> : null}
 
         {!this.props.startGame &&

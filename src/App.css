@@ -269,5 +269,44 @@
   width: 100vw;
 }
 
+.start-button-container {
+  text-align: center;
+}
 
+.start-button {
+  display: inline-block;
+}
+
+.gameplay-container {
+
+}
+
+.prompt {
+  text-align: center;
+  display: block;
+  color: white;
+  font-size: 3vw;
+  font-family: 'Bangers', cursive;
+}
+
+.answer-form-container {
+  display: grid;
+  grid-template-rows: repeat(2, 5fr);
+  text-align: center;
+}
+
+.answer-input {
+  grid-row: 1/2;
+  background-color: black;
+  color: white;
+  font-size: 1vw;
+  font-family: 'Patua One', cursive;
+  border: none;
+  text-align: center;
+}
+
+.answer-submit-button {
+  grid-row: 2/3;
+  display: inline-block;
+}
 

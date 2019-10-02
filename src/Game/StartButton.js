@@ -22,8 +22,8 @@ const StartButton = props => {
     });
   };
   return (
-    <div>
-      <button className="button" onClick={startHandler}>
+    <div className="start-button-container">
+      <button className="button start-button" onClick={startHandler}>
         Start Game
       </button>
     </div>
