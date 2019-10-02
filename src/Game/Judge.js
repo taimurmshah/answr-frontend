@@ -64,7 +64,7 @@ class Judge extends Component {
 
     if (this.props.answers.length === 2) {
       cards = this.props.answers.map(answer => (
-        <div centered>
+        <div className="judge-card">
           <JudgeCard
             key={answer.user_id}
             user={
@@ -78,8 +78,8 @@ class Judge extends Component {
 
     return (
       <div>
-        <div textAlign="center" centered columns={1}>
-          <div centered columns={2}>
+        <div>
+          <div className="judge-card-container">
             {this.props.answers.length === 2 && this.props.voted === false
               ? cards
               : null}
@@ -95,7 +95,11 @@ class Judge extends Component {
         {this.props.voted && !this.state.showButton ? this.timer() : null}
 
         {this.state.showButton ? (
-          <button onClick={this.clickHandler}>Next Prompt</button>
+          <div className="next-button-container">
+            <button className="button next-button" onClick={this.clickHandler}>
+              Next Prompt
+            </button>
+          </div>
         ) : null}
       </div>
     );

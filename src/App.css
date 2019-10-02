@@ -310,3 +310,24 @@
   display: inline-block;
 }
 
+.judge-card-container {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  text-align: center;
+}
+
+.judge-card {
+  display: block;
+  color: white;
+}
+
+.next-button-container {
+  text-align: center;
+}
+
+.next-button {
+  display: inline-block;
+}
+
+
+
