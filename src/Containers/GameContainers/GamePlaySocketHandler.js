@@ -145,7 +145,7 @@ class GamePlaySocketHandler extends React.Component {
   /*in the future, write this in a switch, or an actioncable reducer*/
   render() {
     return (
-      <div>
+      <div className="gameplay">
         {/*if there is a current game, open up the connection. otherwise, don't. todo should i make the other condition a redirect? */}
         {Object.keys(this.props.currentGame).length > 0 ? (
           <ActionCableConsumer

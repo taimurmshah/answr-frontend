@@ -31,18 +31,25 @@ class NewGame extends React.Component {
 
   render() {
     return (
-      <div open={true} size={"mini"}>
-        {" "}
-        {/*modal*/}
-        <p>Create New Game:</p>
-        <input
-          name="title"
-          value={this.state.title}
-          placeholder="enter title"
-          onChange={this.changeHandler}
-        />
-        <button onClick={this.createHandler}>Submit</button>
-        <button onClick={this.props.toggleNewGameModal}>Go Back</button>
+      <div className="landing-modal">
+        <div className="modal-form">
+          <p>Create New Game:</p>
+          <input
+            name="title"
+            value={this.state.title}
+            placeholder="enter title"
+            onChange={this.changeHandler}
+          />
+          <button className="submit-button button" onClick={this.createHandler}>
+            Submit
+          </button>
+          <button
+            className="close-button button"
+            onClick={this.props.toggleNewGameModal}
+          >
+            Go Back
+          </button>
+        </div>
       </div>
     );
   }

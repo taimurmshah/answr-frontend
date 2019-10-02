@@ -23,7 +23,9 @@ const StartButton = props => {
   };
   return (
     <div>
-      <button onClick={startHandler}>Start Game</button>
+      <button className="button" onClick={startHandler}>
+        Start Game
+      </button>
     </div>
   );
 };

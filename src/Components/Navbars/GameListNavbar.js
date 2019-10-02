@@ -11,13 +11,19 @@ class GameListNavbar extends React.Component {
 
   render() {
     return (
-      <div>
-        <button position="left">
-          <img alt="" src="../../../mod-5-logo.png" />
+      <div className="navbar">
+        <button
+          className="menu-button button"
+          onClick={() => {
+            this.props.history.push("/home");
+          }}
+        >
+          Home
         </button>
+
         {this.isUserLoggedIn() ? (
           <button
-            position="right"
+            className="menu-button button"
             onClick={() => {
               localStorage.removeItem("token");
               this.props.logOut();
@@ -26,13 +32,6 @@ class GameListNavbar extends React.Component {
             Log Out
           </button>
         ) : null}
-        <button
-          onClick={() => {
-            this.props.history.push("/home");
-          }}
-        >
-          Home
-        </button>
       </div>
     );
   }

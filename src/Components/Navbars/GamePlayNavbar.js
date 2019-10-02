@@ -11,39 +11,51 @@ class GamePlayNavbar extends React.Component {
 
   render() {
     return (
-      <div>
-        <button position="left">
-          <img alt="" src="../../../mod-5-logo.png" />
-        </button>
+      <div className="navbar">
+        {/*<button className="button menu-button">*/}
+        {/*  <img alt="" src="../../../mod-5-logo.png" />*/}
+        {/*</button>*/}
 
         {this.props.game ? (
-          <button position="left">{this.props.game}</button>
+          <span className="menu-item">{this.props.game}</span>
         ) : null}
 
         {this.props.currentJudge ? (
-          <button>The current judge is: {this.props.currentJudge.name}</button>
+          <span className="menu-item">
+            The current judge is: {this.props.currentJudge.name}
+          </span>
         ) : null}
 
         {this.props.friends.length > 0 ? (
           this.props.friends.length === 1 ? (
-            <button className="friend-status">
+            <span className="menu-item">
               You are playing with {this.props.friends[0].name}, waiting for one
               more...
-            </button>
+            </span>
           ) : (
-            <button className="friend-status">
+            <span className=" menu-item">
               You are playing with {this.props.friends[0].name} and{" "}
               {this.props.friends[1].name}
-            </button>
+            </span>
           )
         ) : (
-          <button position="left" className="friend-status">
-            Waiting for friends to join
-          </button>
+          <span className="menu-item">Waiting for friends to join</span>
         )}
+
+        <span className="grow" />
+
+        <button
+          className="button menu-button"
+          onClick={() => {
+            this.props.history.push("/home");
+          }}
+        >
+          Home
+        </button>
+
         {this.isUserLoggedIn() ? (
           <button
-            position="right"
+            className="button menu-button"
             onClick={() => {
               localStorage.removeItem("token");
               this.props.logOut();
@@ -52,13 +64,6 @@ class GamePlayNavbar extends React.Component {
             Log Out
           </button>
         ) : null}
-        <button
-          onClick={() => {
-            this.props.history.push("/home");
-          }}
-        >
-          Home
-        </button>
       </div>
     );
   }

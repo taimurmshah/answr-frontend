@@ -29,8 +29,6 @@ class Login extends React.Component {
   render() {
     return (
       <div className="landing-modal">
-        {/*{" "}*/}
-        {/*modal*/}
         <div className="modal-form">
           <p>Log In:</p>
           <input

@@ -19,22 +19,27 @@ class HomeNavbar extends React.Component {
 
   render() {
     return (
-      <div>
-        {this.isUserLoggedIn() ? (
-          <button
-            position="right"
-            onClick={() => {
-              localStorage.removeItem("token");
-              //if user is logged in, create a button to log them out.
-              this.props.logOut();
-            }}
-          >
-            Log Out
-          </button>
-        ) : null}
+      <>
+        <section className="navbar">
+          {this.isUserLoggedIn() ? (
+            <button
+              className="menu-button button"
+              onClick={() => {
+                localStorage.removeItem("token");
+                //if user is logged in, create a button to log them out.
+                this.props.logOut();
+              }}
+            >
+              Log Out
+            </button>
+          ) : null}
+        </section>
+
         {/*todo not sure what this method does; is it checking to see if someone is looking at the game list? or is it checking to see if there is a game in session.*/}
+
         {this.props.isGameOpen ? null : (
           <button
+            className="view-button button"
             onClick={() => {
               // todo why am i having users redirected to the game list, and not to home?
 
@@ -44,12 +49,18 @@ class HomeNavbar extends React.Component {
             View Available Games
           </button>
         )}
+
         {/*todo i think this is checking to see whether a user is in a game, or if the gamelist page is on. what redux action makes this boolean true? */}
         {this.props.isGameOpen ? null : (
           /*todo look @ newGameModal.*/
-          <button onClick={this.props.toggleNewGameModal}>Host New Game</button>
+          <button
+            className="host-button button"
+            onClick={this.props.toggleNewGameModal}
+          >
+            Host New Game
+          </button>
         )}
-      </div>
+      </>
     );
   }
 }

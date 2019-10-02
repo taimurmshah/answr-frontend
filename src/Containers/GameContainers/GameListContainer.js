@@ -30,9 +30,11 @@ class GameListContainer extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="gamelist-container">
         {/*  all this does is present options to log out, or go back home. */}
         <GameListNavbar />
+
+        <h1 className="title">Available Games</h1>
         {/* todo This is receiving newly created games, and I also think it is receiving games that are full;
             it might be receiving just the full array of game objects. if so, how can I only display
             games that are waiting for players? Is there any creative use of a stack or queue here?

@@ -20,20 +20,16 @@ class GameCard extends React.Component {
 
   render() {
     return (
-      <div>
-        {" "}
-        {/*supposed to be a card*/}
-        <h3>{this.props.title}</h3>
-        {/* todo I want to show how many players are in the game, and how many more are needed. how could I do this? pretty easily, i bet. */}
-        <button
-          onClick={this.clickHandler}
-          size="mini"
-          floated="right"
-          basic
-          color="green"
-        >
-          Join this Game
-        </button>
+      <div className="card">
+        <div className="card-container">
+          <h3 className="card-title">{this.props.title}</h3>
+          <p className="card-host">Host: {this.props.host}</p>
+          <p className="card-spots">Spots Left: {this.props.spots}</p>
+          {/* todo I want to show how many players are in the game, and how many more are needed. how could I do this? pretty easily, i bet. */}
+          <button className="card-join button" onClick={this.clickHandler}>
+            Join
+          </button>
+        </div>
       </div>
     );
   }

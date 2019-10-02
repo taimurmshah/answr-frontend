@@ -1,3 +1,46 @@
+/*navbar, buttons, and items*/
+
+.navbar {
+ display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+}
+
+.button {
+  border-radius: .5rem;
+  background-color: white;
+  font-size: 1vw;
+  font-family: 'Patua One', cursive;
+  display: block;
+  vertical-align: middle;
+}
+
+.menu-button {
+  background-color: white;
+  height: 2vw;
+  margin: 1vw;
+  margin-left: 0vw;
+}
+
+.menu-item {
+  text-align: center;
+  height: 2vw;
+  /*margin: 1vw;*/
+  margin-left: 2vw;
+  display: block;
+  color: white;
+  font-size: 1vw;
+  font-family: 'Patua One', cursive;
+}
+
+.grow {
+  flex-grow: 1;
+}
+
+/*navbar, buttons, and items*/
+
+/*landing page; login & signup modals*/
+
 .landing {
   height: 100vh;
   width: 100vw;
@@ -8,8 +51,7 @@
   grid-template-columns: 3fr 1fr 1fr 3fr;
 }
 
-.landing .title {
-  grid-area: 2 / 1 / 3 / 5;
+.title {
   text-align: center;
   display: block;
   color: white;
@@ -17,28 +59,30 @@
   font-family: 'Bangers', cursive;
 }
 
-.button {
-  border-radius: .5rem;
-  font-size: 1vw
+.landing .title {
+  grid-area: 2 / 1 / 3 / 5;
 }
 
 .landing .login-button{
   grid-area: 3 / 2 / 4 / 3;
-  display: block;
 }
+
 .landing .signup-button {
   grid-area: 3 / 3 / 4 / 4;
-  display: block;
 }
 
 .landing .landing-modal {
   grid-area: 1 / 1 / 5 / 5;
-  background-color: rgba(96, 96, 96, .5);
+  background-color: rgba(182, 182, 182, .5);
   z-index: 1;
 }
 
-.modal-form {
-  background-color: honeydew;
+.landing .modal-form {
+  color: black;
+  background-color: rgb(250, 247, 238) ;
+  /*color: white;*/
+  /*background-color: black ;*/
+  border: solid 1px black;
   position: absolute;
   top: 25%;
   left: 50%;
@@ -48,11 +92,13 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: 3fr 2fr 2fr 2fr 2fr;
+  /*grid-auto-rows: min-content;*/
   border-radius: .65rem;
   overflow: hidden;
   padding: .7rem;
   grid-gap: .2rem;
-  box-shadow: 0 0 100px navajowhite;
+  box-shadow: 0 0 100px black ;
+  font-family: 'Patua One', cursive;
 }
 
 .modal-form p {
@@ -63,16 +109,165 @@
 
 .modal-form input {
   grid-column: 1 / 5;
-  border: none;
-  border: dashed 1px black;
+  /*border: none;*/
+  border: solid .5px black;
 }
 
 .modal-form .submit-button {
   grid-column: 3 / 4;
-  grid-row: 5 / 6;
+  grid-row: 0 / -1;
 }
 
 .modal-form .close-button {
   grid-column: 4 / 5;
-  grid-row: 5 / 6;
+  grid-row: 0 / -1;
 }
+
+/* homepage */
+
+.homepage {
+  height: 100vh;
+  width: 100vw;
+  background-color: black;
+  color: white;
+  display: grid;
+  grid-gap: 1vw;
+  grid-template-rows: 15% 10% min-content 2vw 40%;
+  grid-template-columns: 2.5fr .5fr 1fr 1fr .5fr 2.5fr;
+}
+
+.welcome {
+  grid-area: 2/ 1/ 3/ 7;
+  text-align: center;
+  font-family: 'Bangers', cursive;
+  font-size: 5vw;
+}
+
+.game-descr {
+  /*border: dotted 1px lemonchiffon;*/
+  grid-area: 3 / 2 / 4 / 6;
+  text-align: justify;
+  font-size: 1.3vw;
+  font-family: 'Source Sans Pro', sans-serif;
+  line-height: 1.2;
+}
+
+.host-button {
+  grid-area: 4 / 3 / 5 / 4
+}
+
+.view-button {
+  grid-area: 4 / 4 / 5 / 5
+}
+
+.homepage .landing-modal {
+  grid-area: 1 / 1 / 7 / 7;
+  background-color: rgba(182, 182, 182, .5);
+  z-index: 1;
+}
+
+.homepage .navbar {
+  grid-area: 1/ 1/ 2 /7;
+}
+
+.homepage .modal-form {
+  color: black;
+  background-color: rgb(250, 247, 238) ;
+  border: solid 1px black;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20vw;
+  height: 10vw;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 3fr 2fr 2fr;
+  /*grid-auto-rows: min-content;*/
+  border-radius: .65rem;
+  overflow: hidden;
+  padding: .7rem;
+  grid-gap: .2rem;
+  box-shadow: 0 0 100px black ;
+  font-family: 'Patua One', cursive;
+}
+
+/*Game List Container*/
+
+.gamelist-container {
+  height: 100vh;
+  width: 100vw;
+  background-color: black;
+  color: white;
+  display: grid;
+  grid-template-rows: 15% 15% 70%;
+}
+
+.gamelist-container .navbar {
+  grid-row: 1/2;
+}
+
+.gamelist {
+  grid-row: 3/4;
+  display: grid;
+  grid-template-rows: repeat(3, 2fr);
+  grid-template-columns: repeat(3, 5fr);
+  grid-gap: 3vw;
+  margin-top: 5vw;
+  margin-right: 20vw;
+  margin-left: 20vw;
+}
+
+.card {
+  /*box-shadow: 0 4px 8px 0 white;*/
+  transition: 0.3s;
+  /*border: 5px dotted lightcoral;*/
+  background-color: white;
+  border-radius: 1vw;
+}
+
+/*.card:hover {*/
+/*  box-shadow: 0 8px 16px 0 white;*/
+/*}*/
+
+.card-container {
+  position: center;
+  color: black;
+  display: grid;
+  grid-template-rows: repeat(4, 4fr);
+  grid-row-gap: 1vw;
+  grid-template-columns: 80% 20%;
+  padding: 15px 15px;
+}
+
+.card-title {
+  grid-row: 1/2;
+  grid-column: 1/3;
+  font-weight: bold;
+  font-size: 1vw;
+  text-align: center;
+}
+
+.card-host {
+  grid-row: 2/3;
+}
+
+.card-spots {
+  grid-row: 3/4;
+}
+
+.card button {
+  grid-row: 4/5;
+  grid-column: 2/3;
+}
+
+/*----------game-play----------*/
+
+.gameplay {
+  background-color: black;
+  height: 100vh;
+  width: 100vw;
+}
+
+
+
