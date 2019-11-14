@@ -15,4 +15,4 @@ The game is not yet deployed; I am still working on the CSS and a few bugs, but 
 
 
 
-![Landing](https://imgur.com/tNe4zue)
+![Landing](https://i.imgur.com/tNe4zue.png)
