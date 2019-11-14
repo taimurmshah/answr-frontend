@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
+
 import Home from "./Containers/Home";
 import GameListContainer from "./Containers/GameContainers/GameListContainer.js";
 import GamePlaySocketHandler from "./Containers/GameContainers/GamePlaySocketHandler.js";
@@ -71,14 +72,12 @@ class App extends Component {
             }}
           />
         </Switch>
-        <img alt="" className="background-img" src="../mod-5-logo.png" />
       </div>
     );
   }
 }
 
 const mapStateToProps = state => {
-
   return {
     currentUser: state.auth.currentUser,
     isGameOpen: state.pregame.isGameOpen,

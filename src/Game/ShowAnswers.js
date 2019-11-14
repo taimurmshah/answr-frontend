@@ -2,18 +2,14 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 class ShowAnswers extends Component {
-
-  componentDidMount() {
-  }
+  componentDidMount() {}
 
   showAnswers = () => {
     if (this.props.answers.length === 1) {
-
       if (this.props.answers[0].user_id === this.props.myId) {
         return <h3>You answered: {this.props.answers[0].answer}</h3>;
       }
     } else if (this.props.answers.length === 2) {
-
       if (
         this.props.myId === this.props.answers[0].user_id ||
         this.props.myId === this.props.answers[1].user_id
@@ -33,8 +29,10 @@ class ShowAnswers extends Component {
         friendAnswer = friendAnswer[0];
 
         return (
-          <div>
-            {this.props.voted && this.props.currentWinner ? <h2>The winner of this prompt is: {this.props.currentWinner}</h2> : null}
+          <div className="answers-container">
+            {this.props.voted && this.props.currentWinner ? (
+              <h2>The winner of this prompt is: {this.props.currentWinner}</h2>
+            ) : null}
             <h3>You answered: {myAnswer.answer}</h3>
             <h3>
               {friendName} answered: {friendAnswer.answer}

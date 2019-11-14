@@ -5,7 +5,7 @@
 
 import React from "react";
 import { connect } from "react-redux";
-import { Button } from "semantic-ui-react";
+// import { Button } from "semantic-ui-react";
 import { loadJudges, updateJudge, toggleAnswerForm } from "../redux/actions";
 
 const StartButton = props => {
@@ -22,8 +22,10 @@ const StartButton = props => {
     });
   };
   return (
-    <div>
-      <Button onClick={startHandler}>Start Game</Button>
+    <div className="start-button-container">
+      <button className="button start-button" onClick={startHandler}>
+        Start Game
+      </button>
     </div>
   );
 };

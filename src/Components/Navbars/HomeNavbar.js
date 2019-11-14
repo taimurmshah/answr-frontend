@@ -7,7 +7,7 @@ import {
   toggleNewGameModal,
   toggleViewGames
 } from "../../redux/actions.js";
-import { Menu, Image } from "semantic-ui-react";
+// import { Menu, Image } from "semantic-ui-react";
 
 /* view available Games, host new game */
 
@@ -19,25 +19,29 @@ class HomeNavbar extends React.Component {
 
   render() {
     return (
-      <Menu>
-        <Menu.Item position="left">
-          <img alt="" src="../../../mod-5-logo.png" />
-        </Menu.Item>
-        {this.isUserLoggedIn() ? (
-          <Menu.Item
-            position="right"
-            onClick={() => {
-              localStorage.removeItem("token");
-              //if user is logged in, create a button to log them out.
-              this.props.logOut();
-            }}
-          >
-            Log Out
-          </Menu.Item>
-        ) : null}
+      <>
+        <section className="navbar">
+          <p className="logo">Answr</p>
+
+          {this.isUserLoggedIn() ? (
+            <button
+              className="menu-button button"
+              onClick={() => {
+                localStorage.removeItem("token");
+                //if user is logged in, create a button to log them out.
+                this.props.logOut();
+              }}
+            >
+              Log Out
+            </button>
+          ) : null}
+        </section>
+
         {/*todo not sure what this method does; is it checking to see if someone is looking at the game list? or is it checking to see if there is a game in session.*/}
+
         {this.props.isGameOpen ? null : (
-          <Menu.Item
+          <button
+            className="view-button button"
             onClick={() => {
               // todo why am i having users redirected to the game list, and not to home?
 
@@ -45,16 +49,20 @@ class HomeNavbar extends React.Component {
             }}
           >
             View Available Games
-          </Menu.Item>
+          </button>
         )}
+
         {/*todo i think this is checking to see whether a user is in a game, or if the gamelist page is on. what redux action makes this boolean true? */}
         {this.props.isGameOpen ? null : (
           /*todo look @ newGameModal.*/
-          <Menu.Item onClick={this.props.toggleNewGameModal}>
+          <button
+            className="host-button button"
+            onClick={this.props.toggleNewGameModal}
+          >
             Host New Game
-          </Menu.Item>
+          </button>
         )}
-      </Menu>
+      </>
     );
   }
 }

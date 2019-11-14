@@ -181,7 +181,8 @@ export default function (state = initialState, action) {
                 currentPromptAnswers: [],
                 scoreBoard: {},
                 voted: false,
-                currentWinner: null
+                currentWinner: null,
+                final: false
             };
         default:
             return state;

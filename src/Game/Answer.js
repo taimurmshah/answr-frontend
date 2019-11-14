@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { submitAnswer } from "../redux/thunks";
 import { toggleAnswerForm } from "../redux/actions.js";
-import { Form, Button } from "semantic-ui-react";
+// import { Form, Button } from "semantic-ui-react";
 
 class Answer extends Component {
   state = {
@@ -29,23 +29,26 @@ class Answer extends Component {
 
   render() {
     return (
-
-      <div className="answer-form">
+      <div className="answer-form-container">
         {this.props.answerForm ? (
           <div>
-            <Form onSubmit={this.submitHandler}>
-              <Form.Field>
-                <input
-                  required
-                  type="text"
-                  name="text"
-                  placeholder="Enter Your Answer Here"
-                  value={this.state.text}
-                  onChange={this.changeHandler}
-                />
-              </Form.Field>
-              <Button type="submit">Submit</Button>
-            </Form>
+            <form onSubmit={this.submitHandler}>
+              <input
+                className="answer-input"
+                required
+                type="text"
+                name="text"
+                placeholder="Enter Your Answer Here"
+                value={this.state.text}
+                onChange={this.changeHandler}
+              />
+
+              <div>
+                <button className="button answer-submit-button" type="submit">
+                  Submit
+                </button>
+              </div>
+            </form>
           </div>
         ) : null}
       </div>
@@ -54,7 +57,6 @@ class Answer extends Component {
 }
 
 const mapStateToProps = state => {
-
   return {
     gameId: state.game.currentGame.id,
     userId: state.auth.currentUser.id,

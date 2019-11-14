@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, Input, Button } from "semantic-ui-react";
+// import { Modal, Input, Button } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { toggleNewGameModal, openGame } from "../../redux/actions.js";
 import { createNewGame } from "../../redux/thunks.js";
@@ -31,21 +31,26 @@ class NewGame extends React.Component {
 
   render() {
     return (
-      <Modal open={true} size={"mini"}>
-        <Modal.Content>
+      <div className="landing-modal">
+        <div className="modal-form">
           <p>Create New Game:</p>
-          <Input
+          <input
             name="title"
             value={this.state.title}
             placeholder="enter title"
             onChange={this.changeHandler}
           />
-        </Modal.Content>
-        <Modal.Actions>
-          <Button onClick={this.createHandler}>Submit</Button>
-          <Button onClick={this.props.toggleNewGameModal}>Go Back</Button>
-        </Modal.Actions>
-      </Modal>
+          <button className="submit-button button" onClick={this.createHandler}>
+            Submit
+          </button>
+          <button
+            className="close-button button"
+            onClick={this.props.toggleNewGameModal}
+          >
+            Go Back
+          </button>
+        </div>
+      </div>
     );
   }
 }

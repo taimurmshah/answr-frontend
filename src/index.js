@@ -10,7 +10,7 @@ import App from "./App";
 import Debugger from "./debugger";
 
 /*todo how can I make my app look best? should I use semantic or not? what matters most for my portfolio?*/
-import "semantic-ui-css/semantic.min.css";
+// import "semantic-ui-css/semantic.min.css";
 
 /*todo how can I transition to combine reducers? look @ gigi's lecture? perhaps look @
  *  how Traversy Brad did it in DevConnector?*/

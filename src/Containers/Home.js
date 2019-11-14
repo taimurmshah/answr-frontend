@@ -30,11 +30,11 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="homepage">
         <HomeNavbar />
         {this.isUserLoggedIn() ? (
           this.props.currentUser.name ? (
-            <h1 className="title">{`Welcome, ${
+            <h1 className="welcome">{`Welcome, ${
               this.props.currentUser.name
             }`}</h1>
           ) : (
@@ -44,12 +44,16 @@ class Home extends React.Component {
           <Redirect to="/" />
         )}
         {this.props.newGameModal ? <NewGame /> : null}
-        <p>
-          Answr is a game you can play with your friends. You can either host a
-          new game, or view if there are any available games. Each game consists
-          of three players, and each player will be a judge for one round. Lets
-          get started!
-        </p>
+        <section className="game-descr">
+          <p>
+            Answr is a game you can play with your friends. You can either host
+            a new game, or view if there are any available games. Each game
+            allows for three players. You and your friends will take turns
+            answering prompts, and the player with the most points at the end
+            wins the game! Each player will be judge for one of three rounds.
+            Let's get started by selecting one of the options below!
+          </p>
+        </section>
       </div>
     );
   }
