@@ -11,5 +11,5 @@ Answr implements a Ruby on Rails API. On the front-end, I used React and Redux. 
 
 ### Playing the game
 
-The game is not yet deployed, so it will be difficult to play on one computer, unless one uses two or three different browsers.
+The game is not yet deployed, so it will be difficult to play on one computer, unless you use two or three different browsers.
 
