@@ -7,7 +7,7 @@ class GameList extends React.Component {
   render() {
     let games = this.props.availableGames.map(game => {
       let host = game.users.find(user => user.id === game.player_one_id);
-      debugger;
+
       return (
         <GameCard
           key={game.id}

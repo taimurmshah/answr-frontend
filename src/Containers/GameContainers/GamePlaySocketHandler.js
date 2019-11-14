@@ -37,7 +37,6 @@ import {
   promptWinner,
   final
 } from "../../redux/actions.js";
-// import {Grid} from "semantic-ui-react";
 
 class GamePlaySocketHandler extends React.Component {
   //todo the fuck is this for? could I use it? do I need to?
@@ -49,6 +48,7 @@ class GamePlaySocketHandler extends React.Component {
      *   I'd need to study how I implemented the JWT for regular auth. Are there
          any other ways? I could use the game id in the route, and check to see if the user
      *   belongs to the game.users array.   */
+
   componentWillUnmount() {
     //toggles store "gameOpen" from true to false, then app.js router navigates back to ./home.
     this.props.gameNoLongerOpen();

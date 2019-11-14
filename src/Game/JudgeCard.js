@@ -22,10 +22,10 @@ class JudgeCard extends Component {
 
   render() {
     return (
-      <div>
+      <div className="judge-card">
         <h3>{this.props.user.name}</h3>
         <p>{this.props.text}</p>
-        <button size="small" color="green" basic onClick={this.voteHandler}>
+        <button className="button" onClick={this.voteHandler}>
           Vote
         </button>
       </div>

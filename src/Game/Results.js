@@ -14,14 +14,14 @@ class Results extends Component {
     let cards;
     if (this.props.scoreBoard) {
       cards = this.props.scoreBoardArray.map(user => (
-        <div>
+        <div className="result-card">
           <p>{user}</p>
           <h3>Score: {this.props.scoreBoard[user]}</h3>
         </div>
       ));
     }
     return (
-      <div>
+      <div className="results-container">
         <h1>RESULTS</h1>
 
         {this.props.scoreBoard ? cards : null}

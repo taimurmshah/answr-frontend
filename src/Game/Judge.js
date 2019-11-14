@@ -64,15 +64,11 @@ class Judge extends Component {
 
     if (this.props.answers.length === 2) {
       cards = this.props.answers.map(answer => (
-        <div className="judge-card">
-          <JudgeCard
-            key={answer.user_id}
-            user={
-              this.props.users.filter(user => user.id === answer.user_id)[0]
-            }
-            text={answer.answer}
-          />
-        </div>
+        <JudgeCard
+          key={answer.user_id}
+          user={this.props.users.filter(user => user.id === answer.user_id)[0]}
+          text={answer.answer}
+        />
       ));
     }
 

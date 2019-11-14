@@ -12,18 +12,16 @@ class GamePlayNavbar extends React.Component {
   render() {
     return (
       <div className="navbar">
-        {/*<button className="button menu-button">*/}
-        {/*  <img alt="" src="../../../mod-5-logo.png" />*/}
-        {/*</button>*/}
-
-        {this.props.game ? (
-          <span className="menu-item">{this.props.game}</span>
-        ) : null}
+        <p className="logo">Answr</p>
 
         {this.props.currentJudge ? (
           <span className="menu-item">
             The current judge is: {this.props.currentJudge.name}
           </span>
+        ) : null}
+
+        {this.props.game ? (
+          <span className="menu-item">Game: {this.props.game}</span>
         ) : null}
 
         {this.props.friends.length > 0 ? (

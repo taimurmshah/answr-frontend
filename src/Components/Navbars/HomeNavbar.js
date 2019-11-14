@@ -21,6 +21,8 @@ class HomeNavbar extends React.Component {
     return (
       <>
         <section className="navbar">
+          <p className="logo">Answr</p>
+
           {this.isUserLoggedIn() ? (
             <button
               className="menu-button button"
