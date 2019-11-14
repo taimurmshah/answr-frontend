@@ -35,7 +35,7 @@ The judge votes on answers after each prompt; in the end, each player is shown t
 ![Results](https://i.imgur.com/KfzQzgJ.png)
 
 
-### Lessons learned & What I want to do with this app.
+### Lessons learned
 This app was fun to work on. It presented a good combination of challenge and excitement. During bootcamp, I had roughly two weeks to work on this project. A lesson I learned is that a project will take much longer than my optimistic projections. I had originally wanted to make this a 5-8 player game (like Quiplash), but the challenge of coding out the game logic would have taken more time that I had. I also am fairly allergic to CSS (as you can see), and I still have much more styling to take care of. I haven't yet deployed this app because I'm unsatisfied with it, even though I believe that it's complex and impressive as it currently is. Overall, it was fun to work on, and I made many mistakes during it, from which I learned a lot.
 
 
